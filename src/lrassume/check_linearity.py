@@ -1,4 +1,4 @@
-def get_target_correlated_features(df: pandas.DataFrame, target: str, threshold: float = 0.7) -> pandas.DataFrame: 
+def check_linearity(df: pandas.DataFrame, target: str, threshold: float = 0.7) -> pandas.DataFrame: 
   """Identify features with a specified strength of linear relationship to the target.
   
   This function identifies all of the numeric features in a DataFrame and computes the Pearson correlation coefficient between each numeric feature in the DataFrame and the specified numeric target column.
@@ -32,7 +32,7 @@ def get_target_correlated_features(df: pandas.DataFrame, target: str, threshold:
     "distance_to_city": [10, 12, 11, 13],
     "price": [150, 210, 260, 320]
   })
-  >>> get_target_correlated_features(df=df_example, target="price", threshold=0.7)
+  >>> check_linearity(df=df_example, target="price", threshold=0.7)
           feature  correlation
   0          sqft     0.994
   1            age    -0.952
