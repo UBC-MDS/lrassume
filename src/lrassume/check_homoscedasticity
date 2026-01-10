@@ -1,0 +1,287 @@
+"""
+Homoscedasticity diagnostics for linear regression.
+
+This module contains utilities to detect heteroscedasticity (non-constant variance)
+in residuals for linear regression workflows.
+"""
+
+from __future__ import annotations
+
+from typing import Any, Dict, Literal, Optional, Tuple, Union
+
+import pandas as pd
+import numpy as np
+
+
+TestMethod = Literal["breusch_pagan", "white", "goldfeld_quandt", "all"]
+AlphaLevel = Literal[0.01, 0.05, 0.10]
+
+
+def check_homoscedasticity(
+    X: pd.DataFrame,
+    y: pd.Series,
+    *,
+    method: TestMethod = "breusch_pagan",
+    alpha: float = 0.05,
+    fitted_model: Optional[Any] = None,
+    residuals: Optional[np.ndarray] = None,
+    fitted_values: Optional[np.ndarray] = None,
+) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+    """
+    Test for homoscedasticity (constant variance) in linear regression residuals.
+
+    Homoscedasticity is the assumption that residuals have constant variance across
+    all levels of the independent variables. Violation of this assumption 
+    (heteroscedasticity) leads to inefficient coefficient estimates and incorrect
+    standard errors in ordinary least squares (OLS) regression.
+
+    This function implements multiple statistical tests to detect heteroscedasticity:
+    
+    - **Breusch-Pagan test**: Tests whether residual variance depends linearly 
+      on predictors. Null hypothesis: homoscedasticity (constant variance).
+    
+    - **White test**: More general test that allows for non-linear relationships
+      between variance and predictors. Includes squared terms and interactions.
+      Null hypothesis: homoscedasticity.
+    
+    - **Goldfeld-Quandt test**: Splits data by a predictor and compares variance
+      in two subsets. Useful for detecting variance that increases/decreases
+      with a specific predictor.
+
+    Parameters
+    ----------
+    X : pd.DataFrame
+        DataFrame of predictors (features). Each column is a predictor variable.
+        Must contain only numeric columns.
+
+    y : pd.Series
+        Target variable (response). Must have the same length as X.
+
+    method : {"breusch_pagan", "white", "goldfeld_quandt", "all"}, default="breusch_pagan"
+        Statistical test(s) to perform:
+        
+        - "breusch_pagan": Breusch-Pagan Lagrange multiplier test
+        - "white": White's general heteroscedasticity test
+        - "goldfeld_quandt": Goldfeld-Quandt test (splits on first predictor by default)
+        - "all": Run all available tests
+
+    alpha : float, default=0.05
+        Significance level for hypothesis tests. Common values: 0.01, 0.05, 0.10.
+        Must be between 0 and 1 (exclusive).
+
+    fitted_model : optional
+        Pre-fitted regression model object with `predict()` method.
+        If None, an OLS model will be fitted internally using X and y.
+        Useful for avoiding refitting when model already exists.
+
+    residuals : np.ndarray, optional
+        Pre-computed residuals (y - y_pred). Must have same length as y.
+        If None, residuals will be computed from fitted_model or internal fit.
+        Cannot be specified without fitted_values.
+
+    fitted_values : np.ndarray, optional
+        Pre-computed fitted values (y_pred). Must have same length as y.
+        If None, fitted values will be computed from fitted_model or internal fit.
+        Cannot be specified without residuals.
+
+    Returns
+    -------
+    test_results : pd.DataFrame
+        One row per test performed, with columns:
+        
+        - "test" (str): Name of the test performed
+        - "statistic" (float): Test statistic value
+        - "p_value" (float): P-value for the test
+        - "conclusion" (str): One of {"homoscedastic", "heteroscedastic"}
+        - "significant" (bool): True if p_value < alpha (reject null hypothesis)
+        
+        Rows are sorted by test name alphabetically.
+
+    summary : dict
+        Overall diagnostics containing:
+        
+        - "overall_conclusion" (str): "homoscedastic" if all tests pass, 
+          otherwise "heteroscedastic"
+        - "n_tests_performed" (int): Number of tests conducted
+        - "n_tests_significant" (int): Number of tests rejecting homoscedasticity
+        - "alpha" (float): Echo of significance level used
+        - "n_observations" (int): Sample size
+        - "n_predictors" (int): Number of predictor variables
+        - "variance_ratio" (float): Ratio of max to min residual variance across
+          groups (for Goldfeld-Quandt) or fitted value bins
+        - "recommendation" (str): Suggested action if heteroscedasticity detected
+
+    Raises
+    ------
+    ValueError
+        - If X contains non-numeric columns
+        - If X and y have different lengths
+        - If alpha is not between 0 and 1
+        - If residuals is provided without fitted_values or vice versa
+        - If residuals/fitted_values length doesn't match y
+        - If fewer than 10 observations are available (insufficient for testing)
+        - If X contains constant columns (no variance)
+
+    TypeError
+        - If fitted_model is provided but lacks predict() method
+        - If X is not a pandas DataFrame
+        - If y is not a pandas Series or 1D array-like
+
+    Notes
+    -----
+    - All tests assume residuals from a linear regression model.
+    - Tests use chi-square or F-distributions depending on the method.
+    - The Breusch-Pagan test is most powerful against linear heteroscedasticity.
+    - The White test is more general but may have lower power with small samples.
+    - Goldfeld-Quandt test requires ordering data, which may be arbitrary for
+      multivariate predictors.
+    - If heteroscedasticity is detected, consider using robust standard errors
+      (e.g., HC3, HC4) or weighted least squares (WLS) regression.
+    - Missing values in X or y will raise an error; clean data beforehand.
+
+    Examples
+    --------
+    Basic usage with internal model fitting:
+    
+    >>> import pandas as pd
+    >>> import numpy as np
+    >>> np.random.seed(42)
+    >>> X = pd.DataFrame({
+    ...     'x1': np.linspace(1, 100, 100),
+    ...     'x2': np.random.randn(100)
+    ... })
+    >>> y = pd.Series(2 * X['x1'] + 3 * X['x2'] + np.random.randn(100))
+    >>> test_results, summary = check_homoscedasticity(X, y)
+    >>> print(summary["overall_conclusion"])
+    'homoscedastic'
+
+    Using a pre-fitted model:
+    
+    >>> from sklearn.linear_model import LinearRegression
+    >>> model = LinearRegression().fit(X, y)
+    >>> test_results, summary = check_homoscedasticity(
+    ...     X, y, fitted_model=model
+    ... )
+    >>> print(test_results)
+              test  statistic   p_value      conclusion  significant
+    0  breusch_pagan      2.345      0.309  homoscedastic        False
+
+    Running all tests:
+    
+    >>> test_results, summary = check_homoscedasticity(
+    ...     X, y, method="all", alpha=0.01
+    ... )
+    >>> print(summary["n_tests_performed"])
+    3
+    >>> print(summary["n_tests_significant"])
+    0
+
+    Detecting heteroscedasticity (variance increases with x):
+    
+    >>> X_hetero = pd.DataFrame({
+    ...     'x1': np.linspace(1, 100, 100)
+    ... })
+    >>> errors = np.random.randn(100) * X_hetero['x1']  # variance increases
+    >>> y_hetero = pd.Series(2 * X_hetero['x1'] + errors)
+    >>> test_results, summary = check_homoscedasticity(X_hetero, y_hetero)
+    >>> print(summary["overall_conclusion"])
+    'heteroscedastic'
+    >>> print(summary["recommendation"])
+    'Consider using robust standard errors (HC3/HC4) or weighted least squares.'
+
+    Using pre-computed residuals and fitted values:
+    
+    >>> model = LinearRegression().fit(X, y)
+    >>> y_pred = model.predict(X)
+    >>> resid = y - y_pred
+    >>> test_results, summary = check_homoscedasticity(
+    ...     X, y, 
+    ...     residuals=resid, 
+    ...     fitted_values=y_pred
+    ... )
+    >>> print(test_results)
+              test  statistic   p_value      conclusion  significant
+    0  breusch_pagan      2.345      0.309  homoscedastic        False
+
+    References
+    ----------
+    .. [1] Breusch, T. S., & Pagan, A. R. (1979). A simple test for 
+           heteroscedasticity and random coefficient variation. 
+           Econometrica, 47(5), 1287-1294.
+    
+    .. [2] White, H. (1980). A heteroskedasticity-consistent covariance 
+           matrix estimator and a direct test for heteroskedasticity. 
+           Econometrica, 48(4), 817-838.
+    
+    .. [3] Goldfeld, S. M., & Quandt, R. E. (1965). Some tests for 
+           homoscedasticity. Journal of the American Statistical Association,
+           60(310), 539-547.
+    """
+    raise NotImplementedError(
+        "Implementation will be added in a later milestone."
+    )
+
+
+def plot_residuals(
+    residuals: np.ndarray,
+    fitted_values: np.ndarray,
+    *,
+    plot_type: Literal["scatter", "scale_location", "both"] = "both",
+    show_lowess: bool = True,
+    figsize: Tuple[int, int] = (12, 5),
+) -> Any:
+    """
+    Create diagnostic plots to visually assess homoscedasticity.
+
+    Generates residual plots commonly used to detect heteroscedasticity:
+    
+    - **Residuals vs Fitted**: Scatter plot of residuals against fitted values.
+      Points should be randomly scattered around zero with constant spread.
+    
+    - **Scale-Location plot**: Square root of absolute standardized residuals
+      vs fitted values. Should show roughly horizontal trend if homoscedastic.
+
+    Parameters
+    ----------
+    residuals : np.ndarray
+        Residuals from regression (y - y_pred). 1D array.
+
+    fitted_values : np.ndarray
+        Fitted values from regression (y_pred). Same length as residuals.
+
+    plot_type : {"scatter", "scale_location", "both"}, default="both"
+        Type of diagnostic plot(s) to generate.
+
+    show_lowess : bool, default=True
+        Whether to overlay a LOWESS smoothed trend line.
+        Helps identify patterns in residual spread.
+
+    figsize : tuple of int, default=(12, 5)
+        Figure size (width, height) in inches.
+
+    Returns
+    -------
+    fig : matplotlib.figure.Figure
+        Figure object containing the plot(s).
+
+    Notes
+    -----
+    - Patterns in residual plots indicate potential heteroscedasticity.
+    - Fan-shaped patterns (widening/narrowing spread) suggest variance changes.
+    - U-shaped or inverted-U patterns may indicate model misspecification.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from sklearn.linear_model import LinearRegression
+    >>> X = np.random.randn(100, 2)
+    >>> y = 2 * X[:, 0] + 3 * X[:, 1] + np.random.randn(100)
+    >>> model = LinearRegression().fit(X, y)
+    >>> residuals = y - model.predict(X)
+    >>> fitted = model.predict(X)
+    >>> fig = plot_residuals(residuals, fitted)
+    >>> # fig.savefig('residual_plots.png')
+    """
+    raise NotImplementedError(
+        "Implementation will be added in a later milestone."
+    )
