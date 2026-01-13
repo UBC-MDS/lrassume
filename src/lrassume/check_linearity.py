@@ -42,6 +42,12 @@ def check_linearity(df: pd.DataFrame, target: str, threshold: float = 0.7) -> pd
   2      num_rooms     0.703
 
   """
+  if not isinstance(df, pd.DataFrame):
+        raise TypeError("Input 'df' must be a pandas DataFrame.")
+  if not isinstance(target, str):
+        raise TypeError("Input 'target' must be a string.") 
+  if not isinstance(threshold, (int, float)):
+        raise TypeError("Input 'threshold' must be a numeric value.")
   if target not in df.columns:
         raise ValueError(f"Target column '{target}' not found in DataFrame.")
   if not is_numeric_dtype(df[target]):
