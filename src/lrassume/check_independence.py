@@ -54,7 +54,7 @@ def check_independence(df: pd.DataFrame, target: str) -> dict:
     ...     "y": [10, 20, 25, 35, 40]
     ... })
     >>> check_independence(df, target="y")
-    {'dw_statistic': 2.05, 'is_independent': True, 'message': 'No autocorrelation detected.'}
+    {'dw_statistic': np.float64(0.0727), 'is_independent': False, 'message': 'Positive autocorrelation detected. Residuals may not be independent.'}
     """
     # Input validation
     if not isinstance(df, pd.DataFrame):

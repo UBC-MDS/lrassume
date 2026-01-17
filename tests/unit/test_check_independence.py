@@ -9,7 +9,7 @@ including input validation, edge cases, and functional correctness tests.
 import pytest
 import pandas as pd
 import numpy as np
-from lrassume.check_independence import check_independence
+from lrassume import check_independence
 
 
 class TestInputValidation:

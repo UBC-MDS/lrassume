@@ -37,5 +37,6 @@ Example
 """
 
 from lrassume.check_linearity import check_linearity
+from lrassume.check_independence import check_independence
 
-__all__ = ["check_linearity"]
+__all__ = ["check_linearity", "check_independence"]
