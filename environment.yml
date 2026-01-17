@@ -1,0 +1,5 @@
+name: lrassume
+channels:
+  - conda-forge
+dependencies:
+  - python
