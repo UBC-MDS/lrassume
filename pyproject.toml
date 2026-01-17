@@ -34,6 +34,10 @@ classifiers = [
 keywords = []
 # TODO: add dependencies
 dependencies = [
+    "pytest",
+    "pytest-cov",
+    "statsmodels",
+    "numpy",
     "pandas"]
 
 [project.urls]

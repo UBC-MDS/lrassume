@@ -15,7 +15,6 @@
 - **Linearity Assessment**: Pearson correlation analysis to identify linear relationships with the target
 - **Multicollinearity Detection**: Variance Inflation Factor (VIF) calculation with configurable thresholds
 - **Homoscedasticity Testing**: Multiple statistical tests (Breusch-Pagan, White, Goldfeld-Quandt) to detect heteroscedasticity
-- **Diagnostic Visualizations**: Residual plots for visual assessment of model assumptions
 
 ## Installation
 
@@ -188,7 +187,6 @@ test_results, summary = check_homoscedasticity(
 | `check_linearity()` | Pearson correlation analysis | `df`, `target`, `threshold` |
 | `check_multicollinearity_vif()` | VIF calculation | `X`, `warn_threshold`, `severe_threshold` |
 | `check_homoscedasticity()` | Heteroscedasticity testing | `X`, `y`, `method`, `alpha` |
-| `plot_residuals()` | Diagnostic visualizations | `residuals`, `fitted_values`, `plot_type` |
 
 ## Interpretation Guidelines
 
