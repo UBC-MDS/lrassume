@@ -33,7 +33,12 @@ classifiers = [
 # TODO: add keywords
 keywords = []
 # TODO: add dependencies
-dependencies = []
+dependencies = [
+    "pytest",
+    "pytest-cov",
+    "statsmodels",
+    "numpy",
+    "pandas"]
 
 [project.urls]
 Homepage = "https://github.com//lrassume"

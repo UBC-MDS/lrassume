@@ -27,3 +27,13 @@ Add a docstring here for the init module.
 This might include a very brief description of the package,
 its purpose, and any important notes.
 """
+
+from lrassume.check_linearity import check_linearity
+from lrassume.check_homoscedasticity import check_homoscedasticity
+from lrassume.check_multicollinearity import check_multicollinearity_vif
+
+__all__ = [
+    "check_linearity",
+    "check_homoscedasticity",
+    "check_multicollinearity_vif"
+]

@@ -1,3 +1,4 @@
+import pandas 
 def check_linearity(df: pandas.DataFrame, target: str, threshold: float = 0.7) -> pandas.DataFrame: 
   """Identify features with a specified strength of linear relationship to the target.
   
