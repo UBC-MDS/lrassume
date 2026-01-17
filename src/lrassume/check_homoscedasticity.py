@@ -2,7 +2,48 @@
 Homoscedasticity diagnostics for linear regression.
 
 This module contains utilities to detect heteroscedasticity (non-constant variance)
-in residuals for linear regression workflows.
+in residuals for linear regression workflows. Heteroscedasticity violates a key
+assumption of ordinary least squares (OLS) regression and can lead to inefficient
+estimates and incorrect standard errors.
+
+The module provides the `check_homoscedasticity` function which implements three
+widely-used statistical tests: Breusch-Pagan, White, and Goldfeld-Quandt.
+
+Functions
+---------
+check_homoscedasticity : Test residuals for constant variance
+
+Examples
+--------
+Basic usage:
+    >>> import pandas as pd
+    >>> import numpy as np
+    >>> from homoscedasticity import check_homoscedasticity
+    >>> 
+    >>> X = pd.DataFrame({'x1': range(100), 'x2': np.random.randn(100)})
+    >>> y = pd.Series(2 * X['x1'] + np.random.randn(100))
+    >>> results, summary = check_homoscedasticity(X, y)
+    >>> print(summary['overall_conclusion'])
+    'homoscedastic'
+
+Notes
+-----
+All tests assume that residuals come from a linear regression model. If using
+non-linear models, interpret results with caution.
+
+References
+----------
+.. [1] Breusch, T. S., & Pagan, A. R. (1979). A simple test for 
+       heteroscedasticity and random coefficient variation. 
+       Econometrica, 47(5), 1287-1294.
+
+.. [2] White, H. (1980). A heteroskedasticity-consistent covariance 
+       matrix estimator and a direct test for heteroskedasticity. 
+       Econometrica, 48(4), 817-838.
+
+.. [3] Goldfeld, S. M., & Quandt, R. E. (1965). Some tests for 
+       homoscedasticity. Journal of the American Statistical Association,
+       60(310), 539-547.
 """
 from __future__ import annotations
 
@@ -19,6 +60,7 @@ from statsmodels.stats.diagnostic import (
     het_goldfeldquandt,
 )
 
+# Type alias for supported test methods
 TestMethod = Literal["breusch_pagan", "white", "goldfeld_quandt", "all"]
 
 
@@ -32,98 +74,6 @@ def check_homoscedasticity(
     residuals: Optional[np.ndarray] = None,
     fitted_values: Optional[np.ndarray] = None,
 ) -> Tuple[pd.DataFrame, Dict[str, Any]]:
-
-    # --------------------
-    # Validation
-    # --------------------
-    if not isinstance(X, pd.DataFrame):
-        raise TypeError("X must be a pandas DataFrame.")
-    if not isinstance(y, pd.Series):
-        raise TypeError("y must be a pandas Series.")
-    if len(X) != len(y):
-        raise ValueError("X and y must have the same length.")
-    if len(X) < 10:
-        raise ValueError("At least 10 observations are required.")
-    if not (0 < alpha < 1):
-        raise ValueError("alpha must be between 0 and 1.")
-    if not all(is_numeric_dtype(X[col]) for col in X.columns):
-        raise ValueError("All columns in X must be numeric.")
-
-    if (residuals is None) ^ (fitted_values is None):
-        raise ValueError("residuals and fitted_values must be provided together.")
-
-    if residuals is not None:
-        if len(residuals) != len(y):
-            raise ValueError("residuals must match length of y.")
-    else:
-        if fitted_model is not None:
-            if not hasattr(fitted_model, "predict"):
-                raise TypeError("fitted_model must implement predict().")
-            fitted_values = fitted_model.predict(X)
-            residuals = y.values - fitted_values
-        else:
-            X_const = sm.add_constant(X)
-            model = sm.OLS(y, X_const).fit()
-            residuals = model.resid
-            fitted_values = model.fittedvalues
-
-    # --------------------
-    # Tests
-    # --------------------
-    tests_to_run = []
-    if method in ("breusch_pagan", "all"):
-        tests_to_run.append("breusch_pagan")
-    if method in ("white", "all"):
-        tests_to_run.append("white")
-    if method in ("goldfeld_quandt", "all"):
-        tests_to_run.append("goldfeld_quandt")
-
-    X_const = sm.add_constant(X)
-    rows = []
-
-    for test in tests_to_run:
-        if test == "breusch_pagan":
-            stat, pval, _, _ = het_breuschpagan(residuals, X_const)
-        elif test == "white":
-            stat, pval, _, _ = het_white(residuals, X_const)
-        else:
-            x_gq = X.iloc[:, [0]]  # keeps it as DataFrame (n,1)
-            stat, pval, _ = het_goldfeldquandt(residuals, x_gq)
-
-
-        significant = pval < alpha
-        rows.append({
-            "test": test,
-            "statistic": round(float(stat), 3),
-            "p_value": round(float(pval), 4),
-            "conclusion": "heteroscedastic" if significant else "homoscedastic",
-            "significant": significant,
-        })
-
-    results = (
-        pd.DataFrame(rows)
-        .sort_values("test")
-        .reset_index(drop=True)
-    )
-
-    n_sig = int(results["significant"].sum())
-
-    summary = {
-        "overall_conclusion": "heteroscedastic" if n_sig > 0 else "homoscedastic",
-        "n_tests_performed": len(results),
-        "n_tests_significant": n_sig,
-        "alpha": alpha,
-        "n_observations": len(y),
-        "n_predictors": X.shape[1],
-        "recommendation": (
-            "Consider using robust standard errors (HC3/HC4) or weighted least squares."
-            if n_sig > 0
-            else "No action needed."
-        ),
-    }
-
-    return results, summary
-
     """
     Test for homoscedasticity (constant variance) in linear regression residuals.
 
@@ -187,8 +137,8 @@ def check_homoscedasticity(
         One row per test performed, with columns:
         
         - "test" (str): Name of the test performed
-        - "statistic" (float): Test statistic value
-        - "p_value" (float): P-value for the test
+        - "statistic" (float): Test statistic value, rounded to 3 decimals
+        - "p_value" (float): P-value for the test, rounded to 4 decimals
         - "conclusion" (str): One of {"homoscedastic", "heteroscedastic"}
         - "significant" (bool): True if p_value < alpha (reject null hypothesis)
         
@@ -204,8 +154,6 @@ def check_homoscedasticity(
         - "alpha" (float): Echo of significance level used
         - "n_observations" (int): Sample size
         - "n_predictors" (int): Number of predictor variables
-        - "variance_ratio" (float): Ratio of max to min residual variance across
-          groups (for Goldfeld-Quandt) or fitted value bins
         - "recommendation" (str): Suggested action if heteroscedasticity detected
 
     Raises
@@ -217,12 +165,11 @@ def check_homoscedasticity(
         - If residuals is provided without fitted_values or vice versa
         - If residuals/fitted_values length doesn't match y
         - If fewer than 10 observations are available (insufficient for testing)
-        - If X contains constant columns (no variance)
 
     TypeError
         - If fitted_model is provided but lacks predict() method
         - If X is not a pandas DataFrame
-        - If y is not a pandas Series or 1D array-like
+        - If y is not a pandas Series
 
     Notes
     -----
@@ -314,3 +261,139 @@ def check_homoscedasticity(
            homoscedasticity. Journal of the American Statistical Association,
            60(310), 539-547.
     """
+    
+    # --------------------
+    # Input Validation
+    # --------------------
+    
+    # Validate data types
+    if not isinstance(X, pd.DataFrame):
+        raise TypeError("X must be a pandas DataFrame.")
+    if not isinstance(y, pd.Series):
+        raise TypeError("y must be a pandas Series.")
+    
+    # Validate dimensions
+    if len(X) != len(y):
+        raise ValueError("X and y must have the same length.")
+    if len(X) < 10:
+        raise ValueError("At least 10 observations are required.")
+    
+    # Validate alpha parameter
+    if not (0 < alpha < 1):
+        raise ValueError("alpha must be between 0 and 1.")
+    
+    # Validate numeric columns
+    if not all(is_numeric_dtype(X[col]) for col in X.columns):
+        raise ValueError("All columns in X must be numeric.")
+
+    # Validate residuals and fitted_values are provided together
+    if (residuals is None) ^ (fitted_values is None):
+        raise ValueError("residuals and fitted_values must be provided together.")
+
+    # --------------------
+    # Compute or Validate Residuals
+    # --------------------
+    
+    if residuals is not None:
+        # User provided residuals - validate length
+        if len(residuals) != len(y):
+            raise ValueError("residuals must match length of y.")
+    else:
+        # Need to compute residuals
+        if fitted_model is not None:
+            # Use provided fitted model
+            if not hasattr(fitted_model, "predict"):
+                raise TypeError("fitted_model must implement predict().")
+            fitted_values = fitted_model.predict(X)
+            residuals = y.values - fitted_values
+        else:
+            # Fit an OLS model internally
+            X_const = sm.add_constant(X)
+            model = sm.OLS(y, X_const).fit()
+            residuals = model.resid
+            fitted_values = model.fittedvalues
+
+    # --------------------
+    # Determine Tests to Run
+    # --------------------
+    
+    tests_to_run = []
+    if method in ("breusch_pagan", "all"):
+        tests_to_run.append("breusch_pagan")
+    if method in ("white", "all"):
+        tests_to_run.append("white")
+    if method in ("goldfeld_quandt", "all"):
+        tests_to_run.append("goldfeld_quandt")
+
+    # Add constant column for statsmodels tests
+    X_const = sm.add_constant(X)
+    rows = []
+
+    # --------------------
+    # Execute Statistical Tests
+    # --------------------
+    
+    for test in tests_to_run:
+        if test == "breusch_pagan":
+            # Breusch-Pagan Lagrange multiplier test
+            # Tests if residual variance is a linear function of predictors
+            stat, pval, _, _ = het_breuschpagan(residuals, X_const)
+            
+        elif test == "white":
+            # White's general heteroscedasticity test
+            # Tests against non-linear forms of heteroscedasticity
+            # Includes squared terms and cross-products
+            stat, pval, _, _ = het_white(residuals, X_const)
+            
+        else:  # goldfeld_quandt
+            # Goldfeld-Quandt test
+            # Splits sample into two groups and compares variances
+            # Uses first predictor column for ordering
+            x_gq = X.iloc[:, [0]]  # Keep as DataFrame with shape (n, 1)
+            stat, pval, _ = het_goldfeldquandt(residuals, x_gq)
+
+        # Determine if result is statistically significant
+        significant = pval < alpha
+        
+        # Store test results
+        rows.append({
+            "test": test,
+            "statistic": round(float(stat), 3),
+            "p_value": round(float(pval), 4),
+            "conclusion": "heteroscedastic" if significant else "homoscedastic",
+            "significant": significant,
+        })
+
+    # --------------------
+    # Format Results
+    # --------------------
+    
+    # Create DataFrame of test results, sorted alphabetically by test name
+    results = (
+        pd.DataFrame(rows)
+        .sort_values("test")
+        .reset_index(drop=True)
+    )
+
+    # Count number of significant tests
+    n_sig = int(results["significant"].sum())
+
+    # --------------------
+    # Generate Summary
+    # --------------------
+    
+    summary = {
+        "overall_conclusion": "heteroscedastic" if n_sig > 0 else "homoscedastic",
+        "n_tests_performed": len(results),
+        "n_tests_significant": n_sig,
+        "alpha": alpha,
+        "n_observations": len(y),
+        "n_predictors": X.shape[1],
+        "recommendation": (
+            "Consider using robust standard errors (HC3/HC4) or weighted least squares."
+            if n_sig > 0
+            else "No action needed."
+        ),
+    }
+
+    return results, summary
