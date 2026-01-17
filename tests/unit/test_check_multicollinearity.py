@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from lrassume.check_multicollinearity import check_multicollinearity_vif
+from lrassume import check_multicollinearity_vif
 
 @pytest.fixture
 def df_numeric_ok():
