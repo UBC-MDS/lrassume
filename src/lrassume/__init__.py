@@ -37,5 +37,9 @@ Example
 """
 
 from lrassume.check_linearity import check_linearity
+from lrassume.check_homoscedasticity import check_homoscedasticity
 
-__all__ = ["check_linearity"]
+__all__ = [
+    "check_linearity",
+    "check_homoscedasticity",
+]

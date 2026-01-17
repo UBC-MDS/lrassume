@@ -87,7 +87,9 @@ def check_homoscedasticity(
         elif test == "white":
             stat, pval, _, _ = het_white(residuals, X_const)
         else:
-            stat, pval, _ = het_goldfeldquandt(residuals, X.iloc[:, 0])
+            x_gq = X.iloc[:, [0]]  # keeps it as DataFrame (n,1)
+            stat, pval, _ = het_goldfeldquandt(residuals, x_gq)
+
 
         significant = pval < alpha
         rows.append({
@@ -312,71 +314,3 @@ def check_homoscedasticity(
            homoscedasticity. Journal of the American Statistical Association,
            60(310), 539-547.
     """
-    raise NotImplementedError(
-        "Implementation will be added in a later milestone."
-    )
-
-
-def plot_residuals(
-    residuals: np.ndarray,
-    fitted_values: np.ndarray,
-    *,
-    plot_type: Literal["scatter", "scale_location", "both"] = "both",
-    show_lowess: bool = True,
-    figsize: Tuple[int, int] = (12, 5),
-) -> Any:
-    """
-    Create diagnostic plots to visually assess homoscedasticity.
-
-    Generates residual plots commonly used to detect heteroscedasticity:
-    
-    - **Residuals vs Fitted**: Scatter plot of residuals against fitted values.
-      Points should be randomly scattered around zero with constant spread.
-    
-    - **Scale-Location plot**: Square root of absolute standardized residuals
-      vs fitted values. Should show roughly horizontal trend if homoscedastic.
-
-    Parameters
-    ----------
-    residuals : np.ndarray
-        Residuals from regression (y - y_pred). 1D array.
-
-    fitted_values : np.ndarray
-        Fitted values from regression (y_pred). Same length as residuals.
-
-    plot_type : {"scatter", "scale_location", "both"}, default="both"
-        Type of diagnostic plot(s) to generate.
-
-    show_lowess : bool, default=True
-        Whether to overlay a LOWESS smoothed trend line.
-        Helps identify patterns in residual spread.
-
-    figsize : tuple of int, default=(12, 5)
-        Figure size (width, height) in inches.
-
-    Returns
-    -------
-    fig : matplotlib.figure.Figure
-        Figure object containing the plot(s).
-
-    Notes
-    -----
-    - Patterns in residual plots indicate potential heteroscedasticity.
-    - Fan-shaped patterns (widening/narrowing spread) suggest variance changes.
-    - U-shaped or inverted-U patterns may indicate model misspecification.
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> from sklearn.linear_model import LinearRegression
-    >>> X = np.random.randn(100, 2)
-    >>> y = 2 * X[:, 0] + 3 * X[:, 1] + np.random.randn(100)
-    >>> model = LinearRegression().fit(X, y)
-    >>> residuals = y - model.predict(X)
-    >>> fitted = model.predict(X)
-    >>> fig = plot_residuals(residuals, fitted)
-    >>> # fig.savefig('residual_plots.png')
-    """
-    raise NotImplementedError(
-        "Implementation will be added in a later milestone."
-    )
