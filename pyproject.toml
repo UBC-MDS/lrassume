@@ -30,12 +30,10 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3 :: Only",
 ]
-# TODO: add keywords
+
 keywords = []
-# TODO: add dependencies
+
 dependencies = [
-    "pytest",
-    "pytest-cov",
     "statsmodels",
     "numpy",
     "pandas"]

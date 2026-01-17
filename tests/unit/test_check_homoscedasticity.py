@@ -38,7 +38,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from lrassume.check_homoscedasticity import check_homoscedasticity
+from lrassume import check_homoscedasticity
 
 
 # =============================================================================

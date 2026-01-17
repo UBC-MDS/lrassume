@@ -18,7 +18,7 @@ Examples
 Basic usage:
     >>> import pandas as pd
     >>> import numpy as np
-    >>> from homoscedasticity import check_homoscedasticity
+    >>> from lrassume import check_homoscedasticity
     >>> 
     >>> X = pd.DataFrame({'x1': range(100), 'x2': np.random.randn(100)})
     >>> y = pd.Series(2 * X['x1'] + np.random.randn(100))
