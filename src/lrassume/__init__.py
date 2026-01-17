@@ -22,10 +22,18 @@
 # SOFTWARE.
 
 """
-Add a docstring here for the init module.
+lrassume
 
-This might include a very brief description of the package,
-its purpose, and any important notes.
+A lightweight package for validating assumptions commonly required for
+linear regression models.
+
+The package exposes key utilities at the top level for convenience, allowing
+users to import and call them directly without navigating internal modules.
+
+Example
+-------
+>>> from lrassume import check_linearity
+>>> check_linearity(X, y)
 """
 
 from lrassume.check_linearity import check_linearity

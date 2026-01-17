@@ -1,5 +1,21 @@
-import pandas 
-def check_linearity(df: pandas.DataFrame, target: str, threshold: float = 0.7) -> pandas.DataFrame: 
+"""
+check_linearity.py
+Module for analyzing linear relationships between numeric features and a target variable.
+
+This module provides tools for identifying features in a pandas DataFrame that have a 
+strong linear relationship with a specified numeric target column using Pearson correlation.
+
+Functions
+---------
+- check_linearity(df, target, threshold=0.7)
+    Identifies numeric features with absolute Pearson correlation above a given threshold
+    relative to the target column.
+"""
+
+import pandas as pd
+from pandas.api.types import is_numeric_dtype
+
+def check_linearity(df: pd.DataFrame, target: str, threshold: float = 0.7) -> pd.DataFrame: 
   """Identify features with a specified strength of linear relationship to the target.
   
   This function identifies all of the numeric features in a DataFrame and computes the Pearson correlation coefficient between each numeric feature in the DataFrame and the specified numeric target column.
@@ -40,3 +56,40 @@ def check_linearity(df: pandas.DataFrame, target: str, threshold: float = 0.7) -
   2      num_rooms     0.703
 
   """
+  if not isinstance(df, pd.DataFrame):
+        raise TypeError("Input 'df' must be a pandas DataFrame.")
+  if not isinstance(target, str):
+        raise TypeError("Input 'target' must be a string.") 
+  if not isinstance(threshold, (int, float)):
+        raise TypeError("Input 'threshold' must be a numeric value.")
+  if target not in df.columns:
+        raise ValueError(f"Target column '{target}' not found in DataFrame.")
+  if not is_numeric_dtype(df[target]):
+        raise TypeError("Target column must be numeric.")
+  if not (0 <= threshold <= 1):
+        raise ValueError("Threshold must be between 0 and 1.")
+
+    # Compute correlations for all numeric columns at once
+  numeric_cols = df.select_dtypes(include='number').columns.drop(target, errors='ignore')
+  corrs = df[numeric_cols].corrwith(df[target]).round(3)
+
+    # Filter correlations by threshold
+  corrs = corrs[abs(corrs) >= threshold]
+
+    # If no features meet the threshold, return empty DataFrame
+  if corrs.empty:
+      return pd.DataFrame({
+          "feature": pd.Series(dtype="object"),
+          "correlation": pd.Series(dtype="float")
+        })
+
+    # Convert Series to DataFrame
+  result = corrs.reset_index()
+  result.columns = ['feature', 'correlation']
+
+    # Sort by absolute correlation descending, then alphabetically by feature for tie-breaks
+  result['abs_corr'] = result['correlation'].abs()
+  result = result.sort_values(by=['abs_corr', 'feature'], ascending=[False, True]).drop(columns='abs_corr').reset_index(drop=True)
+
+  return result
+
