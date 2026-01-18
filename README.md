@@ -167,7 +167,7 @@ Test for constant variance in residuals:
 import pandas as pd
 import numpy as np
 from lrassume import check_homoscedasticity
-
+np.random.seed(123)
 X = pd.DataFrame({
     'x1': np.linspace(1, 100, 100),
     'x2': np.random.randn(100)
@@ -175,10 +175,10 @@ X = pd.DataFrame({
 y = pd.Series(2 * X['x1'] + 3 * X['x2'] + np.random.randn(100))
 
 test_results, summary = check_homoscedasticity(X, y, method="breusch_pagan")
-print(summary['overall_conclusion'])  # 'homoscedastic' or 'heteroscedastic'
+print(summary['overall_conclusion'])  # 'homoscedastic' 
 print(test_results)
-#            test  statistic  p_value      conclusion  significant
-# 0  breusch_pagan      2.345    0.309  homoscedastic        False
+#            test  statistic  p_value     conclusion  significant
+# 0  breusch_pagan      1.111   0.5737  homoscedastic        False
 ```
 
 ## Core Assumptions Tested
