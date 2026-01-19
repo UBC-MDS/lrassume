@@ -113,9 +113,6 @@ def test_check_linearity_tie_break():
 #------------------------------------- 
 # Test Error Cases
 # ------------------------------------
-import pytest
-import pandas as pd
-from lrassume.check_linearity import check_linearity
 
 df_example = pd.DataFrame({
     "sqft": [500, 600, 700, 800, 900],
