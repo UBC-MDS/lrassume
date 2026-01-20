@@ -44,6 +44,6 @@ from lrassume.check_independence import check_independence
 __all__ = [
     "check_linearity",
     "check_homoscedasticity",
-    "check_multicollinearity_vif", 
-    "check_independence"
+    "check_multicollinearity_vif",
+    "check_independence",
 ]

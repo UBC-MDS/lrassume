@@ -19,7 +19,7 @@ Basic usage:
     >>> import pandas as pd
     >>> import numpy as np
     >>> from lrassume import check_homoscedasticity
-    >>> 
+    >>>
     >>> X = pd.DataFrame({'x1': range(100), 'x2': np.random.randn(100)})
     >>> y = pd.Series(2 * X['x1'] + np.random.randn(100))
     >>> results, summary = check_homoscedasticity(X, y)
@@ -33,18 +33,19 @@ non-linear models, interpret results with caution.
 
 References
 ----------
-.. [1] Breusch, T. S., & Pagan, A. R. (1979). A simple test for 
-       heteroscedasticity and random coefficient variation. 
+.. [1] Breusch, T. S., & Pagan, A. R. (1979). A simple test for
+       heteroscedasticity and random coefficient variation.
        Econometrica, 47(5), 1287-1294.
 
-.. [2] White, H. (1980). A heteroskedasticity-consistent covariance 
-       matrix estimator and a direct test for heteroskedasticity. 
+.. [2] White, H. (1980). A heteroskedasticity-consistent covariance
+       matrix estimator and a direct test for heteroskedasticity.
        Econometrica, 48(4), 817-838.
 
-.. [3] Goldfeld, S. M., & Quandt, R. E. (1965). Some tests for 
+.. [3] Goldfeld, S. M., & Quandt, R. E. (1965). Some tests for
        homoscedasticity. Journal of the American Statistical Association,
        60(310), 539-547.
 """
+
 from __future__ import annotations
 
 from typing import Any, Dict, Literal, Optional, Tuple
@@ -78,19 +79,19 @@ def check_homoscedasticity(
     Test for homoscedasticity (constant variance) in linear regression residuals.
 
     Homoscedasticity is the assumption that residuals have constant variance across
-    all levels of the independent variables. Violation of this assumption 
+    all levels of the independent variables. Violation of this assumption
     (heteroscedasticity) leads to inefficient coefficient estimates and incorrect
     standard errors in ordinary least squares (OLS) regression.
 
     This function implements multiple statistical tests to detect heteroscedasticity:
-    
-    - **Breusch-Pagan test**: Tests whether residual variance depends linearly 
+
+    - **Breusch-Pagan test**: Tests whether residual variance depends linearly
       on predictors. Null hypothesis: homoscedasticity (constant variance).
-    
+
     - **White test**: More general test that allows for non-linear relationships
       between variance and predictors. Includes squared terms and interactions.
       Null hypothesis: homoscedasticity.
-    
+
     - **Goldfeld-Quandt test**: Splits data by a predictor and compares variance
       in two subsets. Useful for detecting variance that increases/decreases
       with a specific predictor.
@@ -106,7 +107,7 @@ def check_homoscedasticity(
 
     method : {"breusch_pagan", "white", "goldfeld_quandt", "all"}, default="breusch_pagan"
         Statistical test(s) to perform:
-        
+
         - "breusch_pagan": Breusch-Pagan Lagrange multiplier test
         - "white": White's general heteroscedasticity test
         - "goldfeld_quandt": Goldfeld-Quandt test (splits on first predictor by default)
@@ -135,19 +136,19 @@ def check_homoscedasticity(
     -------
     test_results : pd.DataFrame
         One row per test performed, with columns:
-        
+
         - "test" (str): Name of the test performed
         - "statistic" (float): Test statistic value, rounded to 3 decimals
         - "p_value" (float): P-value for the test, rounded to 4 decimals
         - "conclusion" (str): One of {"homoscedastic", "heteroscedastic"}
         - "significant" (bool): True if p_value < alpha (reject null hypothesis)
-        
+
         Rows are sorted by test name alphabetically.
 
     summary : dict
         Overall diagnostics containing:
-        
-        - "overall_conclusion" (str): "homoscedastic" if all tests pass, 
+
+        - "overall_conclusion" (str): "homoscedastic" if all tests pass,
           otherwise "heteroscedastic"
         - "n_tests_performed" (int): Number of tests conducted
         - "n_tests_significant" (int): Number of tests rejecting homoscedasticity
@@ -186,7 +187,7 @@ def check_homoscedasticity(
     Examples
     --------
     Basic usage with internal model fitting:
-    
+
     >>> import pandas as pd
     >>> import numpy as np
     >>> np.random.seed(42)
@@ -200,7 +201,7 @@ def check_homoscedasticity(
     'homoscedastic'
 
     Using a pre-fitted model:
-    
+
     >>> from sklearn.linear_model import LinearRegression
     >>> model = LinearRegression().fit(X, y)
     >>> test_results, summary = check_homoscedasticity(
@@ -211,7 +212,7 @@ def check_homoscedasticity(
     0  breusch_pagan      2.345      0.309  homoscedastic        False
 
     Running all tests:
-    
+
     >>> test_results, summary = check_homoscedasticity(
     ...     X, y, method="all", alpha=0.01
     ... )
@@ -221,7 +222,7 @@ def check_homoscedasticity(
     0
 
     Detecting heteroscedasticity (variance increases with x):
-    
+
     >>> X_hetero = pd.DataFrame({
     ...     'x1': np.linspace(1, 100, 100)
     ... })
@@ -234,13 +235,13 @@ def check_homoscedasticity(
     'Consider using robust standard errors (HC3/HC4) or weighted least squares.'
 
     Using pre-computed residuals and fitted values:
-    
+
     >>> model = LinearRegression().fit(X, y)
     >>> y_pred = model.predict(X)
     >>> resid = y - y_pred
     >>> test_results, summary = check_homoscedasticity(
-    ...     X, y, 
-    ...     residuals=resid, 
+    ...     X, y,
+    ...     residuals=resid,
     ...     fitted_values=y_pred
     ... )
     >>> print(test_results)
@@ -249,39 +250,39 @@ def check_homoscedasticity(
 
     References
     ----------
-    .. [1] Breusch, T. S., & Pagan, A. R. (1979). A simple test for 
-           heteroscedasticity and random coefficient variation. 
+    .. [1] Breusch, T. S., & Pagan, A. R. (1979). A simple test for
+           heteroscedasticity and random coefficient variation.
            Econometrica, 47(5), 1287-1294.
-    
-    .. [2] White, H. (1980). A heteroskedasticity-consistent covariance 
-           matrix estimator and a direct test for heteroskedasticity. 
+
+    .. [2] White, H. (1980). A heteroskedasticity-consistent covariance
+           matrix estimator and a direct test for heteroskedasticity.
            Econometrica, 48(4), 817-838.
-    
-    .. [3] Goldfeld, S. M., & Quandt, R. E. (1965). Some tests for 
+
+    .. [3] Goldfeld, S. M., & Quandt, R. E. (1965). Some tests for
            homoscedasticity. Journal of the American Statistical Association,
            60(310), 539-547.
     """
-    
+
     # --------------------
     # Input Validation
     # --------------------
-    
+
     # Validate data types
     if not isinstance(X, pd.DataFrame):
         raise TypeError("X must be a pandas DataFrame.")
     if not isinstance(y, pd.Series):
         raise TypeError("y must be a pandas Series.")
-    
+
     # Validate dimensions
     if len(X) != len(y):
         raise ValueError("X and y must have the same length.")
     if len(X) < 10:
         raise ValueError("At least 10 observations are required.")
-    
+
     # Validate alpha parameter
     if not (0 < alpha < 1):
         raise ValueError("alpha must be between 0 and 1.")
-    
+
     # Validate numeric columns
     if not all(is_numeric_dtype(X[col]) for col in X.columns):
         raise ValueError("All columns in X must be numeric.")
@@ -293,7 +294,7 @@ def check_homoscedasticity(
     # --------------------
     # Compute or Validate Residuals
     # --------------------
-    
+
     if residuals is not None:
         # User provided residuals - validate length
         if len(residuals) != len(y):
@@ -316,7 +317,7 @@ def check_homoscedasticity(
     # --------------------
     # Determine Tests to Run
     # --------------------
-    
+
     tests_to_run = []
     if method in ("breusch_pagan", "all"):
         tests_to_run.append("breusch_pagan")
@@ -332,19 +333,19 @@ def check_homoscedasticity(
     # --------------------
     # Execute Statistical Tests
     # --------------------
-    
+
     for test in tests_to_run:
         if test == "breusch_pagan":
             # Breusch-Pagan Lagrange multiplier test
             # Tests if residual variance is a linear function of predictors
             stat, pval, _, _ = het_breuschpagan(residuals, X_const)
-            
+
         elif test == "white":
             # White's general heteroscedasticity test
             # Tests against non-linear forms of heteroscedasticity
             # Includes squared terms and cross-products
             stat, pval, _, _ = het_white(residuals, X_const)
-            
+
         else:  # goldfeld_quandt
             # Goldfeld-Quandt test
             # Splits sample into two groups and compares variances
@@ -354,26 +355,24 @@ def check_homoscedasticity(
 
         # Determine if result is statistically significant
         significant = pval < alpha
-        
+
         # Store test results
-        rows.append({
-            "test": test,
-            "statistic": round(float(stat), 3),
-            "p_value": round(float(pval), 4),
-            "conclusion": "heteroscedastic" if significant else "homoscedastic",
-            "significant": significant,
-        })
+        rows.append(
+            {
+                "test": test,
+                "statistic": round(float(stat), 3),
+                "p_value": round(float(pval), 4),
+                "conclusion": "heteroscedastic" if significant else "homoscedastic",
+                "significant": significant,
+            }
+        )
 
     # --------------------
     # Format Results
     # --------------------
-    
+
     # Create DataFrame of test results, sorted alphabetically by test name
-    results = (
-        pd.DataFrame(rows)
-        .sort_values("test")
-        .reset_index(drop=True)
-    )
+    results = pd.DataFrame(rows).sort_values("test").reset_index(drop=True)
 
     # Count number of significant tests
     n_sig = int(results["significant"].sum())
@@ -381,7 +380,7 @@ def check_homoscedasticity(
     # --------------------
     # Generate Summary
     # --------------------
-    
+
     summary = {
         "overall_conclusion": "heteroscedastic" if n_sig > 0 else "homoscedastic",
         "n_tests_performed": len(results),

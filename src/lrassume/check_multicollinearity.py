@@ -12,6 +12,7 @@ import numpy as np
 
 CategoricalHandling = Literal["error", "drop"]
 
+
 def check_multicollinearity_vif(
     X: pd.DataFrame,
     *,
@@ -127,7 +128,9 @@ def check_multicollinearity_vif(
     dropped_constant: list[str] = []
 
     # Handle non-numeric columns
-    non_numeric_cols = [c for c in df.columns if not pd.api.types.is_numeric_dtype(df[c])]
+    non_numeric_cols = [
+        c for c in df.columns if not pd.api.types.is_numeric_dtype(df[c])
+    ]
     if non_numeric_cols:
         if categorical == "error":
             raise ValueError(
@@ -221,9 +224,11 @@ def check_multicollinearity_vif(
 
     levels = [_level(v) for v in vifs]
 
-    vif_table = pd.DataFrame(
-        {"feature": features, "vif": vifs, "level": levels}
-    ).sort_values(by="vif", ascending=False, kind="mergesort").reset_index(drop=True)
+    vif_table = (
+        pd.DataFrame({"feature": features, "vif": vifs, "level": levels})
+        .sort_values(by="vif", ascending=False, kind="mergesort")
+        .reset_index(drop=True)
+    )
 
     n_warn = int((vif_table["level"] == "warn").sum())
     n_severe = int((vif_table["level"] == "severe").sum())

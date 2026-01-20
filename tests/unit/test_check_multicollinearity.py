@@ -4,6 +4,7 @@ import pytest
 
 from lrassume import check_multicollinearity_vif
 
+
 @pytest.fixture
 def df_numeric_ok():
     # Low-ish collinearity, 3 features
@@ -22,7 +23,7 @@ def df_with_target():
         {
             "x1": [1, 2, 3, 4, 5],
             "x2": [2, 1, 4, 3, 5],
-            "y":  [10, 20, 15, 25, 22],
+            "y": [10, 20, 15, 25, 22],
         }
     )
 
@@ -71,8 +72,8 @@ def df_perfect_collinearity():
     )
 
 
-
 ## Tests
+
 
 def test_check_multicollinearity_vif_basic_runs(df_numeric_ok):
     vif_table, summary = check_multicollinearity_vif(df_numeric_ok)
@@ -120,7 +121,9 @@ def test_check_multicollinearity_vif_non_numeric_error(df_with_non_numeric):
 
 
 def test_check_multicollinearity_vif_non_numeric_drop(df_with_non_numeric):
-    vif_table, summary = check_multicollinearity_vif(df_with_non_numeric, categorical="drop")
+    vif_table, summary = check_multicollinearity_vif(
+        df_with_non_numeric, categorical="drop"
+    )
 
     assert summary["dropped_non_numeric"] == ["cat"]
     assert set(vif_table["feature"].tolist()) == {"x1", "x2"}
@@ -133,26 +136,36 @@ def test_check_multicollinearity_vif_missing_values_raise(df_with_nan):
 
 
 def test_check_multicollinearity_vif_constant_dropped(df_with_constant):
-    vif_table, summary = check_multicollinearity_vif(df_with_constant, drop_constant=True)
+    vif_table, summary = check_multicollinearity_vif(
+        df_with_constant, drop_constant=True
+    )
 
     assert summary["dropped_constant"] == ["const"]
     assert set(vif_table["feature"].tolist()) == {"x1", "x2"}
     assert summary["n_features"] == 2
 
 
-def test_check_multicollinearity_vif_constant_raises_when_not_dropping(df_with_constant):
-    with pytest.raises(ValueError, match="Constant columns present but drop_constant=False"):
+def test_check_multicollinearity_vif_constant_raises_when_not_dropping(
+    df_with_constant,
+):
+    with pytest.raises(
+        ValueError, match="Constant columns present but drop_constant=False"
+    ):
         check_multicollinearity_vif(df_with_constant, drop_constant=False)
 
 
-def test_check_multicollinearity_vif_too_few_features_after_drops_raises(df_with_non_numeric):
+def test_check_multicollinearity_vif_too_few_features_after_drops_raises(
+    df_with_non_numeric,
+):
     # Drops 'cat', leaving only one numeric column => should raise
     df_one_numeric = df_with_non_numeric.drop(columns=["x2"])
     with pytest.raises(ValueError, match="Fewer than 2 features remain"):
         check_multicollinearity_vif(df_one_numeric, categorical="drop")
 
 
-def test_check_multicollinearity_vif_perfect_collinearity_infinite(df_perfect_collinearity):
+def test_check_multicollinearity_vif_perfect_collinearity_infinite(
+    df_perfect_collinearity,
+):
     vif_table, summary = check_multicollinearity_vif(df_perfect_collinearity)
 
     # x1 and x2 should be infinite (or at least one of them), and severe overall
