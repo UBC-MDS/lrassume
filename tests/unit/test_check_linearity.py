@@ -112,15 +112,15 @@ def test_check_linearity_tie_break(df_example):
 
     # Check correlations
     expected_corrs = [-1.000, 1.000, 0.945, 0.945]
-    assert result["correlation"].tolist() == expected_corrs, (
-        "Correlation values are incorrect."
-    )
+    assert (
+        result["correlation"].tolist() == expected_corrs
+    ), "Correlation values are incorrect."
 
     # Check alphabetical ordering for tie-break
     expected_order = ["age", "sqft", "num_rooms", "num_rooms_clone"]
-    assert result["feature"].tolist() == expected_order, (
-        "Tie-break alphabetical ordering failed."
-    )
+    assert (
+        result["feature"].tolist() == expected_order
+    ), "Tie-break alphabetical ordering failed."
 
 
 # -------------------------------------
