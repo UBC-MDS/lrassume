@@ -39,7 +39,7 @@ This project uses **Conda** to manage the Python environment and **pip** to inst
 #### 1. Clone the Repository and Navigate to the Project Directory
 
 ```bash
-git clone https://github.com/yourusername/lrassume.git
+git clone https://github.com/UBC-MDS/lrassume.git
 cd lrassume
 ```
 
@@ -72,7 +72,7 @@ pip install -e .
 If you prefer not to use Conda, you can install the package directly using pip:
 
 ```bash
-git clone https://github.com/yourusername/lrassume.git
+git clone https://github.com/UBC-MDS/lrassume.git
 cd lrassume
 pip install -e .
 ```
@@ -81,7 +81,8 @@ pip install -e .
 
 ## Running the Test Suite Locally (Developers)
 
-The test suite requires **pytest**, which is a development dependency and is not installed automatically for users of the package.
+The test suite is executed using pytest. In CI this is managed via Hatch,
+but tests can also be run locally using pytest.
 
 ---
 
@@ -100,7 +101,29 @@ pip install pytest
 ```bash
 pytest
 ```
+
 ---
+
+## Continuous Integration (Automated Testing)
+
+This project uses **GitHub Actions** to automatically run the test suite.
+
+The tests are executed automatically on:
+- Pull requests
+- Pushes to the `main` branch
+- A scheduled weekly run
+
+The test suite is executed using **Hatch**, which runs the project’s
+configured `pytest` test environment across multiple operating systems
+and Python versions.
+
+No manual action is required to trigger these tests.
+
+The GitHub Actions workflow responsible for running the test suite is located at:
+
+```
+.github/workflows/test.yml
+```
 
 ## Documentation
 
@@ -108,11 +131,10 @@ The full package documentation is built with **Quartodoc** and deployed automati
 
 **Live documentation:**
 
-```
-https://yourusername.github.io/lrassume/
-```
 
-(Replace `yourusername` with your GitHub username or organization.)
+```
+INSERT LINK once DEPLOYED
+```
 
 ---
 
@@ -146,16 +168,6 @@ quarto preview docs
 ```
 
 This will open the documentation site in your browser.
-
----
-
-### Documentation Structure
-
-* `docs/` — Quarto documentation source
-* `docs/reference/` — API reference generated from docstrings using Quartodoc
-* `docs/index.qmd` — Documentation homepage
-
-All function docstrings are automatically rendered into the API reference.
 
 ---
 
@@ -373,4 +385,4 @@ Free software distributed under the [MIT License](./LICENSE).
 
 ## Support
 
-For bug reports and feature requests, please open an issue on [GitHub](https://github.com/yourusername/lrassume/issues).
+For bug reports and feature requests, please open an issue on [GitHub](https://github.com/UBC-MDS/lrassume/issues).
