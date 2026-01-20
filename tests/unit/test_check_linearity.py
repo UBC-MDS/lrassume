@@ -38,7 +38,7 @@ def df_example():
 # -------------------------------------
 # Test Valid Cases
 # ------------------------------------
-def test_check_linearity_basic():
+def test_check_linearity_basic(df_example):
     """Basic threshold 0.7 test case."""
     expected = pd.DataFrame(
         {"feature": ["age", "sqft", "num_rooms"], "correlation": [-1.000, 1.000, 0.945]}
@@ -47,7 +47,7 @@ def test_check_linearity_basic():
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected)
 
 
-def test_check_linearity_threshold_one():
+def test_check_linearity_threshold_one(df_example):
     """Test threshold edge case 1.0 (features equal to threshold are included)."""
     expected = pd.DataFrame(
         {"feature": ["age", "sqft"], "correlation": [-1.000, 1.000]}
@@ -56,7 +56,7 @@ def test_check_linearity_threshold_one():
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected)
 
 
-def test_check_linearity_threshold_zero():
+def test_check_linearity_threshold_zero(df_example):
     """Test threshold edge case 0.0 returns all numeric features"""
     expected = pd.DataFrame(
         {
@@ -68,7 +68,7 @@ def test_check_linearity_threshold_zero():
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected)
 
 
-def test_check_linearity_threshold_default():
+def test_check_linearity_threshold_default(df_example):
     """Test default threshold 0.7 behavior."""
     expected = pd.DataFrame(
         {"feature": ["age", "sqft", "num_rooms"], "correlation": [-1.000, 1.000, 0.945]}
@@ -77,7 +77,7 @@ def test_check_linearity_threshold_default():
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected)
 
 
-def test_check_linearity_no_numeric_features():
+def test_check_linearity_no_numeric_features(df_example):
     """Test when no numeric features exist → empty DataFrame"""
     df_no_numeric = df_example[["neighbourhood", "price"]]
     expected = pd.DataFrame(
@@ -87,7 +87,7 @@ def test_check_linearity_no_numeric_features():
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected)
 
 
-def test_check_linearity_no_feature_target_correlation():
+def test_check_linearity_no_feature_target_correlation(df_example):
     """Test when no features exceed threshold → empty DataFrame"""
     df_example_2 = df_example[["school_score", "random_noise", "price"]]
     expected = pd.DataFrame(
@@ -97,7 +97,7 @@ def test_check_linearity_no_feature_target_correlation():
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected)
 
 
-def test_check_linearity_tie_break():
+def test_check_linearity_tie_break(df_example):
     """Test alphabetical tie-break when multiple features have the same absolute correlation.
 
     Creates a duplicate feature with the same correlation as an existing feature.
@@ -126,7 +126,7 @@ def test_check_linearity_tie_break():
 # -------------------------------------
 # Test Error Cases
 # -------------------------------------
-def test_check_linearity_df_type():
+def test_check_linearity_df_type(df_example):
     """Raise TypeError if the input df is not a pandas DataFrame."""
     not_a_df = [1, 2, 3, 4]
     with pytest.raises(TypeError, match="Input 'df' must be a pandas DataFrame."):
@@ -136,7 +136,7 @@ def test_check_linearity_df_type():
         check_linearity("not a dataframe", target="price", threshold=0.7)
 
 
-def test_check_linearity_target_type():
+def test_check_linearity_target_type(df_example):
     """Raise TypeError if the target argument is not a string."""
     with pytest.raises(TypeError, match="Input 'target' must be a string."):
         check_linearity(df_example, target=123, threshold=0.7)
@@ -145,7 +145,7 @@ def test_check_linearity_target_type():
         check_linearity(df_example, target=None, threshold=0.7)
 
 
-def test_check_linearity_threshold_type():
+def test_check_linearity_threshold_type(df_example):
     """Raise TypeError if the threshold argument is not numeric."""
     with pytest.raises(TypeError, match="Input 'threshold' must be a numeric value."):
         check_linearity(df_example, target="price", threshold="high")
@@ -154,7 +154,7 @@ def test_check_linearity_threshold_type():
         check_linearity(df_example, target="price", threshold=None)
 
 
-def test_check_linearity_invalid_target():
+def test_check_linearity_invalid_target(df_example):
     """Raise ValueError if the target column does not exist in the DataFrame."""
     with pytest.raises(
         ValueError, match="Target column 'nonexistent' not found in DataFrame."
@@ -162,7 +162,7 @@ def test_check_linearity_invalid_target():
         check_linearity(df_example, target="nonexistent", threshold=0.7)
 
 
-def test_check_linearity_non_numeric_target():
+def test_check_linearity_non_numeric_target(df_example):
     """Raise TypeError if the target column exists but is not numeric."""
     df_copy = df_example.copy()
     df_copy["price"] = df_copy["price"].astype(str)
@@ -170,7 +170,7 @@ def test_check_linearity_non_numeric_target():
         check_linearity(df_copy, target="price")
 
 
-def test_check_linearity_invalid_threshold():
+def test_check_linearity_invalid_threshold(df_example):
     """Raise ValueError if the threshold is not between 0 and 1."""
     with pytest.raises(ValueError, match="Threshold must be between 0 and 1."):
         check_linearity(df_example, target="price", threshold=1.5)
@@ -178,7 +178,7 @@ def test_check_linearity_invalid_threshold():
         check_linearity(df_example, target="price", threshold=-0.1)
 
 
-def test_check_linearity_missing_arguments():
+def test_check_linearity_missing_arguments(df_example):
     """Raise TypeError when df or target is None; threshold is optional."""
     # df is None
     with pytest.raises(TypeError, match="Input 'df' must be a pandas DataFrame."):
