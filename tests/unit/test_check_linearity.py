@@ -96,6 +96,29 @@ def test_check_linearity_no_feature_target_correlation(df_example):
     result = check_linearity(df_example_2, target="price", threshold=0.8)
     pd.testing.assert_frame_equal(result.reset_index(drop=True), expected)
 
+def test_check_linearity_with_missing_values(df_example):
+    """Test handling of missing values in numeric features.
+
+    Ensures that the function does not error when numeric columns
+    contain NaN values and that correlations are still computed
+    using available data.
+    """
+    df_nan = df_example.copy()
+    df_nan.loc[2, "sqft"] = None
+    df_nan.loc[4, "num_rooms"] = None
+
+    result = check_linearity(df_nan, target="price", threshold=0.7)
+
+    # Should still return a valid DataFrame
+    assert isinstance(result, pd.DataFrame)
+    assert not result.empty
+
+    # Ensure expected columns exist
+    assert list(result.columns) == ["feature", "correlation"]
+
+    # Ensure correlations are numeric
+    assert result["correlation"].notna().all()
+
 
 def test_check_linearity_tie_break(df_example):
     """Test alphabetical tie-break when multiple features have the same absolute correlation.
@@ -121,6 +144,7 @@ def test_check_linearity_tie_break(df_example):
     assert (
         result["feature"].tolist() == expected_order
     ), "Tie-break alphabetical ordering failed."
+
 
 
 # -------------------------------------
