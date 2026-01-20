@@ -23,11 +23,8 @@
 
 This option is recommended if you want to use `lrassume` in your own projects and do not need to modify the source code.
 
-> **Note**  
-> This command will work only after the package is published to PyPI.
-
 ```bash
-pip install lrassume
+pip install -i https://test.pypi.org/simple/ lrassume
 ```
 
 ---
