@@ -141,12 +141,11 @@ To preview documentation changes before pushing:
 3. **Build the documentation:**
 ```bash
    quartodoc build
-   quarto render docs
 ```
 
 4. **Preview the documentation locally:**
 ```bash
-   quarto preview docs
+   quarto preview
 ```
    
    This will open the documentation site in your browser.
