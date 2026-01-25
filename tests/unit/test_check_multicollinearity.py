@@ -173,6 +173,7 @@ def test_check_multicollinearity_vif_perfect_collinearity_infinite(
     assert np.isinf(vif_table["vif"]).any()
     assert (vif_table.loc[vif_table["vif"] == np.inf, "level"] == "severe").all()
 
+
 @pytest.fixture
 def df_two_features_correlated():
     # Simple 2-feature case with known correlation
