@@ -402,6 +402,7 @@ def test_residuals_without_fitted_values():
     with pytest.raises(ValueError):
         check_homoscedasticity(X, y, residuals=np.ones(10))
 
+
 def test_custom_residuals_and_fitted_values(homoscedastic_data):
     """
     Test that the function accepts user-provided residuals and fitted_values.
@@ -432,6 +433,7 @@ def test_custom_residuals_and_fitted_values(homoscedastic_data):
     # Verify homoscedasticity is detected
     assert summary["overall_conclusion"] == "homoscedastic"
 
+
 def test_too_few_observations():
     """
     Test that ValueError is raised when sample size is too small.
@@ -455,4 +457,4 @@ def test_too_few_observations():
 
     # Verify error is raised for insufficient data
     with pytest.raises(ValueError):
-        check_homoscedasticity(X,y)
+        check_homoscedasticity(X, y)

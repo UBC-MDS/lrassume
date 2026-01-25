@@ -12,7 +12,6 @@ import pytest
 
 from lrassume import check_multicollinearity_vif
 
-
 # ============================================================================
 # Fixtures
 # ============================================================================
@@ -22,7 +21,7 @@ from lrassume import check_multicollinearity_vif
 def df_numeric_ok():
     """
     Create a DataFrame with low multicollinearity.
-    
+
     Returns
     -------
     pd.DataFrame
@@ -41,7 +40,7 @@ def df_numeric_ok():
 def df_with_target():
     """
     Create a DataFrame with features and a target column.
-    
+
     Returns
     -------
     pd.DataFrame
@@ -60,7 +59,7 @@ def df_with_target():
 def df_with_nan():
     """
     Create a DataFrame with missing values.
-    
+
     Returns
     -------
     pd.DataFrame
@@ -79,7 +78,7 @@ def df_with_nan():
 def df_with_non_numeric():
     """
     Create a DataFrame with mixed numeric and categorical columns.
-    
+
     Returns
     -------
     pd.DataFrame
@@ -98,7 +97,7 @@ def df_with_non_numeric():
 def df_with_constant():
     """
     Create a DataFrame with a constant column.
-    
+
     Returns
     -------
     pd.DataFrame
@@ -117,7 +116,7 @@ def df_with_constant():
 def df_perfect_collinearity():
     """
     Create a DataFrame with perfect linear collinearity.
-    
+
     Returns
     -------
     pd.DataFrame
@@ -136,7 +135,7 @@ def df_perfect_collinearity():
 def df_moderate_collinearity():
     """
     Create a DataFrame with moderate multicollinearity.
-    
+
     Returns
     -------
     pd.DataFrame
@@ -146,12 +145,14 @@ def df_moderate_collinearity():
     x1 = np.arange(1, 21)
     x2 = 2 * x1 + np.random.normal(0, 5, 20)  # High correlation with x1
     x3 = np.random.normal(0, 10, 20)  # Independent
-    
-    return pd.DataFrame({
-        "x1": x1,
-        "x2": x2,
-        "x3": x3,
-    })
+
+    return pd.DataFrame(
+        {
+            "x1": x1,
+            "x2": x2,
+            "x3": x3,
+        }
+    )
 
 
 # ============================================================================
@@ -162,7 +163,7 @@ def df_moderate_collinearity():
 def test_check_multicollinearity_vif_basic_runs(df_numeric_ok):
     """
     Test that check_multicollinearity_vif runs successfully with valid input.
-    
+
     Verifies:
     - Returns DataFrame and dict
     - Correct column names in output
@@ -193,7 +194,7 @@ def test_check_multicollinearity_vif_basic_runs(df_numeric_ok):
 def test_check_multicollinearity_vif_drops_target(df_with_target):
     """
     Test that the target column is correctly excluded from VIF calculation.
-    
+
     Verifies:
     - Target column is not in VIF results
     - Only features are analyzed
@@ -238,34 +239,32 @@ def test_check_multicollinearity_vif_severe_threshold_invalid(df_numeric_ok):
 def test_check_multicollinearity_vif_custom_thresholds(df_moderate_collinearity):
     """
     Test that custom thresholds correctly categorize VIF levels.
-    
+
     Uses stricter thresholds (warn=3, severe=6) and verifies:
     - Thresholds are stored in summary
     - VIF levels are assigned correctly based on custom thresholds
     - Overall status reflects custom thresholds
     """
     vif_table, summary = check_multicollinearity_vif(
-        df_moderate_collinearity,
-        warn_threshold=3.0,
-        severe_threshold=6.0
+        df_moderate_collinearity, warn_threshold=3.0, severe_threshold=6.0
     )
-    
+
     # Verify custom thresholds are stored
     assert summary["warn_threshold"] == 3.0
     assert summary["severe_threshold"] == 6.0
-    
+
     # Check that levels are assigned according to custom thresholds
     for _, row in vif_table.iterrows():
         vif_val = row["vif"]
         level = row["level"]
-        
+
         if vif_val >= 6.0:
             assert level == "severe"
         elif vif_val >= 3.0:
             assert level == "warn"
         else:
             assert level == "ok"
-    
+
     # Verify overall status uses custom thresholds
     assert summary["overall_status"] in ["ok", "warn", "severe"]
 
@@ -286,7 +285,7 @@ def test_check_multicollinearity_vif_non_numeric_error(df_with_non_numeric):
 def test_check_multicollinearity_vif_non_numeric_drop(df_with_non_numeric):
     """
     Test that non-numeric columns are dropped when categorical='drop'.
-    
+
     Verifies:
     - Categorical columns are listed in dropped_non_numeric
     - Only numeric columns remain
@@ -322,7 +321,7 @@ def test_check_multicollinearity_vif_missing_values_raise(df_with_nan):
 def test_check_multicollinearity_vif_constant_dropped(df_with_constant):
     """
     Test that constant columns are dropped when drop_constant=True.
-    
+
     Verifies:
     - Constant columns are listed in dropped_constant
     - Only varying columns remain
@@ -359,7 +358,7 @@ def test_check_multicollinearity_vif_too_few_features_after_drops_raises(
 ):
     """
     Test that having fewer than 2 features after drops raises ValueError.
-    
+
     Drops 'x2' and 'cat', leaving only 'x1', which is insufficient for VIF.
     """
     df_one_numeric = df_with_non_numeric.drop(columns=["x2"])
@@ -372,7 +371,7 @@ def test_check_multicollinearity_vif_perfect_collinearity_infinite(
 ):
     """
     Test that perfect collinearity produces infinite VIF values.
-    
+
     Verifies:
     - Overall status is 'severe'
     - At least one VIF is infinite
