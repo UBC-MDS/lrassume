@@ -402,6 +402,35 @@ def test_residuals_without_fitted_values():
     with pytest.raises(ValueError):
         check_homoscedasticity(X, y, residuals=np.ones(10))
 
+def test_custom_residuals_and_fitted_values(homoscedastic_data):
+    """
+    Test that the function accepts user-provided residuals and fitted_values.
+
+    Verifies that when residuals and fitted_values are provided as arrays,
+    the function uses them correctly instead of recomputing residuals from X and y.
+
+    Parameters
+    ----------
+    homoscedastic_data : fixture
+        Synthetic data with constant variance
+
+    Asserts
+    -------
+    - Summary conclusion is 'homoscedastic' for correctly computed residuals
+    """
+    X, y = homoscedastic_data
+
+    # Compute residuals manually
+    fitted_values = 2 * X["x1"] + 3 * X["x2"]
+    residuals = y - fitted_values
+
+    # Pass residuals and fitted_values to the function
+    _, summary = check_homoscedasticity(
+        X, y, residuals=residuals, fitted_values=fitted_values
+    )
+
+    # Verify homoscedasticity is detected
+    assert summary["overall_conclusion"] == "homoscedastic"
 
 def test_too_few_observations():
     """

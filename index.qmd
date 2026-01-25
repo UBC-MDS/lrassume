@@ -1,0 +1,6 @@
+---
+title: "Welcome to lrassume"
+format: html
+---
+
+{{< include README.md >}}

@@ -1,0 +1,12 @@
+# Function reference
+
+## Functions
+
+All functions in the package
+
+| | |
+| --- | --- |
+| [check_independence](check_independence.qmd#lrassume.check_independence) | check_independence.py |
+| [check_linearity](check_linearity.qmd#lrassume.check_linearity) | check_linearity.py |
+| [check_multicollinearity_vif](check_multicollinearity_vif.qmd#lrassume.check_multicollinearity_vif) | Compute multicollinearity diagnostics using Variance Inflation Factor (VIF). |
+| [check_homoscedasticity](check_homoscedasticity.qmd#lrassume.check_homoscedasticity) | Homoscedasticity diagnostics for linear regression. |

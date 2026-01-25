@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+
+quartodoc:
+  package: lrassume
+  sections:
+    - title: Functions
+      desc: All functions in the package
+      contents:
+        - check_independence
+        - check_linearity
+        - check_multicollinearity_vif
+        - check_homoscedasticity
+
+website:
+  title: "lrassume"
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - index.qmd
+      - text: "API Reference"
+        href: reference/index.qmd

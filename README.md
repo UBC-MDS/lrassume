@@ -16,7 +16,7 @@
 - **Multicollinearity Detection**: Variance Inflation Factor (VIF) calculation with configurable thresholds
 - **Homoscedasticity Testing**: Multiple statistical tests (Breusch-Pagan, White, Goldfeld-Quandt) to detect heteroscedasticity
 
----
+***
 ## Installation
 
 ### Install from PyPI (Users)
@@ -27,7 +27,7 @@ This option is recommended if you want to use `lrassume` in your own projects an
 pip install -i https://test.pypi.org/simple/ lrassume
 ```
 
----
+***
 
 ### Development Setup (Recommended)
 
@@ -35,7 +35,7 @@ This option is recommended if you want to develop, modify, or contribute to `lra
 
 This project uses **Conda** to manage the Python environment and **pip** to install project dependencies.
 
----
+***
 
 #### 1. Clone the Repository
 
@@ -46,7 +46,7 @@ git clone https://github.com/yourusername/lrassume.git
 cd lrassume
 ```
 
----
+***
 
 #### 2. Create and Activate the Conda Environment
 
@@ -60,7 +60,7 @@ conda activate lrassume
 > The `environment.yml` file installs Python only.
 > All runtime dependencies are specified in `pyproject.toml`.
 
----
+***
 
 #### 3. Install the Package in Editable Mode
 
@@ -70,7 +70,7 @@ Install the package and its dependencies in editable (development) mode:
 pip install -e .
 ```
 
----
+***
 
 ### Alternative: Development Without Conda
 
@@ -82,13 +82,13 @@ cd lrassume
 pip install -e .
 ```
 
----
+***
 
 ## Running the Test Suite (Developers)
 
 The test suite requires **pytest**, which is a development dependency and is not installed automatically for users of the package.
 
----
+***
 
 ### Install pytest
 
@@ -98,14 +98,14 @@ conda install pytest
 pip install pytest
 ```
 
----
+***
 
 ### Run the tests
 
 ```bash
 pytest
 ```
----
+***
 
 ## Quick Start
 
