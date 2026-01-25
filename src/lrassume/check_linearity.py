@@ -45,9 +45,9 @@ def check_linearity(
     -------
     pandas.DataFrame
         A DataFrame with the following columns:
-            - feature : str  
+            - feature : str
               Name of the feature column.
-            - correlation : float  
+            - correlation : float
               Pearson correlation coefficient between the feature and the target.
         The DataFrame is sorted by absolute correlation in descending order.
 
