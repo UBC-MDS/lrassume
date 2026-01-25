@@ -172,3 +172,33 @@ def test_check_multicollinearity_vif_perfect_collinearity_infinite(
     assert summary["overall_status"] == "severe"
     assert np.isinf(vif_table["vif"]).any()
     assert (vif_table.loc[vif_table["vif"] == np.inf, "level"] == "severe").all()
+
+
+@pytest.fixture
+def df_two_features_correlated():
+    # Simple 2-feature case with known correlation
+    return pd.DataFrame(
+        {
+            "x1": [1, 2, 3, 4, 5],
+            "x2": [2, 3, 5, 7, 11],
+        }
+    )
+
+
+def test_check_multicollinearity_vif_two_feature_matches_correlation(
+    df_two_features_correlated,
+):
+    vif_table, summary = check_multicollinearity_vif(df_two_features_correlated)
+
+    # For two predictors: VIF = 1 / (1 - r^2)
+    r = np.corrcoef(
+        df_two_features_correlated["x1"].to_numpy(),
+        df_two_features_correlated["x2"].to_numpy(),
+    )[0, 1]
+    expected_vif = 1.0 / (1.0 - r**2)
+
+    vifs = dict(zip(vif_table["feature"], vif_table["vif"]))
+
+    assert pytest.approx(vifs["x1"], rel=1e-10) == expected_vif
+    assert pytest.approx(vifs["x2"], rel=1e-10) == expected_vif
+    assert summary["n_features"] == 2
