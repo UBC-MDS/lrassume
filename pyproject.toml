@@ -49,7 +49,8 @@ dev = [
 ]
 
 docs = [
-    "quartodoc",
+    "quartodoc<0.7",
+    "griffe<0.37",
     "statsmodels",
     "numpy",
     "pandas",
@@ -166,6 +167,8 @@ build = [
 serve = [
     "quarto preview docs",
 ]
+
+
 
 #--------------- Check security for your dependencies ---------------#
 
