@@ -455,4 +455,4 @@ def test_too_few_observations():
 
     # Verify error is raised for insufficient data
     with pytest.raises(ValueError):
-        check_homoscedasticity(X, y)
+        check_homoscedasticity(X,y)
