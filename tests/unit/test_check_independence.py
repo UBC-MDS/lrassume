@@ -125,6 +125,26 @@ class TestFunctionality:
         assert result["dw_statistic"] < 1.5
         assert "Positive autocorrelation" in result["message"]
 
+    def test_negative_autocorrelation(self):
+        """Test with data exhibiting negative autocorrelation."""
+        np.random.seed(42)
+        n = 100
+        x = np.arange(n)
+        # Create negatively autocorrelated errors (alternating pattern)
+        errors = np.zeros(n)
+        for i in range(n):
+            # Alternate between positive and negative values
+            errors[i] = ((-1) ** i) * (2 + np.random.randn() * 0.3)
+        y = 2 * x + errors
+        df = pd.DataFrame({"x": x, "y": y})
+
+        result = check_independence(df, target="y")
+
+        # Should detect negative autocorrelation (DW > 2.5)
+        assert result["dw_statistic"] > 2.5
+        assert not result["is_independent"]
+        assert "Negative autocorrelation" in result["message"]
+
     def test_multiple_features(self):
         """Test with multiple feature columns."""
         df = pd.DataFrame(
