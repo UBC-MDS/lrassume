@@ -15,6 +15,8 @@
 - **Multicollinearity Detection**: Variance Inflation Factor (VIF) calculation with configurable thresholds
 - **Homoscedasticity Testing**: Multiple statistical tests (Breusch-Pagan, White, Goldfeld-Quandt) to detect heteroscedasticity
 
+
+***
 ## Installation
 
 ### User Setup
@@ -25,7 +27,7 @@ This option is recommended if you want to use `lrassume` in your own projects an
 pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ lrassume
 ```
 
----
+***
 
 ### Development Setup (Recommended)
 
@@ -33,7 +35,7 @@ This option is recommended if you want to develop, modify, or contribute to `lra
 
 This project uses **Conda** to manage the Python environment and **pip** to install project dependencies.
 
----
+***
 
 #### 1. Clone the Repository and Navigate to the Project Directory
 
@@ -42,7 +44,7 @@ git clone https://github.com/UBC-MDS/lrassume.git
 cd lrassume
 ```
 
----
+***
 
 #### 2. Create and Activate the Conda Environment
 
@@ -56,7 +58,7 @@ conda activate lrassume
 > The `environment.yml` file installs Python only.
 > All runtime dependencies are specified in `pyproject.toml`.
 
----
+***
 
 #### 3. Install the Package in Editable Mode
 
@@ -64,6 +66,8 @@ conda activate lrassume
 pip install -e .
 ```
 
+
+***
 ### Alternative: Development Without Conda
 
 If you prefer not to use Conda, you can install the package directly using pip:
@@ -74,12 +78,13 @@ cd lrassume
 pip install -e .
 ```
 
+***
 ## Running the Test Suite Locally (Developers)
 
 The test suite is executed using pytest. In CI this is managed via Hatch,
 but tests can also be run locally using pytest.
 
----
+***
 
 ### Install pytest
 
@@ -89,13 +94,15 @@ conda install pytest
 pip install pytest
 ```
 
----
+***
 
 ### Run the tests
 
 ```bash
 pytest
 ```
+
+***
 
 ## Continuous Integration (Automated Testing)
 
@@ -116,7 +123,6 @@ The GitHub Actions workflow responsible for running the test suite is located at
 
 `.github/workflows/test.yml`
 
----
 
 ## Documentation
 
