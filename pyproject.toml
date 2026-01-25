@@ -18,7 +18,10 @@ classifiers = [
   "Intended Audience :: Science/Research",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13"
 ]
 keywords = []
 dependencies = ["statsmodels", "numpy", "pandas", "scipy"]
@@ -27,29 +30,30 @@ dependencies = ["statsmodels", "numpy", "pandas", "scipy"]
 source = "vcs"
 
 [project.urls]
-Homepage = "https://github.com//lrassume"
-"Source Code" = "https://github.com//lrassume"
-"Bug Tracker" = "https://github.com//lrassume/issues"
-Documentation = "https://github.com//lrassume/blob/main/README.md"
-Download = "https://pypi.org/project/lrassume/#files"
+Homepage = "https://github.com/UBC-MDS/lrassume"
+"Source Code" = "https://github.com/UBC-MDS/lrassume"
+"Bug Tracker" = "https://github.com/UBC-MDS/lrassume/issues"
+"Documentation" = "https://ubc-mds.github.io/lrassume/"
+Download = "https://test.pypi.org/project/lrassume/#files"
 
 [project.optional-dependencies]
 # The groups below should be in the [development-groups] table
 # They are here now because hatch hasn't released support for them but plans to
 # in Mid November 2025.
+
 dev = [
     "hatch",
     "pre-commit",
+    "ruff", 
+    "black"
 ]
 
 docs = [
-    "sphinx~=8.0",
-    "myst-parser>=4.0",
-    "pydata-sphinx-theme~=0.16",
-    "sphinx-autobuild>=2024.10.3",
-    "sphinx-autoapi>=3.6.0",
-    "sphinx_design>=0.6.1",
-    "sphinx-copybutton>=0.5.2",
+    "quartodoc",
+    "statsmodels",
+    "numpy",
+    "pandas",
+    "scipy",
 ]
 
 build = [
@@ -62,8 +66,6 @@ tests = [
     "pytest-raises",
     "pytest-xdist",
 ]
-
-
 
 ################################################################################
 # Tool Configuration
@@ -157,10 +159,13 @@ features = [
 # hatch run docs:build will build your documentation
 # hatch run docs:serve will serve them 'live' on your computer locally
 [tool.hatch.envs.docs.scripts]
-build = ["sphinx-build {args:-W -b html docs docs/_build}"]
-serve = ["sphinx-autobuild docs --watch src/lrassume {args:-b html docs/_build/serve}"]
-
-
+build = [
+    "quartodoc build",
+    "quarto render docs",
+]
+serve = [
+    "quarto preview docs",
+]
 
 #--------------- Check security for your dependencies ---------------#
 
