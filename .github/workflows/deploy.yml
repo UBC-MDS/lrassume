@@ -31,6 +31,16 @@ jobs:
           python -m pip install -e ".[tests]"
           python -m pip install ruff black build twine
 
+      # Run pytest with coverage
+      - name: Run tests with coverage
+        run: |
+          pytest --cov --cov-report=xml --cov-branch
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Style checks
         run: |
           python -m ruff check .
