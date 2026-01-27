@@ -12,6 +12,7 @@ quartodoc:
         - check_linearity
         - check_multicollinearity_vif
         - check_homoscedasticity
+  warn: false
 
 website:
   title: "lrassume"
