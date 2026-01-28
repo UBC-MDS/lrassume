@@ -29,3 +29,12 @@ website:
           - tutorials/homoscedasticity.qmd
       - text: "API Reference"
         href: reference/index.qmd
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - custom.scss
+    toc: true
+    code-copy: true
+    code-overflow: wrap

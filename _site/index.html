@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-42ed7287b56c5c583e2c2463c9cf4916.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-5c49292c60a41cbcbec9d2572146fb62.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -158,12 +158,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorials/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">index.html</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./tutorials/getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started with lrassume</span></a>
   </div>
@@ -205,7 +199,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lrassume" id="toc-lrassume" class="nav-link active" data-scroll-target="#lrassume">lrassume</a>
+  <ul class="collapse">
+  <li><a href="#features" id="toc-features" class="nav-link" data-scroll-target="#features">Features</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a>
+  <ul class="collapse">
+  <li><a href="#user-setup" id="toc-user-setup" class="nav-link" data-scroll-target="#user-setup">User Setup</a></li>
+  <li><a href="#development-setup-recommended" id="toc-development-setup-recommended" class="nav-link" data-scroll-target="#development-setup-recommended">Development Setup (Recommended)</a></li>
+  <li><a href="#alternative-development-without-conda" id="toc-alternative-development-without-conda" class="nav-link" data-scroll-target="#alternative-development-without-conda">Alternative: Development Without Conda</a></li>
+  </ul></li>
+  <li><a href="#running-the-test-suite-locally-developers" id="toc-running-the-test-suite-locally-developers" class="nav-link" data-scroll-target="#running-the-test-suite-locally-developers">Running the Test Suite Locally (Developers)</a>
+  <ul class="collapse">
+  <li><a href="#install-pytest" id="toc-install-pytest" class="nav-link" data-scroll-target="#install-pytest">Install pytest</a></li>
+  <li><a href="#run-the-tests" id="toc-run-the-tests" class="nav-link" data-scroll-target="#run-the-tests">Run the tests</a></li>
+  </ul></li>
+  <li><a href="#continuous-integration-automated-testing" id="toc-continuous-integration-automated-testing" class="nav-link" data-scroll-target="#continuous-integration-automated-testing">Continuous Integration (Automated Testing)</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a>
+  <ul class="collapse">
+  <li><a href="#build-documentation-locally-developers" id="toc-build-documentation-locally-developers" class="nav-link" data-scroll-target="#build-documentation-locally-developers">Build Documentation Locally (Developers)</a></li>
+  <li><a href="#update-documentation" id="toc-update-documentation" class="nav-link" data-scroll-target="#update-documentation">Update Documentation</a></li>
+  <li><a href="#deploy-documentation-automated" id="toc-deploy-documentation-automated" class="nav-link" data-scroll-target="#deploy-documentation-automated">Deploy Documentation (Automated)</a></li>
+  </ul></li>
+  <li><a href="#quick-start" id="toc-quick-start" class="nav-link" data-scroll-target="#quick-start">Quick Start</a>
+  <ul class="collapse">
+  <li><a href="#check-independence" id="toc-check-independence" class="nav-link" data-scroll-target="#check-independence">Check Independence</a></li>
+  <li><a href="#check-linearity" id="toc-check-linearity" class="nav-link" data-scroll-target="#check-linearity">Check Linearity</a></li>
+  <li><a href="#check-multicollinearity" id="toc-check-multicollinearity" class="nav-link" data-scroll-target="#check-multicollinearity">Check Multicollinearity</a></li>
+  <li><a href="#check-homoscedasticity" id="toc-check-homoscedasticity" class="nav-link" data-scroll-target="#check-homoscedasticity">Check Homoscedasticity</a></li>
+  </ul></li>
+  <li><a href="#core-assumptions-tested" id="toc-core-assumptions-tested" class="nav-link" data-scroll-target="#core-assumptions-tested">Core Assumptions Tested</a>
+  <ul class="collapse">
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">1. Independence</a></li>
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity">2. Linearity</a></li>
+  <li><a href="#multicollinearity" id="toc-multicollinearity" class="nav-link" data-scroll-target="#multicollinearity">3. Multicollinearity</a></li>
+  <li><a href="#homoscedasticity" id="toc-homoscedasticity" class="nav-link" data-scroll-target="#homoscedasticity">4. Homoscedasticity</a></li>
+  </ul></li>
+  <li><a href="#advanced-usage" id="toc-advanced-usage" class="nav-link" data-scroll-target="#advanced-usage">Advanced Usage</a>
+  <ul class="collapse">
+  <li><a href="#working-with-pre-fitted-models" id="toc-working-with-pre-fitted-models" class="nav-link" data-scroll-target="#working-with-pre-fitted-models">Working with Pre-fitted Models</a></li>
+  <li><a href="#handling-categorical-variables" id="toc-handling-categorical-variables" class="nav-link" data-scroll-target="#handling-categorical-variables">Handling Categorical Variables</a></li>
+  <li><a href="#custom-thresholds" id="toc-custom-thresholds" class="nav-link" data-scroll-target="#custom-thresholds">Custom Thresholds</a></li>
+  </ul></li>
+  <li><a href="#function-reference" id="toc-function-reference" class="nav-link" data-scroll-target="#function-reference">Function Reference</a></li>
+  <li><a href="#interpretation-guidelines" id="toc-interpretation-guidelines" class="nav-link" data-scroll-target="#interpretation-guidelines">Interpretation Guidelines</a>
+  <ul class="collapse">
+  <li><a href="#vif-thresholds" id="toc-vif-thresholds" class="nav-link" data-scroll-target="#vif-thresholds">VIF Thresholds</a></li>
+  <li><a href="#durbin-watson-statistic" id="toc-durbin-watson-statistic" class="nav-link" data-scroll-target="#durbin-watson-statistic">Durbin-Watson Statistic</a></li>
+  <li><a href="#homoscedasticity-tests" id="toc-homoscedasticity-tests" class="nav-link" data-scroll-target="#homoscedasticity-tests">Homoscedasticity Tests</a></li>
+  </ul></li>
+  <li><a href="#contributing" id="toc-contributing" class="nav-link" data-scroll-target="#contributing">Contributing</a></li>
+  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
+  <li><a href="#support" id="toc-support" class="nav-link" data-scroll-target="#support">Support</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
