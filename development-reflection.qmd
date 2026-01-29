@@ -1,0 +1,130 @@
+---
+title: "Development Tools, Infrastructure, and Practices Reflection"
+author: 
+  - Claire Saunders
+  - Harpreet Singh
+  - Ojasv Issar
+  - Tanav Singh Bajaj
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+## Development Tools
+
+In this project we used the following development tools:
+
+### Version Control: Git, GitHub
+
+This was fundamental to this project - by utilizing branches to implement features and managing our edits through pull requests we were able to check each other's work and keep clear records of how the project unfolded.
+
+### Testing: Pytest, and CodeCov for Test Coverage Reporting
+
+We used pytest which is easy to install and run with one command and generates a clear report of test results. By automating testing, we could catch bugs early and ensure our functions worked as expected before merging PRs. As soon as this workflow was automated we had more seamless integration into main, as we could all be confident we weren't introducing any bugs.
+
+### Documentation: Quartodoc, Quarto, and Netlify for Previews
+
+Documentation automation through Quartodoc improved our package greatly because it reduced our reliance on a very long ReadME document and gave a quick and easily accessible place for users to access information to understand how to use our package! We did find that it was laborious to check every different version of the documentation locally before merging, but that was solved by the welcome addition of the workflow with Netlify. With Netlify it became exponentially easier to review each other's adjustments to documentation with the quick link created by Netlify in the PR. We would definitely be inclined to use Netlify again!
+
+### Package Management: Pip, Conda
+
+Pip and conda worked sufficiently for us though we did run into small bugs with our dependencies when using the pip install command to load our package. Some of our dependencies were not available on TestPyPI, so this may be solved by using the proper PyPI site in future work. For this project, we were able to solve that bug by editing our install command to a longer command that implements installing from PyPI if the dependency wasn't available on TestPyPI. That worked!
+
+### Code Quality: Ruff and Black
+
+Working as a group, our coding styles were slightly different so we benefitted greatly from using Black as our code formatter checker and Ruff as our linter to enforce PEP 8 compliance and catch code quality issues. This ensured all of our group members had alignment in the presentation of our code and will maintain the quality of future contributions.
+
+### CI/CD: GitHub Actions Workflow to Automate the Following
+
+- Testing of code with pytest
+- Report generation of test coverage with CodeCov
+- Formatting checks with black and ruff
+- Deploy documentation with Quartodoc
+- Generate pull request previews with Netlify
+
+## GitHub Infrastructure & Workflow We Implemented
+
+In this project we utilized the following GitHub features and practices to manage our project flow:
+
+### Issues and Issue Templates
+
+We assigned issues to group members evenly at the start of a Milestone and included relevant notes in the issue as the work progressed. In some cases we included records of AI use, or outlines of expectations for that issue, discussions regarding progress and any other relevant details.
+
+### Project Boards and Views
+
+We kept all issues logged in our Project Board and managed workflow by moving our issues from:
+
+**Backlog → Ready → In Progress → In Review → Done**
+
+Because we ensured all issues were assigned, we could utilize project views to see our individual tasks and manage our progress.
+
+### Milestones
+
+We logged each issue under a milestone and ensured all issues related to the current milestone were complete and logged as done before the milestone was closed. For each milestone we created a version release on our repository.
+
+### Pull Requests and Code Reviews
+
+- We managed our work through branches and pull requests; each feature was created in a new branch with an appropriate name, and pushed as a pull request
+- We linked our pull requests to the relevant issue
+- We ensured all pull requests were reviewed by at least one team member before merging the work
+
+::: {.callout-note}
+In some cases, the review was verbal, and a note was added to note that the group had approved. We worked together in some cases, and the record on the repo may appear as though one group member merged their work but it was a group regulated process.
+:::
+
+### Branch Protection Rules
+
+Due to communication and agreement between team members, we opted to not protect our main branch from commits. In some cases when we had late bugs show up from last minute fixes this proved extremely helpful as we were able to push bug fixes really efficiently when needed.
+
+### GitHub Actions Workflows
+
+The automated workflows were extremely helpful in making our work more efficient and enforcing standards and consistency in the quality of our work. We ensured that all pull requests dispatch the build and test and formatting check workflow, and the Netlify documentation preview as well.
+
+## Scaling Up: Tools for Larger Projects - A DAKI Reflection
+
+### DROP 🗑️
+
+- **Manual local documentation builds and tests before every PR** - Before implementing Netlify previews, we had to manually build and check documentation locally, which was time-consuming and inefficient
+
+- **Ad-hoc verbal approvals for pull requests without written documentation** - While verbal communication worked for our small team, we should drop this practice for scaled projects. In larger teams, undocumented approvals create confusion and lack of accountability
+
+- **Relaxed dependency version pinning** - We experienced issues with dependencies not being available on TestPyPI. For production packages, we should drop the practice of loose dependency specifications
+
+- **Last-minute bug fixes directly to main** - While convenient for our small team with tight deadlines, this practice should be dropped for larger projects because it bypasses code review and testing, which could introduce more serious bugs at scale
+
+- **TestPyPI as our primary publishing platform** - For scaled projects TestPyPI is too limited and not suitable for real-world use
+
+- **Basic timeline with no deadlines other than the major deadlines** - For a scaled project we would need to organize our task deadlines more clearly with clear timelines for when each feature and fix is expected so that the workflow and communication is streamlined
+
+### ADD ➕
+
+- **Consistent commit message format** - Decide upon and enforce a consistent format for commit messages for organization, ease of reference and overall clarity
+
+- **Branch protection rules** - For future projects and when scaled up, branch protection would be invaluable. It would help to discourage scenarios where a flurry of quick changes occur by enforcing careful reviews and earlier progress on milestones to allow lots of time for review and permissible merging into main. Even with our small team and a smaller scale project we ran into some issues with bugs in our main branch and the ease of access was a bit of a trap at times when we encountered short timelines. We would remove the possibility of this temptation in a scaled project to mitigate messes and keep control of the quality of the contributions
+
+- **Full semantic versioning** - Use special keywords in commit messages that indicate the major, minor or breaking change. For a larger project, this would improve the clear workflow and clarity for users and developers immensely
+
+- **PyPI as publishing site** - As opposed to TestPyPI for a scaled project
+
+### KEEP ✅
+
+- **Automated workflows for documentation** with Quartodoc, as well as Netlify for previews. These are extremely helpful for efficiency and time management of reviewing updates to documentation
+
+- **Automated workflows for function testing and enforcing formatting** - Pytest in particular works well for this
+
+- **CodeCov** - This is an easy to use and super helpful step that is automated and offers clear information to all who access our package
+
+- **GitHub Project Boards** - The flow of tasks on the project board helped manage the birds eye view, and this would be invaluable when approaching a scaled project with even more issues, and tasks and persons to manage
+
+- **Milestones** - Working towards clear milestones would be helpful in a scaled context to mark progress clearly for all, and to make for a clear roadmap to completion. It also provides motivation, by breaking the project into manageable chunks with clear accomplishments rather than one huge ongoing project!
+
+### IMPROVE 📈
+
+- **Set up automated workflows immediately** - For future projects, we would adjust our workflow to set up some of the automated workflows right away to reduce errors and enforce the quality of pull requests right from the start
+
+- **Improve specificity of Pull Requests and branch names** - Ensure that every PR and every branch is specific to one feature, or one fix, and that this is clearly reflected in the naming conventions. We had a couple occasions where PRs were doing many things at once, or branches implemented more than one feature or fix and separating the work clearly would improve the flow and ease of review for a scaled project
+
+- **Formalize all technical decisions in written form** - Move from verbal discussions to documented conversations in GitHub issues, PRs, or Discussions. This creates a searchable knowledge base and prevents miscommunication, especially critical as teams scale
+
+- **Dependency management and updates** - We would implement a plan to ensure our package is future-proof, or at least ensure we have a procedure for managing updates to ensure that our package remains viable as our dependencies update over time

@@ -20,5 +20,6 @@ website:
     search: true
     contents:
       - index.qmd
+      - development-reflection.qmd
       - text: "API Reference"
         href: reference/index.qmd
