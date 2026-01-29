@@ -15,27 +15,43 @@ format:
 
 In this project we used the following development tools:
 
-### Version Control: Git, GitHub
+### Version Control
+
+**Git, GitHub**
 
 This was fundamental to this project - by utilizing branches to implement features and managing our edits through pull requests we were able to check each other's work and keep clear records of how the project unfolded.
 
-### Testing: Pytest, and CodeCov for Test Coverage Reporting
+### Testing
+
+**Pytest, CodeCov**
 
 We used pytest which is easy to install and run with one command and generates a clear report of test results. By automating testing, we could catch bugs early and ensure our functions worked as expected before merging PRs. As soon as this workflow was automated we had more seamless integration into main, as we could all be confident we weren't introducing any bugs.
 
-### Documentation: Quartodoc, Quarto, and Netlify for Previews
+CodeCov provided automated test coverage reporting that made it easy to see which parts of our code were well-tested and which needed more attention.
+
+### Documentation
+
+**Quartodoc, Quarto, Netlify**
 
 Documentation automation through Quartodoc improved our package greatly because it reduced our reliance on a very long ReadME document and gave a quick and easily accessible place for users to access information to understand how to use our package! We did find that it was laborious to check every different version of the documentation locally before merging, but that was solved by the welcome addition of the workflow with Netlify. With Netlify it became exponentially easier to review each other's adjustments to documentation with the quick link created by Netlify in the PR. We would definitely be inclined to use Netlify again!
 
-### Package Management: Pip, Conda
+### Package Management
+
+**Pip, Conda**
 
 Pip and conda worked sufficiently for us though we did run into small bugs with our dependencies when using the pip install command to load our package. Some of our dependencies were not available on TestPyPI, so this may be solved by using the proper PyPI site in future work. For this project, we were able to solve that bug by editing our install command to a longer command that implements installing from PyPI if the dependency wasn't available on TestPyPI. That worked!
 
-### Code Quality: Ruff and Black
+### Code Quality
+
+**Ruff, Black**
 
 Working as a group, our coding styles were slightly different so we benefitted greatly from using Black as our code formatter checker and Ruff as our linter to enforce PEP 8 compliance and catch code quality issues. This ensured all of our group members had alignment in the presentation of our code and will maintain the quality of future contributions.
 
-### CI/CD: GitHub Actions Workflow to Automate the Following
+### CI/CD
+
+**GitHub Actions**
+
+GitHub Actions workflows automated the following processes:
 
 - Testing of code with pytest
 - Report generation of test coverage with CodeCov
