@@ -1,10 +1,8 @@
 # lrassume
-
 |        |        |
 |--------|--------|
-| Package | [![Latest PyPI Version](https://img.shields.io/pypi/v/lrassume.svg)](https://test.pypi.org/project/lrassume/) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/lrassume.svg)](https://pypi.org/project/lrassume/)  |
-| Meta   | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) |
-[![codecov](https://codecov.io/gh/UBC-MDS/lrassume/graph/badge.svg?token=paQJYXz5xr)](https://codecov.io/gh/UBC-MDS/lrassume)
+| Package | [![TestPyPI](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Ftest.pypi.org%2Fpypi%2Flrassume%2Fjson&query=%24.info.version&label=TestPyPI&color=blue)](https://test.pypi.org/project/lrassume/) [![Python](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Ftest.pypi.org%2Fpypi%2Flrassume%2Fjson&query=%24.info.requires_python&label=python&color=blue)](https://test.pypi.org/project/lrassume/)  |
+| Meta   | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) [![codecov](https://codecov.io/gh/UBC-MDS/lrassume/graph/badge.svg?token=paQJYXz5xr)](https://codecov.io/gh/UBC-MDS/lrassume) |
 
 **lrassume** (Linear Regression Assumption Validator) is a Python package for validating the core assumptions of linear regression models. It provides statistical tests and diagnostic tools to assess independence, linearity, multicollinearity, and homoscedasticity in your regression workflows.
 
@@ -101,6 +99,9 @@ pip install pytest
 ```bash
 pytest
 ```
+<span style='Color:red;'>NOTE:</span> If pytest fails, **restart** your terminal and rerun pytest. Sometimes the pip package manager fails to update and source the `.bash_*` files, failing to link the Python package to the terminal.
+
+---
 
 ***
 
@@ -366,6 +367,21 @@ test_results, summary = check_homoscedasticity(
 ### Homoscedasticity Tests
 - **p-value > α**: Fail to reject null hypothesis (homoscedastic)
 - **p-value ≤ α**: Reject null hypothesis (heteroscedastic)
+
+
+
+### Future Enhancements
+
+While our current implementation covers the four foundational assumptions of linear regression (linearity, independence, homoscedasticity, and multicollinearity), there are several areas we'd like to expand on:
+
+- **Residual Normality Testing**: Add statistical tests and visualizations to check if residuals follow a normal distribution
+- **Outlier Detection**: Implement scatter plot visualizations and statistical methods to identify potential outliers in the dataset
+- **Influence Diagnostics**: Include Cook's distance calculations to detect influential data points that may be disproportionately affecting the regression model
+- **Enhanced Visualizations**: Add more interactive plotting options for better data exploration
+- **Additional Assumption Tests**: Expand to cover other regression diagnostics beyond the core four assumptions
+
+These additions would make the package more comprehensive for users conducting thorough regression diagnostics in their workflows.
+
 
 ## Contributing
 
