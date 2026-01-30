@@ -99,6 +99,9 @@ pip install pytest
 ```bash
 pytest
 ```
+<span style='Color:red;'>NOTE:</span> If pytest fails, **restart** your terminal and rerun pytest. Sometimes the pip package manager fails to update and source the `.bash_*` files, failing to link the Python package to the terminal.
+
+---
 
 ***
 
