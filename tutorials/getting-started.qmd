@@ -10,14 +10,22 @@ Install from TestPyPI:
 pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ lrassume
 ```
 
-## What is lrassume?
+### What is lrassume?
 
-**lrassume** (Linear Regression Assumption Validator) helps you validate the four core assumptions of linear regression:
+**lrassume** (Linear Regression Assumption Validator) is a Python package designed for data scientists who want to validate their data before building linear regression models. 
 
-1. **Independence**: Residuals are independent (no autocorrelation)
-2. **Linearity**: Linear relationship between predictors and target
-3. **Multicollinearity**: Predictors are not highly correlated
-4. **Homoscedasticity**: Constant variance in residuals
+The package helps users examine their dataset to check the four core assumptions of linear regression **prior to** fitting and tuning a model. This is meant to fit into your data science workflow at the exploration stage - before you commit to building your linear regression model.
+
+**Who is this for?**  
+Data scientists, analysts, and researchers who want to quickly verify if their data is suitable for linear regression modeling. If you're working on a machine learning pipeline and considering linear regression, use lrassume during your exploratory data analysis phase to catch potential issues early.
+
+**What does it check?**
+- Linearity between features and target
+- Independence of observations  
+- Homoscedasticity (constant variance of residuals)
+- Multicollinearity among features
+
+By validating these assumptions upfront, you can make informed decisions about whether linear regression is appropriate for your data or if you need to transform your data or consider alternative modeling approaches.
 
 ## Basic Workflow
 
