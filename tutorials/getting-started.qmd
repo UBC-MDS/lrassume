@@ -62,7 +62,7 @@ test_results, summary = check_homoscedasticity(X, y, method="all")
 print(summary['overall_conclusion'])
 ```
 
-## Next Steps
+## Learn More
 
 - [Independence Testing](independence.qmd)
 - [Linearity Assessment](linearity.qmd)
