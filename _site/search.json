@@ -4,7 +4,7 @@
     "href": "reference/check_linearity.html",
     "title": "check_linearity",
     "section": "",
-    "text": "check_linearity\ncheck_linearity.py Module for analyzing linear relationships between numeric features and a target variable.\nThis module provides tools for identifying features in a pandas DataFrame that have a strong linear relationship with a specified numeric target column using Pearson correlation.\n\n\n\ncheck_linearity(df, target, threshold=0.7) Identifies numeric features with absolute Pearson correlation above a given threshold relative to the target column.\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\ncheck_linearity\nIdentify features with a specified strength of linear relationship to the target.\n\n\n\n\n\ncheck_linearity.check_linearity(df, target, threshold=0.7)\nIdentify features with a specified strength of linear relationship to the target.\nThis function identifies all of the numeric features in a DataFrame and computes the Pearson correlation coefficient between each numeric feature in the DataFrame and the specified numeric target column. It returns a DataFrame containing the features whose absolute correlation with the target is greater than or equal to the given threshold along with their correlation values.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndf\npandas.DataFrame\nInput DataFrame with feature columns and the target column. Only numeric features will be considered.\nrequired\n\n\ntarget\nstr\nName of the target column. The column must be numeric and the name must match the column name in data.\nrequired\n\n\nthreshold\nfloat\nMinimum absolute Pearson correlation required for a feature to be considered strongly correlated with the target. Must be between 0 and 1. Default is 0.7.\n0.7\n\n\n\n\n\n\n\n\n\n\n\n\n\nType\nDescription\n\n\n\n\npandas.DataFrame\nA Dataframe with the following columns: - feature : str Name of the feature column - correlation : float Pearson correlation coefficient between the feature and the target. The DataFrame is sorted by absolute correlation in descending order.\n\n\n\n\n\n\n&gt;&gt;&gt; df_example = pd.DataFrame({\n  \"sqft\": [500, 700, 900, 1100],\n  \"num_rooms\": [1, 2, 1, 3],\n  \"age\": [40, 25, 20, 5],\n  \"distance_to_city\": [10, 12, 11, 13],\n  \"price\": [150, 210, 260, 320]\n})\n&gt;&gt;&gt; check_linearity(df=df_example, target=\"price\", threshold=0.7)\n        feature  correlation\n0          sqft     0.994\n1            age    -0.952\n2      num_rooms     0.703"
+    "text": "check_linearity\ncheck_linearity.py Module for analyzing linear relationships between numeric features and a target variable.\nThis module provides tools for identifying features in a pandas DataFrame that have a strong linear relationship with a specified numeric target column using Pearson correlation.\n\n\n\ncheck_linearity(df, target, threshold=0.7) Identifies numeric features with absolute Pearson correlation above a given threshold relative to the target column.\n\n\n\n\n\n\n\nName\nDescription\n\n\n\n\ncheck_linearity\nIdentify features with a specified strength of linear relationship to the target.\n\n\n\n\n\ncheck_linearity.check_linearity(df, target, threshold=0.7)\nIdentify features with a specified strength of linear relationship to the target.\nThis function identifies all of the numeric features in a DataFrame and computes the Pearson correlation coefficient between each numeric feature in the DataFrame and the specified numeric target column. It returns a DataFrame containing the features whose absolute correlation with the target is greater than or equal to the given threshold along with their correlation values.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndf\npandas.DataFrame\nInput DataFrame with feature columns and the target column. Only numeric features will be considered.\nrequired\n\n\ntarget\nstr\nName of the target column. The column must be numeric and the name must match the column name in the data.\nrequired\n\n\nthreshold\nfloat\nMinimum absolute Pearson correlation required for a feature to be considered strongly correlated with the target. Must be between 0 and 1. Default is 0.7.\n0.7\n\n\n\n\n\n\n\n\n\n\n\n\n\nType\nDescription\n\n\n\n\npandas.DataFrame\nA DataFrame with the following columns: - feature : str Name of the feature column. - correlation : float Pearson correlation coefficient between the feature and the target. The DataFrame is sorted by absolute correlation in descending order.\n\n\n\n\n\n\n&gt;&gt;&gt; df_example = pd.DataFrame({\n...     \"sqft\": [500, 700, 900, 1100],\n...     \"num_rooms\": [1, 2, 1, 3],\n...     \"age\": [40, 25, 20, 5],\n...     \"distance_to_city\": [10, 12, 11, 13],\n...     \"price\": [150, 210, 260, 320]\n... })\n&gt;&gt;&gt; check_linearity(df=df_example, target=\"price\", threshold=0.7)\n    feature  correlation\n0       sqft        0.994\n1         age       -0.952\n2   num_rooms        0.703"
   },
   {
     "objectID": "reference/check_linearity.html#functions",
@@ -18,7 +18,7 @@
     "href": "reference/check_linearity.html#functions-1",
     "title": "check_linearity",
     "section": "",
-    "text": "Name\nDescription\n\n\n\n\ncheck_linearity\nIdentify features with a specified strength of linear relationship to the target.\n\n\n\n\n\ncheck_linearity.check_linearity(df, target, threshold=0.7)\nIdentify features with a specified strength of linear relationship to the target.\nThis function identifies all of the numeric features in a DataFrame and computes the Pearson correlation coefficient between each numeric feature in the DataFrame and the specified numeric target column. It returns a DataFrame containing the features whose absolute correlation with the target is greater than or equal to the given threshold along with their correlation values.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndf\npandas.DataFrame\nInput DataFrame with feature columns and the target column. Only numeric features will be considered.\nrequired\n\n\ntarget\nstr\nName of the target column. The column must be numeric and the name must match the column name in data.\nrequired\n\n\nthreshold\nfloat\nMinimum absolute Pearson correlation required for a feature to be considered strongly correlated with the target. Must be between 0 and 1. Default is 0.7.\n0.7\n\n\n\n\n\n\n\n\n\n\n\n\n\nType\nDescription\n\n\n\n\npandas.DataFrame\nA Dataframe with the following columns: - feature : str Name of the feature column - correlation : float Pearson correlation coefficient between the feature and the target. The DataFrame is sorted by absolute correlation in descending order.\n\n\n\n\n\n\n&gt;&gt;&gt; df_example = pd.DataFrame({\n  \"sqft\": [500, 700, 900, 1100],\n  \"num_rooms\": [1, 2, 1, 3],\n  \"age\": [40, 25, 20, 5],\n  \"distance_to_city\": [10, 12, 11, 13],\n  \"price\": [150, 210, 260, 320]\n})\n&gt;&gt;&gt; check_linearity(df=df_example, target=\"price\", threshold=0.7)\n        feature  correlation\n0          sqft     0.994\n1            age    -0.952\n2      num_rooms     0.703"
+    "text": "Name\nDescription\n\n\n\n\ncheck_linearity\nIdentify features with a specified strength of linear relationship to the target.\n\n\n\n\n\ncheck_linearity.check_linearity(df, target, threshold=0.7)\nIdentify features with a specified strength of linear relationship to the target.\nThis function identifies all of the numeric features in a DataFrame and computes the Pearson correlation coefficient between each numeric feature in the DataFrame and the specified numeric target column. It returns a DataFrame containing the features whose absolute correlation with the target is greater than or equal to the given threshold along with their correlation values.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\ndf\npandas.DataFrame\nInput DataFrame with feature columns and the target column. Only numeric features will be considered.\nrequired\n\n\ntarget\nstr\nName of the target column. The column must be numeric and the name must match the column name in the data.\nrequired\n\n\nthreshold\nfloat\nMinimum absolute Pearson correlation required for a feature to be considered strongly correlated with the target. Must be between 0 and 1. Default is 0.7.\n0.7\n\n\n\n\n\n\n\n\n\n\n\n\n\nType\nDescription\n\n\n\n\npandas.DataFrame\nA DataFrame with the following columns: - feature : str Name of the feature column. - correlation : float Pearson correlation coefficient between the feature and the target. The DataFrame is sorted by absolute correlation in descending order.\n\n\n\n\n\n\n&gt;&gt;&gt; df_example = pd.DataFrame({\n...     \"sqft\": [500, 700, 900, 1100],\n...     \"num_rooms\": [1, 2, 1, 3],\n...     \"age\": [40, 25, 20, 5],\n...     \"distance_to_city\": [10, 12, 11, 13],\n...     \"price\": [150, 210, 260, 320]\n... })\n&gt;&gt;&gt; check_linearity(df=df_example, target=\"price\", threshold=0.7)\n    feature  correlation\n0       sqft        0.994\n1         age       -0.952\n2   num_rooms        0.703"
   },
   {
     "objectID": "reference/index.html",
@@ -178,7 +178,7 @@
     "href": "index.html",
     "title": "Welcome to lrassume",
     "section": "",
-    "text": "Package\n \n\n\nMeta\n\n\n\n\nNote: The above badges will only work once the package is published to PyPI.\nlrassume (Linear Regression Assumption Validator) is a Python package for validating the core assumptions of linear regression models. It provides statistical tests and diagnostic tools to assess independence, linearity, multicollinearity, and homoscedasticity in your regression workflows.\n\n\n\nIndependence Testing: Durbin-Watson test to detect autocorrelation in residuals\nLinearity Assessment: Pearson correlation analysis to identify linear relationships with the target\nMulticollinearity Detection: Variance Inflation Factor (VIF) calculation with configurable thresholds\nHomoscedasticity Testing: Multiple statistical tests (Breusch-Pagan, White, Goldfeld-Quandt) to detect heteroscedasticity\n\n\n\n\n\n\n\nThis option is recommended if you want to use lrassume in your own projects and do not need to modify the source code.\npip install -i https://test.pypi.org/simple/ lrassume\n\n\n\n\nThis option is recommended if you want to develop, modify, or contribute to lrassume.\nThis project uses Conda to manage the Python environment and pip to install project dependencies.\n\n\n\nClone the repository and move into the project directory:\ngit clone https://github.com/yourusername/lrassume.git\ncd lrassume\n\n\n\n\nFrom the project root directory, create and activate the Conda environment:\nconda env create -f environment.yml\nconda activate lrassume\n\nThe environment.yml file installs Python only. All runtime dependencies are specified in pyproject.toml.\n\n\n\n\n\nInstall the package and its dependencies in editable (development) mode:\npip install -e .\n\n\n\n\n\nIf you prefer not to use Conda, you can install the package directly using pip:\ngit clone https://github.com/yourusername/lrassume.git\ncd lrassume\npip install -e .\n\n\n\n\n\nThe test suite requires pytest, which is a development dependency and is not installed automatically for users of the package.\n\n\n\nconda install pytest\n# or\npip install pytest\n\n\n\n\npytest\n\n\n\n\n\n\n\nThis function fits a linear model and checks for autocorrelation in the residuals.\nimport pandas as pd\nfrom lrassume import check_independence\n\n# Create sample data\ndf = pd.DataFrame({\n    \"x1\": [1, 2, 3, 4, 5],\n    \"x2\": [2, 4, 5, 7, 8],\n    \"y\": [10, 20, 25, 35, 40]\n})\n\n# Check independence of residuals\nresult = check_independence(df, target=\"y\")\n\n# View results\nprint(result['dw_statistic'])    \nprint(result['is_independent'])  \nprint(result['message'])         \nInterpreting the Durbin-Watson statistic: - 1.5 to 2.5: No significant autocorrelation (residuals are independent) ✓ - &lt; 1.5: Positive autocorrelation detected - &gt; 2.5: Negative autocorrelation detected\nNote: The function automatically uses all numeric columns (except the target) as predictors and handles the intercept term internally.\n\n\n\nIdentify features with strong linear relationships to the target:\nimport pandas as pd\nfrom lrassume import check_linearity\n\ndf = pd.DataFrame({\n    \"sqft\": [500, 700, 900, 1100],\n    \"num_rooms\": [1, 2, 1, 3],\n    \"age\": [40, 25, 20, 5],\n    \"price\": [150, 210, 260, 320]\n})\n\nlinear_features = check_linearity(df, target=\"price\", threshold=0.7)\nprint(linear_features)\n#  feature  correlation\n# 0    sqft        0.999\n# 1     age       -0.990\n\n\n\nCompute Variance Inflation Factors to detect multicollinearity:\nimport pandas as pd\nfrom lrassume import check_multicollinearity_vif\n\nX = pd.DataFrame({\"sqft\": [800, 900, 1000, 1100, 1200, 1300, 1400, 1500],\n     \"bedrooms\": [1, 2, 1, 3, 2, 4, 3, 5],\n     \"age\": [30, 5, 40, 10, 25, 15, 35, 20]\n})\n\nvif_table, summary = check_multicollinearity_vif(X, warn_threshold=5.0)\nprint(summary['overall_status'])  # 'ok', 'warn', or 'severe'\n# severe\nprint(vif_table)\n#    feature        vif   level\n# 0  bedrooms  11.100000  severe\n# 1     sqft   9.402273    warn\n# 2      age   3.102273      ok\n\n\n\nTest for constant variance in residuals:\nimport pandas as pd\nimport numpy as np\nfrom lrassume import check_homoscedasticity\nnp.random.seed(123)\nX = pd.DataFrame({\n    'x1': np.linspace(1, 100, 100),\n    'x2': np.random.randn(100)\n})\ny = pd.Series(2 * X['x1'] + 3 * X['x2'] + np.random.randn(100))\n\ntest_results, summary = check_homoscedasticity(X, y, method=\"breusch_pagan\")\nprint(summary['overall_conclusion'])  # 'homoscedastic' \nprint(test_results)\n#            test  statistic  p_value     conclusion  significant\n# 0  breusch_pagan      1.111   0.5737  homoscedastic        False\n\n\n\n\n\n\nResiduals should be independent of each other (no autocorrelation). Violations occur in time-series or spatially correlated data.\n\n\n\nThe relationship between predictors and the target should be approximately linear. Non-linear relationships may require transformations or non-linear models.\n\n\n\nPredictors should not be highly correlated with each other. High multicollinearity inflates standard errors and makes coefficient estimates unstable.\n\n\n\nResiduals should have constant variance across all levels of predictors. Heteroscedasticity leads to inefficient estimates and incorrect standard errors.\n\n\n\n\n\n\nfrom sklearn.linear_model import LinearRegression\nfrom lrassume import check_homoscedasticity\n\nmodel = LinearRegression().fit(X, y)\ntest_results, summary = check_homoscedasticity(\n    X, y, \n    fitted_model=model,\n    method=\"all\"  # Run all tests\n)\n\n\n\nfrom lrassume import check_multicollinearity_vif\n\n# Automatically drop non-numeric columns\nvif_table, summary = check_multicollinearity_vif(\n    df, \n    target_column='price',\n    categorical='drop'\n)\nprint(summary['dropped_non_numeric'])  # Lists dropped columns\n\n\n\n# Stricter multicollinearity detection\nvif_table, summary = check_multicollinearity_vif(\n    X, \n    warn_threshold=3.0,\n    severe_threshold=5.0\n)\n\n# More conservative homoscedasticity testing\ntest_results, summary = check_homoscedasticity(\n    X, y, \n    alpha=0.01  # 99% confidence level\n)\n\n\n\n\n\n\n\n\n\n\n\n\nFunction\nPurpose\nKey Parameters\n\n\n\n\ncheck_independence()\nDurbin-Watson test for autocorrelation\ndf, target\n\n\ncheck_linearity()\nPearson correlation analysis\ndf, target, threshold\n\n\ncheck_multicollinearity_vif()\nVIF calculation\nX, warn_threshold, severe_threshold\n\n\ncheck_homoscedasticity()\nHeteroscedasticity testing\nX, y, method, alpha\n\n\n\n\n\n\n\n\n\nVIF &lt; 5: No concerning multicollinearity\n5 ≤ VIF &lt; 10: Moderate multicollinearity (warning)\nVIF ≥ 10: Severe multicollinearity (action recommended)\n\n\n\n\n\nDW ≈ 2: No autocorrelation (independence satisfied)\nDW &lt; 1.5: Positive autocorrelation\nDW &gt; 2.5: Negative autocorrelation\n\n\n\n\n\np-value &gt; α: Fail to reject null hypothesis (homoscedastic)\np-value ≤ α: Reject null hypothesis (heteroscedastic)\n\n\n\n\n\nContributions are welcome! Please see our Code of Conduct for community guidelines.\n\n\n\nCopyright © 2026 CHOT.\nFree software distributed under the MIT License.\n\n\n\nFor bug reports and feature requests, please open an issue on GitHub.",
+    "text": "Package\n \n\n\nMeta\n \n\n\n\nlrassume (Linear Regression Assumption Validator) is a Python package for validating the core assumptions of linear regression models. It provides statistical tests and diagnostic tools to assess independence, linearity, multicollinearity, and homoscedasticity in your regression workflows.\n\n\n\nIndependence Testing: Durbin-Watson test to detect autocorrelation in residuals\nLinearity Assessment: Pearson correlation analysis to identify linear relationships with the target\nMulticollinearity Detection: Variance Inflation Factor (VIF) calculation with configurable thresholds\nHomoscedasticity Testing: Multiple statistical tests (Breusch-Pagan, White, Goldfeld-Quandt) to detect heteroscedasticity\n\n\n\n\n\n\n\nThis option is recommended if you want to use lrassume in your own projects and do not need to modify the source code.\npip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ lrassume\n\n\n\n\nThis option is recommended if you want to develop, modify, or contribute to lrassume.\nThis project uses Conda to manage the Python environment and pip to install project dependencies.\n\n\n\ngit clone https://github.com/UBC-MDS/lrassume.git\ncd lrassume\n\n\n\n\nFrom the project root directory:\nconda env create -f environment.yml\nconda activate lrassume\n\nThe environment.yml file installs Python only. All runtime dependencies are specified in pyproject.toml.\n\n\n\n\n\npip install -e .\n\n\n\n\n\nIf you prefer not to use Conda, you can install the package directly using pip:\ngit clone https://github.com/UBC-MDS/lrassume.git\ncd lrassume\npip install -e .\n\n\n\n\n\nThe test suite is executed using pytest. In CI this is managed via Hatch, but tests can also be run locally using pytest.\n\n\n\nconda install pytest\n# or\npip install pytest\n\n\n\n\npytest\n\n\n\n\n\nThis project uses GitHub Actions to automatically run the test suite.\nThe tests are executed automatically on: - Pull requests - Pushes to the main branch - A scheduled weekly run\nThe test suite is executed using Hatch, which runs the project’s configured pytest test environment across multiple operating systems and Python versions.\nNo manual action is required to trigger these tests.\nThe GitHub Actions workflow responsible for running the test suite is located at:\n.github/workflows/test.yml\n\n\n\nThe full package documentation is built with Quartodoc and deployed automatically to GitHub Pages.\nLive documentation: https://ubc-mds.github.io/lrassume/\n\n\nTo preview documentation changes before pushing:\n\nEnsure you are in the development environment:\n\n   conda activate lrassume\n\nInstall documentation dependencies:\n\n   pip install -e \".[docs]\"\n\nBuild the documentation:\n\n   quartodoc build\n\nPreview the documentation locally:\n\n   quarto preview\nThis will open the documentation site in your browser.\n\n\n\nTo update documentation:\n\nEdit docstrings in Python source files (lrassume/*.py)\nRebuild locally using the steps above to verify changes\nCommit and push to your branch\n\nNote: The documentation is automatically generated from your Python docstrings.\n\n\n\nDocumentation deployment is fully automated using GitHub Actions.\nOn every push to the main branch:\n\nGitHub Actions builds the documentation using Quarto and Quartodoc\nThe rendered site is deployed to GitHub Pages\n\nNo manual deployment steps are required.\nThe workflow file can be found at:\n.github/workflows/docs-publish.yml\n\n\n\n\n\n\nThis function fits a linear model and checks for autocorrelation in the residuals.\nimport pandas as pd\nfrom lrassume import check_independence\n\n# Create sample data\ndf = pd.DataFrame({\n    \"x1\": [1, 2, 3, 4, 5],\n    \"x2\": [2, 4, 5, 7, 8],\n    \"y\": [10, 20, 25, 35, 40]\n})\n\n# Check independence of residuals\nresult = check_independence(df, target=\"y\")\n\n# View results\nprint(result['dw_statistic'])    \nprint(result['is_independent'])  \nprint(result['message'])         \nInterpreting the Durbin-Watson statistic: - 1.5 to 2.5: No significant autocorrelation (residuals are independent) ✓ - &lt; 1.5: Positive autocorrelation detected - &gt; 2.5: Negative autocorrelation detected\nNote: The function automatically uses all numeric columns (except the target) as predictors and handles the intercept term internally.\n\n\n\nIdentify features with strong linear relationships to the target:\nimport pandas as pd\nfrom lrassume import check_linearity\n\ndf = pd.DataFrame({\n    \"sqft\": [500, 700, 900, 1100],\n    \"num_rooms\": [1, 2, 1, 3],\n    \"age\": [40, 25, 20, 5],\n    \"price\": [150, 210, 260, 320]\n})\n\nlinear_features = check_linearity(df, target=\"price\", threshold=0.7)\nprint(linear_features)\n#  feature  correlation\n# 0    sqft        0.999\n# 1     age       -0.990\n\n\n\nCompute Variance Inflation Factors to detect multicollinearity:\nimport pandas as pd\nfrom lrassume import check_multicollinearity_vif\n\nX = pd.DataFrame({\"sqft\": [800, 900, 1000, 1100, 1200, 1300, 1400, 1500],\n     \"bedrooms\": [1, 2, 1, 3, 2, 4, 3, 5],\n     \"age\": [30, 5, 40, 10, 25, 15, 35, 20]\n})\n\nvif_table, summary = check_multicollinearity_vif(X, warn_threshold=5.0)\nprint(summary['overall_status'])  # 'ok', 'warn', or 'severe'\n# severe\nprint(vif_table)\n#    feature        vif   level\n# 0  bedrooms  11.100000  severe\n# 1     sqft   9.402273    warn\n# 2      age   3.102273      ok\n\n\n\nTest for constant variance in residuals:\nimport pandas as pd\nimport numpy as np\nfrom lrassume import check_homoscedasticity\nnp.random.seed(123)\nX = pd.DataFrame({\n    'x1': np.linspace(1, 100, 100),\n    'x2': np.random.randn(100)\n})\ny = pd.Series(2 * X['x1'] + 3 * X['x2'] + np.random.randn(100))\n\ntest_results, summary = check_homoscedasticity(X, y, method=\"breusch_pagan\")\nprint(summary['overall_conclusion'])  # 'homoscedastic' \nprint(test_results)\n#            test  statistic  p_value     conclusion  significant\n# 0  breusch_pagan      1.111   0.5737  homoscedastic        False\n\n\n\n\n\n\nResiduals should be independent of each other (no autocorrelation). Violations occur in time-series or spatially correlated data.\n\n\n\nThe relationship between predictors and the target should be approximately linear. Non-linear relationships may require transformations or non-linear models.\n\n\n\nPredictors should not be highly correlated with each other. High multicollinearity inflates standard errors and makes coefficient estimates unstable.\n\n\n\nResiduals should have constant variance across all levels of predictors. Heteroscedasticity leads to inefficient estimates and incorrect standard errors.\n\n\n\n\n\n\nfrom sklearn.linear_model import LinearRegression\nfrom lrassume import check_homoscedasticity\n\nmodel = LinearRegression().fit(X, y)\ntest_results, summary = check_homoscedasticity(\n    X, y, \n    fitted_model=model,\n    method=\"all\"  # Run all tests\n)\n\n\n\nfrom lrassume import check_multicollinearity_vif\n\n# Automatically drop non-numeric columns\nvif_table, summary = check_multicollinearity_vif(\n    df, \n    target_column='price',\n    categorical='drop'\n)\nprint(summary['dropped_non_numeric'])  # Lists dropped columns\n\n\n\n# Stricter multicollinearity detection\nvif_table, summary = check_multicollinearity_vif(\n    X, \n    warn_threshold=3.0,\n    severe_threshold=5.0\n)\n\n# More conservative homoscedasticity testing\ntest_results, summary = check_homoscedasticity(\n    X, y, \n    alpha=0.01  # 99% confidence level\n)\n\n\n\n\n\n\n\n\n\n\n\n\nFunction\nPurpose\nKey Parameters\n\n\n\n\ncheck_independence()\nDurbin-Watson test for autocorrelation\ndf, target\n\n\ncheck_linearity()\nPearson correlation analysis\ndf, target, threshold\n\n\ncheck_multicollinearity_vif()\nVIF calculation\nX, warn_threshold, severe_threshold\n\n\ncheck_homoscedasticity()\nHeteroscedasticity testing\nX, y, method, alpha\n\n\n\n\n\n\n\n\n\nVIF &lt; 5: No concerning multicollinearity\n5 ≤ VIF &lt; 10: Moderate multicollinearity (warning)\nVIF ≥ 10: Severe multicollinearity (action recommended)\n\n\n\n\n\nDW ≈ 2: No autocorrelation (independence satisfied)\nDW &lt; 1.5: Positive autocorrelation\nDW &gt; 2.5: Negative autocorrelation\n\n\n\n\n\np-value &gt; α: Fail to reject null hypothesis (homoscedastic)\np-value ≤ α: Reject null hypothesis (heteroscedastic)\n\n\n\n\n\nContributions are welcome! Please see our Code of Conduct for community guidelines.\n\n\n\nCopyright © 2026 CHOT.\nFree software distributed under the MIT License.\n\n\n\nFor bug reports and feature requests, please open an issue on GitHub.",
     "crumbs": [
       "Welcome to lrassume"
     ]
@@ -198,7 +198,7 @@
     "href": "index.html#installation",
     "title": "Welcome to lrassume",
     "section": "",
-    "text": "This option is recommended if you want to use lrassume in your own projects and do not need to modify the source code.\npip install -i https://test.pypi.org/simple/ lrassume\n\n\n\n\nThis option is recommended if you want to develop, modify, or contribute to lrassume.\nThis project uses Conda to manage the Python environment and pip to install project dependencies.\n\n\n\nClone the repository and move into the project directory:\ngit clone https://github.com/yourusername/lrassume.git\ncd lrassume\n\n\n\n\nFrom the project root directory, create and activate the Conda environment:\nconda env create -f environment.yml\nconda activate lrassume\n\nThe environment.yml file installs Python only. All runtime dependencies are specified in pyproject.toml.\n\n\n\n\n\nInstall the package and its dependencies in editable (development) mode:\npip install -e .\n\n\n\n\n\nIf you prefer not to use Conda, you can install the package directly using pip:\ngit clone https://github.com/yourusername/lrassume.git\ncd lrassume\npip install -e .",
+    "text": "This option is recommended if you want to use lrassume in your own projects and do not need to modify the source code.\npip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ lrassume\n\n\n\n\nThis option is recommended if you want to develop, modify, or contribute to lrassume.\nThis project uses Conda to manage the Python environment and pip to install project dependencies.\n\n\n\ngit clone https://github.com/UBC-MDS/lrassume.git\ncd lrassume\n\n\n\n\nFrom the project root directory:\nconda env create -f environment.yml\nconda activate lrassume\n\nThe environment.yml file installs Python only. All runtime dependencies are specified in pyproject.toml.\n\n\n\n\n\npip install -e .\n\n\n\n\n\nIf you prefer not to use Conda, you can install the package directly using pip:\ngit clone https://github.com/UBC-MDS/lrassume.git\ncd lrassume\npip install -e .",
     "crumbs": [
       "Welcome to lrassume"
     ]
@@ -383,5 +383,409 @@
     "title": "check_homoscedasticity",
     "section": "",
     "text": "Name\nDescription\n\n\n\n\ncheck_homoscedasticity\nTest for homoscedasticity (constant variance) in linear regression residuals.\n\n\n\n\n\ncheck_homoscedasticity.check_homoscedasticity(X, y, *, method='breusch_pagan', alpha=0.05, fitted_model=None, residuals=None, fitted_values=None)\nTest for homoscedasticity (constant variance) in linear regression residuals.\nHomoscedasticity is the assumption that residuals have constant variance across all levels of the independent variables. Violation of this assumption (heteroscedasticity) leads to inefficient coefficient estimates and incorrect standard errors in ordinary least squares (OLS) regression.\nThis function implements multiple statistical tests to detect heteroscedasticity:\n\nBreusch-Pagan test: Tests whether residual variance depends linearly on predictors. Null hypothesis: homoscedasticity (constant variance).\nWhite test: More general test that allows for non-linear relationships between variance and predictors. Includes squared terms and interactions. Null hypothesis: homoscedasticity.\nGoldfeld-Quandt test: Splits data by a predictor and compares variance in two subsets. Useful for detecting variance that increases/decreases with a specific predictor.\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nX\npd.DataFrame\nDataFrame of predictors (features). Each column is a predictor variable. Must contain only numeric columns.\nrequired\n\n\ny\npd.Series\nTarget variable (response). Must have the same length as X.\nrequired\n\n\nmethod\nTestMethod\nStatistical test(s) to perform: - “breusch_pagan”: Breusch-Pagan Lagrange multiplier test - “white”: White’s general heteroscedasticity test - “goldfeld_quandt”: Goldfeld-Quandt test (splits on first predictor by default) - “all”: Run all available tests\n\"breusch_pagan\"\n\n\nalpha\nfloat\nSignificance level for hypothesis tests. Common values: 0.01, 0.05, 0.10. Must be between 0 and 1 (exclusive).\n0.05\n\n\nfitted_model\noptional\nPre-fitted regression model object with predict() method. If None, an OLS model will be fitted internally using X and y. Useful for avoiding refitting when model already exists.\nNone\n\n\nresiduals\nnp.ndarray\nPre-computed residuals (y - y_pred). Must have same length as y. If None, residuals will be computed from fitted_model or internal fit. Cannot be specified without fitted_values.\nNone\n\n\nfitted_values\nnp.ndarray\nPre-computed fitted values (y_pred). Must have same length as y. If None, fitted values will be computed from fitted_model or internal fit. Cannot be specified without residuals.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\nType\nDescription\n\n\n\n\npd.DataFrame\nOne row per test performed, with columns: - “test” (str): Name of the test performed - “statistic” (float): Test statistic value, rounded to 3 decimals - “p_value” (float): P-value for the test, rounded to 4 decimals - “conclusion” (str): One of {“homoscedastic”, “heteroscedastic”} - “significant” (bool): True if p_value &lt; alpha (reject null hypothesis) Rows are sorted by test name alphabetically.\n\n\ndict\nOverall diagnostics containing: - “overall_conclusion” (str): “homoscedastic” if all tests pass, otherwise “heteroscedastic” - “n_tests_performed” (int): Number of tests conducted - “n_tests_significant” (int): Number of tests rejecting homoscedasticity - “alpha” (float): Echo of significance level used - “n_observations” (int): Sample size - “n_predictors” (int): Number of predictor variables - “recommendation” (str): Suggested action if heteroscedasticity detected\n\n\n\n\n\n\n\n\n\n\n\n\n\nType\nDescription\n\n\n\n\nValueError\n- If X contains non-numeric columns - If X and y have different lengths - If alpha is not between 0 and 1 - If residuals is provided without fitted_values or vice versa - If residuals/fitted_values length doesn’t match y - If fewer than 10 observations are available (insufficient for testing)\n\n\nTypeError\n- If fitted_model is provided but lacks predict() method - If X is not a pandas DataFrame - If y is not a pandas Series\n\n\n\n\n\n\n\nAll tests assume residuals from a linear regression model.\nTests use chi-square or F-distributions depending on the method.\nThe Breusch-Pagan test is most powerful against linear heteroscedasticity.\nThe White test is more general but may have lower power with small samples.\nGoldfeld-Quandt test requires ordering data, which may be arbitrary for multivariate predictors.\nIf heteroscedasticity is detected, consider using robust standard errors (e.g., HC3, HC4) or weighted least squares (WLS) regression.\nMissing values in X or y will raise an error; clean data beforehand.\n\n\n\n\nBasic usage with internal model fitting:\n&gt;&gt;&gt; import pandas as pd\n&gt;&gt;&gt; import numpy as np\n&gt;&gt;&gt; np.random.seed(42)\n&gt;&gt;&gt; X = pd.DataFrame({\n...     'x1': np.linspace(1, 100, 100),\n...     'x2': np.random.randn(100)\n... })\n&gt;&gt;&gt; y = pd.Series(2 * X['x1'] + 3 * X['x2'] + np.random.randn(100))\n&gt;&gt;&gt; test_results, summary = check_homoscedasticity(X, y)\n&gt;&gt;&gt; print(summary[\"overall_conclusion\"])\n'homoscedastic'\nUsing a pre-fitted model:\n&gt;&gt;&gt; from sklearn.linear_model import LinearRegression\n&gt;&gt;&gt; model = LinearRegression().fit(X, y)\n&gt;&gt;&gt; test_results, summary = check_homoscedasticity(\n...     X, y, fitted_model=model\n... )\n&gt;&gt;&gt; print(test_results)\n          test  statistic   p_value      conclusion  significant\n0  breusch_pagan      2.345      0.309  homoscedastic        False\nRunning all tests:\n&gt;&gt;&gt; test_results, summary = check_homoscedasticity(\n...     X, y, method=\"all\", alpha=0.01\n... )\n&gt;&gt;&gt; print(summary[\"n_tests_performed\"])\n3\n&gt;&gt;&gt; print(summary[\"n_tests_significant\"])\n0\nDetecting heteroscedasticity (variance increases with x):\n&gt;&gt;&gt; X_hetero = pd.DataFrame({\n...     'x1': np.linspace(1, 100, 100)\n... })\n&gt;&gt;&gt; errors = np.random.randn(100) * X_hetero['x1']  # variance increases\n&gt;&gt;&gt; y_hetero = pd.Series(2 * X_hetero['x1'] + errors)\n&gt;&gt;&gt; test_results, summary = check_homoscedasticity(X_hetero, y_hetero)\n&gt;&gt;&gt; print(summary[\"overall_conclusion\"])\n'heteroscedastic'\n&gt;&gt;&gt; print(summary[\"recommendation\"])\n'Consider using robust standard errors (HC3/HC4) or weighted least squares.'\nUsing pre-computed residuals and fitted values:\n&gt;&gt;&gt; model = LinearRegression().fit(X, y)\n&gt;&gt;&gt; y_pred = model.predict(X)\n&gt;&gt;&gt; resid = y - y_pred\n&gt;&gt;&gt; test_results, summary = check_homoscedasticity(\n...     X, y,\n...     residuals=resid,\n...     fitted_values=y_pred\n... )\n&gt;&gt;&gt; print(test_results)\n          test  statistic   p_value      conclusion  significant\n0  breusch_pagan      2.345      0.309  homoscedastic        False\n\n\n\n.. [1] Breusch, T. S., & Pagan, A. R. (1979). A simple test for heteroscedasticity and random coefficient variation. Econometrica, 47(5), 1287-1294.\n.. [2] White, H. (1980). A heteroskedasticity-consistent covariance matrix estimator and a direct test for heteroskedasticity. Econometrica, 48(4), 817-838.\n.. [3] Goldfeld, S. M., & Quandt, R. E. (1965). Some tests for homoscedasticity. Journal of the American Statistical Association, 60(310), 539-547."
+  },
+  {
+    "objectID": "tutorials/getting-started.html",
+    "href": "tutorials/getting-started.html",
+    "title": "Getting Started with lrassume",
+    "section": "",
+    "text": "Install from TestPyPI:\npip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ lrassume",
+    "crumbs": [
+      "Tutorials",
+      "Getting Started with lrassume"
+    ]
+  },
+  {
+    "objectID": "tutorials/getting-started.html#installation",
+    "href": "tutorials/getting-started.html#installation",
+    "title": "Getting Started with lrassume",
+    "section": "",
+    "text": "Install from TestPyPI:\npip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ lrassume",
+    "crumbs": [
+      "Tutorials",
+      "Getting Started with lrassume"
+    ]
+  },
+  {
+    "objectID": "tutorials/getting-started.html#what-is-lrassume",
+    "href": "tutorials/getting-started.html#what-is-lrassume",
+    "title": "Getting Started with lrassume",
+    "section": "What is lrassume?",
+    "text": "What is lrassume?\nlrassume (Linear Regression Assumption Validator) helps you validate the four core assumptions of linear regression:\n\nIndependence: Residuals are independent (no autocorrelation)\nLinearity: Linear relationship between predictors and target\nMulticollinearity: Predictors are not highly correlated\nHomoscedasticity: Constant variance in residuals",
+    "crumbs": [
+      "Tutorials",
+      "Getting Started with lrassume"
+    ]
+  },
+  {
+    "objectID": "tutorials/getting-started.html#basic-workflow",
+    "href": "tutorials/getting-started.html#basic-workflow",
+    "title": "Getting Started with lrassume",
+    "section": "Basic Workflow",
+    "text": "Basic Workflow\nHere’s a typical workflow for validating a regression model:\n\nimport pandas as pd\nfrom lrassume import (\n    check_independence,\n    check_linearity,\n    check_multicollinearity_vif,\n    check_homoscedasticity\n)\n\n# Load your data\ndf = pd.read_csv(\"your_data.csv\")\n\n# 1. Check for linear relationships\nlinear_features = check_linearity(df, target=\"price\", threshold=0.7)\nprint(linear_features)\n\n# 2. Check for multicollinearity\nX = df.drop(columns=[\"price\"])\nvif_table, vif_summary = check_multicollinearity_vif(X)\nprint(vif_summary['overall_status'])\n\n# 3. Check independence of residuals\nindependence_result = check_independence(df, target=\"price\")\nprint(independence_result['is_independent'])\n\n# 4. Check homoscedasticity\ny = df[\"price\"]\ntest_results, summary = check_homoscedasticity(X, y, method=\"all\")\nprint(summary['overall_conclusion'])",
+    "crumbs": [
+      "Tutorials",
+      "Getting Started with lrassume"
+    ]
+  },
+  {
+    "objectID": "tutorials/getting-started.html#next-steps",
+    "href": "tutorials/getting-started.html#next-steps",
+    "title": "Getting Started with lrassume",
+    "section": "Next Steps",
+    "text": "Next Steps\n\nIndependence Testing\nLinearity Assessment\nMulticollinearity Detection\nHomoscedasticity Testing",
+    "crumbs": [
+      "Tutorials",
+      "Getting Started with lrassume"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html",
+    "href": "tutorials/homoscedasticity.html",
+    "title": "Homoscedasticity Testing",
+    "section": "",
+    "text": "Homoscedasticity means residuals have constant variance across all predictor values.\n\n\n\nBiased standard errors: Confidence intervals and p-values are incorrect\nInefficient estimates: Coefficients are unbiased but not optimal\nHypothesis testing issues: T-tests and F-tests may be invalid",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html#understanding-homoscedasticity",
+    "href": "tutorials/homoscedasticity.html#understanding-homoscedasticity",
+    "title": "Homoscedasticity Testing",
+    "section": "",
+    "text": "Homoscedasticity means residuals have constant variance across all predictor values.\n\n\n\nBiased standard errors: Confidence intervals and p-values are incorrect\nInefficient estimates: Coefficients are unbiased but not optimal\nHypothesis testing issues: T-tests and F-tests may be invalid",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html#available-tests",
+    "href": "tutorials/homoscedasticity.html#available-tests",
+    "title": "Homoscedasticity Testing",
+    "section": "Available Tests",
+    "text": "Available Tests\n\n\n\n\n\n\n\nTest\nBest For\n\n\n\n\nBreusch-Pagan\nGeneral heteroscedasticity detection\n\n\nWhite\nDetects complex forms of heteroscedasticity\n\n\nGoldfeld-Quandt\nHeteroscedasticity that increases/decreases monotonically",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html#example-single-test",
+    "href": "tutorials/homoscedasticity.html#example-single-test",
+    "title": "Homoscedasticity Testing",
+    "section": "Example: Single Test",
+    "text": "Example: Single Test\n\nimport pandas as pd\nimport numpy as np\nfrom lrassume import check_homoscedasticity\n\nnp.random.seed(42)\nX = pd.DataFrame({\n    'x1': np.linspace(1, 100, 100),\n    'x2': np.random.randn(100)\n})\ny = pd.Series(2 * X['x1'] + 3 * X['x2'] + np.random.randn(100))\n\n# Run Breusch-Pagan test\ntest_results, summary = check_homoscedasticity(\n    X, y,\n    method=\"breusch_pagan\",\n    alpha=0.05\n)\n\nprint(f\"Conclusion: {summary['overall_conclusion']}\")\nprint(\"\\nTest Results:\")\nprint(test_results)",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html#example-all-tests",
+    "href": "tutorials/homoscedasticity.html#example-all-tests",
+    "title": "Homoscedasticity Testing",
+    "section": "Example: All Tests",
+    "text": "Example: All Tests\n\n# Run all three tests\ntest_results, summary = check_homoscedasticity(X, y, method=\"all\")\n\nprint(f\"Overall: {summary['overall_conclusion']}\")\nprint(f\"Tests agreeing: {summary['tests_in_agreement']}\")\nprint(\"\\nDetailed Results:\")\nprint(test_results)\n\nExpected Output:\nOverall: homoscedastic\nTests agreeing: 3\n\nDetailed Results:\n            test  statistic  p_value     conclusion  significant\n0  breusch_pagan      1.234   0.5391  homoscedastic        False\n1          white      2.156   0.3407  homoscedastic        False\n2  goldfeld_quandt 0.987   0.4123  homoscedastic        False",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html#using-pre-fitted-models",
+    "href": "tutorials/homoscedasticity.html#using-pre-fitted-models",
+    "title": "Homoscedasticity Testing",
+    "section": "Using Pre-fitted Models",
+    "text": "Using Pre-fitted Models\n\nfrom sklearn.linear_model import LinearRegression\n\n# Fit your model\nmodel = LinearRegression().fit(X, y)\n\n# Test with fitted model\ntest_results, summary = check_homoscedasticity(\n    X, y,\n    fitted_model=model,\n    method=\"breusch_pagan\"\n)",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html#custom-significance-level",
+    "href": "tutorials/homoscedasticity.html#custom-significance-level",
+    "title": "Homoscedasticity Testing",
+    "section": "Custom Significance Level",
+    "text": "Custom Significance Level\n\n# 99% confidence (stricter)\ntest_results, summary = check_homoscedasticity(\n    X, y,\n    alpha=0.01\n)\n\n# 90% confidence (more lenient)\ntest_results, summary = check_homoscedasticity(\n    X, y,\n    alpha=0.10\n)",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html#solutions-for-heteroscedasticity",
+    "href": "tutorials/homoscedasticity.html#solutions-for-heteroscedasticity",
+    "title": "Homoscedasticity Testing",
+    "section": "Solutions for Heteroscedasticity",
+    "text": "Solutions for Heteroscedasticity\n\nTransform the target variable\n\n   # Log transformation\n   y_log = np.log(y + 1)\n   \n   # Square root transformation\n   y_sqrt = np.sqrt(y)\n\nWeighted Least Squares (WLS)\n\n   from statsmodels.regression.linear_model import WLS\n   \n   # Weight by inverse variance\n   weights = 1 / residuals**2\n   model_wls = WLS(y, X, weights=weights).fit()\n\nRobust Standard Errors\n\n   import statsmodels.api as sm\n   \n   model = sm.OLS(y, X).fit()\n   robust_results = model.get_robustcov_results(cov_type='HC3')\n\nUse a different model\n\nGeneralized Linear Models (GLM)\nQuantile regression\nTree-based models",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/homoscedasticity.html#visualizing-heteroscedasticity",
+    "href": "tutorials/homoscedasticity.html#visualizing-heteroscedasticity",
+    "title": "Homoscedasticity Testing",
+    "section": "Visualizing Heteroscedasticity",
+    "text": "Visualizing Heteroscedasticity\n\nimport matplotlib.pyplot as plt\nfrom sklearn.linear_model import LinearRegression\n\nmodel = LinearRegression().fit(X, y)\nresiduals = y - model.predict(X)\nfitted = model.predict(X)\n\nplt.scatter(fitted, residuals)\nplt.axhline(y=0, color='r', linestyle='--')\nplt.xlabel('Fitted Values')\nplt.ylabel('Residuals')\nplt.title('Residual Plot')\nplt.show()\n\nGood pattern: Random scatter around zero\nBad pattern: Funnel shape (variance increases/decreases)",
+    "crumbs": [
+      "Tutorials",
+      "Homoscedasticity Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/multicollinearity.html",
+    "href": "tutorials/multicollinearity.html",
+    "title": "Multicollinearity Detection",
+    "section": "",
+    "text": "Multicollinearity occurs when predictor variables are highly correlated with each other.\n\n\n\nInflated standard errors: Less precise coefficient estimates\nUnstable coefficients: Small data changes cause large coefficient changes\nDifficult interpretation: Hard to isolate individual predictor effects",
+    "crumbs": [
+      "Tutorials",
+      "Multicollinearity Detection"
+    ]
+  },
+  {
+    "objectID": "tutorials/multicollinearity.html#understanding-multicollinearity",
+    "href": "tutorials/multicollinearity.html#understanding-multicollinearity",
+    "title": "Multicollinearity Detection",
+    "section": "",
+    "text": "Multicollinearity occurs when predictor variables are highly correlated with each other.\n\n\n\nInflated standard errors: Less precise coefficient estimates\nUnstable coefficients: Small data changes cause large coefficient changes\nDifficult interpretation: Hard to isolate individual predictor effects",
+    "crumbs": [
+      "Tutorials",
+      "Multicollinearity Detection"
+    ]
+  },
+  {
+    "objectID": "tutorials/multicollinearity.html#using-vif-variance-inflation-factor",
+    "href": "tutorials/multicollinearity.html#using-vif-variance-inflation-factor",
+    "title": "Multicollinearity Detection",
+    "section": "Using VIF (Variance Inflation Factor)",
+    "text": "Using VIF (Variance Inflation Factor)\nThe check_multicollinearity_vif() function calculates VIF for each predictor.\n\nVIF Interpretation\n\n\n\nVIF Range\nSeverity\nAction\n\n\n\n\n&lt; 5\nNone\n✓ No concern\n\n\n5-10\nModerate\n⚠️ Monitor\n\n\n≥ 10\nSevere\n🚨 Address issue",
+    "crumbs": [
+      "Tutorials",
+      "Multicollinearity Detection"
+    ]
+  },
+  {
+    "objectID": "tutorials/multicollinearity.html#example",
+    "href": "tutorials/multicollinearity.html#example",
+    "title": "Multicollinearity Detection",
+    "section": "Example",
+    "text": "Example\n\nimport pandas as pd\nfrom lrassume import check_multicollinearity_vif\n\n# Housing data with correlated features\nX = pd.DataFrame({\n    \"sqft\": [800, 900, 1000, 1100, 1200, 1300, 1400, 1500],\n    \"bedrooms\": [1, 2, 1, 3, 2, 4, 3, 5],\n    \"bathrooms\": [1, 2, 1, 3, 2, 4, 3, 5],  # Highly correlated with bedrooms!\n    \"age\": [30, 5, 40, 10, 25, 15, 35, 20]\n})\n\nvif_table, summary = check_multicollinearity_vif(X, warn_threshold=5.0)\n\nprint(f\"Overall Status: {summary['overall_status']}\")\nprint(\"\\nVIF Table:\")\nprint(vif_table)\n\nPossible Output:\nOverall Status: severe\n\nVIF Table:\n     feature        vif   level\n0  bedrooms  15.200000  severe\n1  bathrooms 15.100000  severe\n2      sqft   3.450000      ok\n3       age   2.100000      ok",
+    "crumbs": [
+      "Tutorials",
+      "Multicollinearity Detection"
+    ]
+  },
+  {
+    "objectID": "tutorials/multicollinearity.html#custom-thresholds",
+    "href": "tutorials/multicollinearity.html#custom-thresholds",
+    "title": "Multicollinearity Detection",
+    "section": "Custom Thresholds",
+    "text": "Custom Thresholds\n\n# Stricter detection\nvif_table, summary = check_multicollinearity_vif(\n    X,\n    warn_threshold=3.0,\n    severe_threshold=5.0\n)",
+    "crumbs": [
+      "Tutorials",
+      "Multicollinearity Detection"
+    ]
+  },
+  {
+    "objectID": "tutorials/multicollinearity.html#solutions-for-high-multicollinearity",
+    "href": "tutorials/multicollinearity.html#solutions-for-high-multicollinearity",
+    "title": "Multicollinearity Detection",
+    "section": "Solutions for High Multicollinearity",
+    "text": "Solutions for High Multicollinearity\n\nRemove one correlated predictor\n\n   # Remove bathrooms (highly correlated with bedrooms)\n   X_cleaned = X.drop(columns=['bathrooms'])\n\nCombine correlated features\n\n   # Create total_rooms = bedrooms + bathrooms\n   X['total_rooms'] = X['bedrooms'] + X['bathrooms']\n   X = X.drop(columns=['bedrooms', 'bathrooms'])\n\nPrincipal Component Analysis (PCA)\n\n   from sklearn.decomposition import PCA\n   pca = PCA(n_components=3)\n   X_pca = pca.fit_transform(X)\n\nRegularization (Ridge/Lasso regression)\n\n   from sklearn.linear_model import Ridge\n   model = Ridge(alpha=1.0)",
+    "crumbs": [
+      "Tutorials",
+      "Multicollinearity Detection"
+    ]
+  },
+  {
+    "objectID": "tutorials/multicollinearity.html#handling-categorical-variables",
+    "href": "tutorials/multicollinearity.html#handling-categorical-variables",
+    "title": "Multicollinearity Detection",
+    "section": "Handling Categorical Variables",
+    "text": "Handling Categorical Variables\n\n# Automatically drop non-numeric columns\nvif_table, summary = check_multicollinearity_vif(\n    df,\n    target_column='price',\n    categorical='drop'\n)\n\n# Check which columns were dropped\nprint(summary['dropped_non_numeric'])",
+    "crumbs": [
+      "Tutorials",
+      "Multicollinearity Detection"
+    ]
+  },
+  {
+    "objectID": "index.html#running-the-test-suite-locally-developers",
+    "href": "index.html#running-the-test-suite-locally-developers",
+    "title": "Welcome to lrassume",
+    "section": "",
+    "text": "The test suite is executed using pytest. In CI this is managed via Hatch, but tests can also be run locally using pytest.\n\n\n\nconda install pytest\n# or\npip install pytest\n\n\n\n\npytest",
+    "crumbs": [
+      "Welcome to lrassume"
+    ]
+  },
+  {
+    "objectID": "index.html#continuous-integration-automated-testing",
+    "href": "index.html#continuous-integration-automated-testing",
+    "title": "Welcome to lrassume",
+    "section": "",
+    "text": "This project uses GitHub Actions to automatically run the test suite.\nThe tests are executed automatically on: - Pull requests - Pushes to the main branch - A scheduled weekly run\nThe test suite is executed using Hatch, which runs the project’s configured pytest test environment across multiple operating systems and Python versions.\nNo manual action is required to trigger these tests.\nThe GitHub Actions workflow responsible for running the test suite is located at:\n.github/workflows/test.yml",
+    "crumbs": [
+      "Welcome to lrassume"
+    ]
+  },
+  {
+    "objectID": "index.html#documentation",
+    "href": "index.html#documentation",
+    "title": "Welcome to lrassume",
+    "section": "",
+    "text": "The full package documentation is built with Quartodoc and deployed automatically to GitHub Pages.\nLive documentation: https://ubc-mds.github.io/lrassume/\n\n\nTo preview documentation changes before pushing:\n\nEnsure you are in the development environment:\n\n   conda activate lrassume\n\nInstall documentation dependencies:\n\n   pip install -e \".[docs]\"\n\nBuild the documentation:\n\n   quartodoc build\n\nPreview the documentation locally:\n\n   quarto preview\nThis will open the documentation site in your browser.\n\n\n\nTo update documentation:\n\nEdit docstrings in Python source files (lrassume/*.py)\nRebuild locally using the steps above to verify changes\nCommit and push to your branch\n\nNote: The documentation is automatically generated from your Python docstrings.\n\n\n\nDocumentation deployment is fully automated using GitHub Actions.\nOn every push to the main branch:\n\nGitHub Actions builds the documentation using Quarto and Quartodoc\nThe rendered site is deployed to GitHub Pages\n\nNo manual deployment steps are required.\nThe workflow file can be found at:\n.github/workflows/docs-publish.yml",
+    "crumbs": [
+      "Welcome to lrassume"
+    ]
+  },
+  {
+    "objectID": "tutorials/independence.html",
+    "href": "tutorials/independence.html",
+    "title": "Independence Testing",
+    "section": "",
+    "text": "Residuals should be independent of each other. Violations occur when:\n\nWorking with time-series data\nSpatially correlated observations\nClustered data (e.g., students within schools)",
+    "crumbs": [
+      "Tutorials",
+      "Independence Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/independence.html#understanding-independence",
+    "href": "tutorials/independence.html#understanding-independence",
+    "title": "Independence Testing",
+    "section": "",
+    "text": "Residuals should be independent of each other. Violations occur when:\n\nWorking with time-series data\nSpatially correlated observations\nClustered data (e.g., students within schools)",
+    "crumbs": [
+      "Tutorials",
+      "Independence Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/independence.html#the-durbin-watson-test",
+    "href": "tutorials/independence.html#the-durbin-watson-test",
+    "title": "Independence Testing",
+    "section": "The Durbin-Watson Test",
+    "text": "The Durbin-Watson Test\nThe check_independence() function uses the Durbin-Watson test to detect autocorrelation.\n\nInterpreting the Statistic\n\n1.5 to 2.5: No significant autocorrelation ✓\n&lt; 1.5: Positive autocorrelation (successive residuals are similar)\n&gt; 2.5: Negative autocorrelation (successive residuals alternate)",
+    "crumbs": [
+      "Tutorials",
+      "Independence Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/independence.html#example-time-series-data",
+    "href": "tutorials/independence.html#example-time-series-data",
+    "title": "Independence Testing",
+    "section": "Example: Time Series Data",
+    "text": "Example: Time Series Data\n\nimport pandas as pd\nfrom lrassume import check_independence\n\n# Monthly sales data\ndf = pd.DataFrame({\n    \"advertising\": [10, 15, 12, 18, 20, 25, 22, 28, 30, 35],\n    \"month\": range(1, 11),\n    \"sales\": [100, 150, 120, 180, 200, 250, 220, 280, 300, 350]\n})\n\nresult = check_independence(df, target=\"sales\")\n\nprint(f\"DW Statistic: {result['dw_statistic']:.3f}\")\nprint(f\"Independent: {result['is_independent']}\")\nprint(result['message'])",
+    "crumbs": [
+      "Tutorials",
+      "Independence Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/independence.html#what-to-do-if-independence-fails",
+    "href": "tutorials/independence.html#what-to-do-if-independence-fails",
+    "title": "Independence Testing",
+    "section": "What to Do if Independence Fails",
+    "text": "What to Do if Independence Fails\nIf the test detects autocorrelation:\n\nTime series models: Consider ARIMA, VAR, or other time-series methods\nAdd lagged variables: Include previous values as predictors\nCluster-robust standard errors: Adjust standard errors for clustering\nMixed-effects models: Account for hierarchical structure",
+    "crumbs": [
+      "Tutorials",
+      "Independence Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/independence.html#key-points",
+    "href": "tutorials/independence.html#key-points",
+    "title": "Independence Testing",
+    "section": "Key Points",
+    "text": "Key Points\n\nThe function automatically fits a linear model using all numeric features\nIt handles the intercept term internally\nOnly the target column needs to be specified",
+    "crumbs": [
+      "Tutorials",
+      "Independence Testing"
+    ]
+  },
+  {
+    "objectID": "tutorials/linearity.html",
+    "href": "tutorials/linearity.html",
+    "title": "Linearity Assessment",
+    "section": "",
+    "text": "Linear regression assumes a linear relationship between each predictor and the target variable.",
+    "crumbs": [
+      "Tutorials",
+      "Linearity Assessment"
+    ]
+  },
+  {
+    "objectID": "tutorials/linearity.html#understanding-linearity",
+    "href": "tutorials/linearity.html#understanding-linearity",
+    "title": "Linearity Assessment",
+    "section": "",
+    "text": "Linear regression assumes a linear relationship between each predictor and the target variable.",
+    "crumbs": [
+      "Tutorials",
+      "Linearity Assessment"
+    ]
+  },
+  {
+    "objectID": "tutorials/linearity.html#using-check_linearity",
+    "href": "tutorials/linearity.html#using-check_linearity",
+    "title": "Linearity Assessment",
+    "section": "Using check_linearity()",
+    "text": "Using check_linearity()\nThe function computes Pearson correlation coefficients to identify features with strong linear relationships.\n\nExample: Housing Prices\n\nimport pandas as pd\nfrom lrassume import check_linearity\n\ndf = pd.DataFrame({\n    \"sqft\": [500, 700, 900, 1100, 1300, 1500],\n    \"num_rooms\": [1, 2, 1, 3, 2, 4],\n    \"age\": [40, 25, 20, 5, 15, 10],\n    \"distance_to_center\": [15, 12, 8, 5, 10, 6],\n    \"price\": [150, 210, 260, 320, 280, 350]\n})\n\n# Find features with |correlation| &gt;= 0.7\nlinear_features = check_linearity(df, target=\"price\", threshold=0.7)\nprint(linear_features)\n\nExpected Output:\n  feature  correlation\n0    sqft        0.985\n1     age       -0.920",
+    "crumbs": [
+      "Tutorials",
+      "Linearity Assessment"
+    ]
+  },
+  {
+    "objectID": "tutorials/linearity.html#interpreting-results",
+    "href": "tutorials/linearity.html#interpreting-results",
+    "title": "Linearity Assessment",
+    "section": "Interpreting Results",
+    "text": "Interpreting Results\n\nHigh positive correlation (close to +1): Feature increases with target\nHigh negative correlation (close to -1): Feature decreases with target\nLow correlation (close to 0): Weak linear relationship",
+    "crumbs": [
+      "Tutorials",
+      "Linearity Assessment"
+    ]
+  },
+  {
+    "objectID": "tutorials/linearity.html#custom-thresholds",
+    "href": "tutorials/linearity.html#custom-thresholds",
+    "title": "Linearity Assessment",
+    "section": "Custom Thresholds",
+    "text": "Custom Thresholds\n\n# More strict: only very strong relationships\nstrict_features = check_linearity(df, target=\"price\", threshold=0.9)\n\n# More lenient: moderate relationships\nlenient_features = check_linearity(df, target=\"price\", threshold=0.5)",
+    "crumbs": [
+      "Tutorials",
+      "Linearity Assessment"
+    ]
+  },
+  {
+    "objectID": "tutorials/linearity.html#what-to-do-if-linearity-fails",
+    "href": "tutorials/linearity.html#what-to-do-if-linearity-fails",
+    "title": "Linearity Assessment",
+    "section": "What to Do if Linearity Fails",
+    "text": "What to Do if Linearity Fails\nIf features show weak linear relationships:\n\nTransform variables: Try log, sqrt, or polynomial transformations\nAdd polynomial terms: Include x², x³ terms\nBinning: Convert continuous variables to categories\nNon-linear models: Consider tree-based models, GAMs, or neural networks",
+    "crumbs": [
+      "Tutorials",
+      "Linearity Assessment"
+    ]
+  },
+  {
+    "objectID": "tutorials/linearity.html#visualizing-relationships",
+    "href": "tutorials/linearity.html#visualizing-relationships",
+    "title": "Linearity Assessment",
+    "section": "Visualizing Relationships",
+    "text": "Visualizing Relationships\n\nimport matplotlib.pyplot as plt\n\n# Scatter plot to visually check linearity\nplt.scatter(df['sqft'], df['price'])\nplt.xlabel('Square Feet')\nplt.ylabel('Price')\nplt.title('Relationship between sqft and price')\nplt.show()",
+    "crumbs": [
+      "Tutorials",
+      "Linearity Assessment"
+    ]
   }
 ]

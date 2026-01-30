@@ -1,0 +1,57 @@
+---
+title: "Independence Testing"
+format: html
+---
+
+## Understanding Independence
+
+Residuals should be independent of each other. Violations occur when:
+
+- Working with **time-series data**
+- **Spatially correlated** observations
+- **Clustered data** (e.g., students within schools)
+
+## The Durbin-Watson Test
+
+The `check_independence()` function uses the Durbin-Watson test to detect autocorrelation.
+
+### Interpreting the Statistic
+
+- **1.5 to 2.5**: No significant autocorrelation ✓
+- **< 1.5**: Positive autocorrelation (successive residuals are similar)
+- **> 2.5**: Negative autocorrelation (successive residuals alternate)
+
+## Example: Time Series Data
+```{python}
+#| eval: false
+import pandas as pd
+from lrassume import check_independence
+
+# Monthly sales data
+df = pd.DataFrame({
+    "advertising": [10, 15, 12, 18, 20, 25, 22, 28, 30, 35],
+    "month": range(1, 11),
+    "sales": [100, 150, 120, 180, 200, 250, 220, 280, 300, 350]
+})
+
+result = check_independence(df, target="sales")
+
+print(f"DW Statistic: {result['dw_statistic']:.3f}")
+print(f"Independent: {result['is_independent']}")
+print(result['message'])
+```
+
+## What to Do if Independence Fails
+
+If the test detects autocorrelation:
+
+1. **Time series models**: Consider ARIMA, VAR, or other time-series methods
+2. **Add lagged variables**: Include previous values as predictors
+3. **Cluster-robust standard errors**: Adjust standard errors for clustering
+4. **Mixed-effects models**: Account for hierarchical structure
+
+## Key Points
+
+- The function **automatically fits a linear model** using all numeric features
+- It handles the **intercept term internally**
+- Only the **target column** needs to be specified

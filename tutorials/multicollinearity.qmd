@@ -1,0 +1,112 @@
+---
+title: "Multicollinearity Detection"
+format: html
+---
+
+## Understanding Multicollinearity
+
+**Multicollinearity** occurs when predictor variables are highly correlated with each other.
+
+### Why It Matters
+
+- **Inflated standard errors**: Less precise coefficient estimates
+- **Unstable coefficients**: Small data changes cause large coefficient changes
+- **Difficult interpretation**: Hard to isolate individual predictor effects
+
+## Using VIF (Variance Inflation Factor)
+
+The `check_multicollinearity_vif()` function calculates VIF for each predictor.
+
+### VIF Interpretation
+
+| VIF Range | Severity | Action |
+|-----------|----------|---------|
+| < 5 | None | ✓ No concern |
+| 5-10 | Moderate | ⚠️ Monitor |
+| ≥ 10 | Severe | 🚨 Address issue |
+
+## Example
+```{python}
+#| eval: false
+import pandas as pd
+from lrassume import check_multicollinearity_vif
+
+# Housing data with correlated features
+X = pd.DataFrame({
+    "sqft": [800, 900, 1000, 1100, 1200, 1300, 1400, 1500],
+    "bedrooms": [1, 2, 1, 3, 2, 4, 3, 5],
+    "bathrooms": [1, 2, 1, 3, 2, 4, 3, 5],  # Highly correlated with bedrooms!
+    "age": [30, 5, 40, 10, 25, 15, 35, 20]
+})
+
+vif_table, summary = check_multicollinearity_vif(X, warn_threshold=5.0)
+
+print(f"Overall Status: {summary['overall_status']}")
+print("\nVIF Table:")
+print(vif_table)
+```
+
+**Possible Output:**
+```
+Overall Status: severe
+
+VIF Table:
+     feature        vif   level
+0  bedrooms  15.200000  severe
+1  bathrooms 15.100000  severe
+2      sqft   3.450000      ok
+3       age   2.100000      ok
+```
+
+## Custom Thresholds
+```{python}
+#| eval: false
+# Stricter detection
+vif_table, summary = check_multicollinearity_vif(
+    X,
+    warn_threshold=3.0,
+    severe_threshold=5.0
+)
+```
+
+## Solutions for High Multicollinearity
+
+1. **Remove one correlated predictor**
+```python
+   # Remove bathrooms (highly correlated with bedrooms)
+   X_cleaned = X.drop(columns=['bathrooms'])
+```
+
+2. **Combine correlated features**
+```python
+   # Create total_rooms = bedrooms + bathrooms
+   X['total_rooms'] = X['bedrooms'] + X['bathrooms']
+   X = X.drop(columns=['bedrooms', 'bathrooms'])
+```
+
+3. **Principal Component Analysis (PCA)**
+```python
+   from sklearn.decomposition import PCA
+   pca = PCA(n_components=3)
+   X_pca = pca.fit_transform(X)
+```
+
+4. **Regularization** (Ridge/Lasso regression)
+```python
+   from sklearn.linear_model import Ridge
+   model = Ridge(alpha=1.0)
+```
+
+## Handling Categorical Variables
+```{python}
+#| eval: false
+# Automatically drop non-numeric columns
+vif_table, summary = check_multicollinearity_vif(
+    df,
+    target_column='price',
+    categorical='drop'
+)
+
+# Check which columns were dropped
+print(summary['dropped_non_numeric'])
+```

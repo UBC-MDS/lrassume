@@ -1,0 +1,70 @@
+---
+title: "Getting Started with lrassume"
+format: html
+---
+
+## Installation
+
+Install from TestPyPI:
+```bash
+pip install -i https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ lrassume
+```
+
+### What is lrassume?
+
+**lrassume** (Linear Regression Assumption Validator) is a Python package designed for data scientists who want to validate their data before building linear regression models. 
+
+The package helps users examine their dataset to check the four core assumptions of linear regression **prior to** fitting and tuning a model. This is meant to fit into your data science workflow at the exploration stage - before you commit to building your linear regression model.
+
+**Who is this for?**  
+Data scientists, analysts, and researchers who want to quickly verify if their data is suitable for linear regression modeling. If you're working on a machine learning pipeline and considering linear regression, use lrassume during your exploratory data analysis phase to catch potential issues early.
+
+**What does it check?**
+- Linearity between features and target
+- Independence of observations  
+- Homoscedasticity (constant variance of residuals)
+- Multicollinearity among features
+
+By validating these assumptions upfront, you can make informed decisions about whether linear regression is appropriate for your data or if you need to transform your data or consider alternative modeling approaches.
+
+## Basic Workflow
+
+Here's a typical workflow for validating a regression model:
+```{python}
+#| eval: false
+import pandas as pd
+from lrassume import (
+    check_independence,
+    check_linearity,
+    check_multicollinearity_vif,
+    check_homoscedasticity
+)
+
+# Load your data
+df = pd.read_csv("your_data.csv")
+
+# 1. Check for linear relationships
+linear_features = check_linearity(df, target="price", threshold=0.7)
+print(linear_features)
+
+# 2. Check for multicollinearity
+X = df.drop(columns=["price"])
+vif_table, vif_summary = check_multicollinearity_vif(X)
+print(vif_summary['overall_status'])
+
+# 3. Check independence of residuals
+independence_result = check_independence(df, target="price")
+print(independence_result['is_independent'])
+
+# 4. Check homoscedasticity
+y = df["price"]
+test_results, summary = check_homoscedasticity(X, y, method="all")
+print(summary['overall_conclusion'])
+```
+
+## Learn More
+
+- [Independence Testing](independence.qmd)
+- [Linearity Assessment](linearity.qmd)
+- [Multicollinearity Detection](multicollinearity.qmd)
+- [Homoscedasticity Testing](homoscedasticity.qmd)
