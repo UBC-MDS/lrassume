@@ -15,6 +15,20 @@
 - **Multicollinearity Detection**: Variance Inflation Factor (VIF) calculation with configurable thresholds
 - **Homoscedasticity Testing**: Multiple statistical tests (Breusch-Pagan, White, Goldfeld-Quandt) to detect heteroscedasticity
 
+___
+
+## Ecosystem Context
+
+lrassume complements popular regression and machine learning libraries in the Python ecosystem:
+
+- **scikit-learn**: lrassume provides specialized diagnostic tools for linear regression assumptions, while scikit-learn focuses on model building and prediction. Use lrassume to validate your scikit-learn linear regression models before deployment.
+
+- **statsmodels**: statsmodels offers comprehensive statistical modeling and includes assumption tests, but requires more setup. lrassume provides a streamlined, user-friendly interface specifically designed for assumption checking without additional configuration.
+
+- **pandas**: lrassume works seamlessly with pandas DataFrames, making it easy to integrate into your existing data analysis workflows.
+
+<u>When to use lrassume:</u> Choose lrassume when you need quick, focused assumption validation for linear regression before fitting a model or after building one with scikit-learn. It's ideal for educational purposes, exploratory data analysis, and model diagnostics in machine learning pipelines.
+
 
 ***
 ## Installation
@@ -153,7 +167,7 @@ To preview documentation changes before pushing:
 ```bash
    quarto preview
 ```
-   
+
    This will open the documentation site in your browser.
 
 ### Update Documentation

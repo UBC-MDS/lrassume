@@ -15,7 +15,7 @@ You can contribute in many ways, for example:
 
 ### Report Bugs
 
-Report bugs at https://github.com//lrassume/issues.
+Report bugs at https://github.com/UBC-MDS/lrassume/issues.
 
 **If you are reporting a bug, please follow the template guidelines. The more
 detailed your report, the easier and thus faster we can help you.**
