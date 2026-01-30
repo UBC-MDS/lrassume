@@ -365,6 +365,21 @@ test_results, summary = check_homoscedasticity(
 - **p-value > α**: Fail to reject null hypothesis (homoscedastic)
 - **p-value ≤ α**: Reject null hypothesis (heteroscedastic)
 
+
+
+### Future Enhancements
+
+While our current implementation covers the four foundational assumptions of linear regression (linearity, independence, homoscedasticity, and multicollinearity), there are several areas we'd like to expand on:
+
+- **Residual Normality Testing**: Add statistical tests and visualizations to check if residuals follow a normal distribution
+- **Outlier Detection**: Implement scatter plot visualizations and statistical methods to identify potential outliers in the dataset
+- **Influence Diagnostics**: Include Cook's distance calculations to detect influential data points that may be disproportionately affecting the regression model
+- **Enhanced Visualizations**: Add more interactive plotting options for better data exploration
+- **Additional Assumption Tests**: Expand to cover other regression diagnostics beyond the core four assumptions
+
+These additions would make the package more comprehensive for users conducting thorough regression diagnostics in their workflows.
+
+
 ## Contributing
 
 Contributions are welcome! Please see our [Code of Conduct](CODE_OF_CONDUCT.md) for community guidelines.
