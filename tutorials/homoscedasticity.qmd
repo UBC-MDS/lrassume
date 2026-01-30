@@ -1,0 +1,158 @@
+---
+title: "Homoscedasticity Testing"
+format: html
+---
+
+## Understanding Homoscedasticity
+
+**Homoscedasticity** means residuals have constant variance across all predictor values.
+
+### Why It Matters
+
+- **Biased standard errors**: Confidence intervals and p-values are incorrect
+- **Inefficient estimates**: Coefficients are unbiased but not optimal
+- **Hypothesis testing issues**: T-tests and F-tests may be invalid
+
+## Available Tests
+
+| Test | Best For |
+|------|----------|
+| **Breusch-Pagan** | General heteroscedasticity detection |
+| **White** | Detects complex forms of heteroscedasticity |
+| **Goldfeld-Quandt** | Heteroscedasticity that increases/decreases monotonically |
+
+## Example: Single Test
+```{python}
+#| eval: false
+import pandas as pd
+import numpy as np
+from lrassume import check_homoscedasticity
+
+np.random.seed(42)
+X = pd.DataFrame({
+    'x1': np.linspace(1, 100, 100),
+    'x2': np.random.randn(100)
+})
+y = pd.Series(2 * X['x1'] + 3 * X['x2'] + np.random.randn(100))
+
+# Run Breusch-Pagan test
+test_results, summary = check_homoscedasticity(
+    X, y,
+    method="breusch_pagan",
+    alpha=0.05
+)
+
+print(f"Conclusion: {summary['overall_conclusion']}")
+print("\nTest Results:")
+print(test_results)
+```
+
+## Example: All Tests
+```{python}
+#| eval: false
+# Run all three tests
+test_results, summary = check_homoscedasticity(X, y, method="all")
+
+print(f"Overall: {summary['overall_conclusion']}")
+print(f"Tests agreeing: {summary['tests_in_agreement']}")
+print("\nDetailed Results:")
+print(test_results)
+```
+
+**Expected Output:**
+```
+Overall: homoscedastic
+Tests agreeing: 3
+
+Detailed Results:
+            test  statistic  p_value     conclusion  significant
+0  breusch_pagan      1.234   0.5391  homoscedastic        False
+1          white      2.156   0.3407  homoscedastic        False
+2  goldfeld_quandt 0.987   0.4123  homoscedastic        False
+```
+
+## Using Pre-fitted Models
+```{python}
+#| eval: false
+from sklearn.linear_model import LinearRegression
+
+# Fit your model
+model = LinearRegression().fit(X, y)
+
+# Test with fitted model
+test_results, summary = check_homoscedasticity(
+    X, y,
+    fitted_model=model,
+    method="breusch_pagan"
+)
+```
+
+## Custom Significance Level
+```{python}
+#| eval: false
+# 99% confidence (stricter)
+test_results, summary = check_homoscedasticity(
+    X, y,
+    alpha=0.01
+)
+
+# 90% confidence (more lenient)
+test_results, summary = check_homoscedasticity(
+    X, y,
+    alpha=0.10
+)
+```
+
+## Solutions for Heteroscedasticity
+
+1. **Transform the target variable**
+```python
+   # Log transformation
+   y_log = np.log(y + 1)
+   
+   # Square root transformation
+   y_sqrt = np.sqrt(y)
+```
+
+2. **Weighted Least Squares (WLS)**
+```python
+   from statsmodels.regression.linear_model import WLS
+   
+   # Weight by inverse variance
+   weights = 1 / residuals**2
+   model_wls = WLS(y, X, weights=weights).fit()
+```
+
+3. **Robust Standard Errors**
+```python
+   import statsmodels.api as sm
+   
+   model = sm.OLS(y, X).fit()
+   robust_results = model.get_robustcov_results(cov_type='HC3')
+```
+
+4. **Use a different model**
+   - Generalized Linear Models (GLM)
+   - Quantile regression
+   - Tree-based models
+
+## Visualizing Heteroscedasticity
+```{python}
+#| eval: false
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression().fit(X, y)
+residuals = y - model.predict(X)
+fitted = model.predict(X)
+
+plt.scatter(fitted, residuals)
+plt.axhline(y=0, color='r', linestyle='--')
+plt.xlabel('Fitted Values')
+plt.ylabel('Residuals')
+plt.title('Residual Plot')
+plt.show()
+```
+
+**Good pattern**: Random scatter around zero  
+**Bad pattern**: Funnel shape (variance increases/decreases)

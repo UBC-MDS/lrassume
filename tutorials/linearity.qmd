@@ -1,0 +1,76 @@
+---
+title: "Linearity Assessment"
+format: html
+---
+
+## Understanding Linearity
+
+Linear regression assumes a **linear relationship** between each predictor and the target variable.
+
+## Using check_linearity()
+
+The function computes **Pearson correlation coefficients** to identify features with strong linear relationships.
+
+### Example: Housing Prices
+```{python}
+#| eval: false
+import pandas as pd
+from lrassume import check_linearity
+
+df = pd.DataFrame({
+    "sqft": [500, 700, 900, 1100, 1300, 1500],
+    "num_rooms": [1, 2, 1, 3, 2, 4],
+    "age": [40, 25, 20, 5, 15, 10],
+    "distance_to_center": [15, 12, 8, 5, 10, 6],
+    "price": [150, 210, 260, 320, 280, 350]
+})
+
+# Find features with |correlation| >= 0.7
+linear_features = check_linearity(df, target="price", threshold=0.7)
+print(linear_features)
+```
+
+**Expected Output:**
+```
+  feature  correlation
+0    sqft        0.985
+1     age       -0.920
+```
+
+## Interpreting Results
+
+- **High positive correlation** (close to +1): Feature increases with target
+- **High negative correlation** (close to -1): Feature decreases with target
+- **Low correlation** (close to 0): Weak linear relationship
+
+## Custom Thresholds
+```{python}
+#| eval: false
+# More strict: only very strong relationships
+strict_features = check_linearity(df, target="price", threshold=0.9)
+
+# More lenient: moderate relationships
+lenient_features = check_linearity(df, target="price", threshold=0.5)
+```
+
+## What to Do if Linearity Fails
+
+If features show weak linear relationships:
+
+1. **Transform variables**: Try log, sqrt, or polynomial transformations
+2. **Add polynomial terms**: Include x², x³ terms
+3. **Binning**: Convert continuous variables to categories
+4. **Non-linear models**: Consider tree-based models, GAMs, or neural networks
+
+## Visualizing Relationships
+```{python}
+#| eval: false
+import matplotlib.pyplot as plt
+
+# Scatter plot to visually check linearity
+plt.scatter(df['sqft'], df['price'])
+plt.xlabel('Square Feet')
+plt.ylabel('Price')
+plt.title('Relationship between sqft and price')
+plt.show()
+```
