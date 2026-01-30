@@ -33,7 +33,7 @@ users to import and call them directly without navigating internal modules.
 Example
 -------
 >>> from lrassume import check_linearity
->>> check_linearity(X, y)
+>>> check_linearity(df, target="<target_column>")
 """
 
 from lrassume.check_linearity import check_linearity
