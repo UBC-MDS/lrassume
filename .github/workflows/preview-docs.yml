@@ -65,7 +65,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           npm install -g netlify-cli
-          netlify deploy --dir=_site --json > deploy-output.json
+          netlify deploy --dir=_site --alias="deploy-preview-${{ github.event.pull_request.number }}"
           DEPLOY_URL="https://deploy-preview-${{ github.event.pull_request.number }}--shiny-babka-8bea36.netlify.app"
           echo "url=${DEPLOY_URL}" >> $GITHUB_OUTPUT
           echo "Preview URL: ${DEPLOY_URL}"
