@@ -289,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="example-single-test" class="level2">
 <h2 class="anchored" data-anchor-id="example-single-test">Example: Single Test</h2>
-<div id="2295b726" class="cell" data-execution_count="1">
+<div id="fc659cb1" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lrassume <span class="im">import</span> check_homoscedasticity</span>
@@ -315,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="example-all-tests" class="level2">
 <h2 class="anchored" data-anchor-id="example-all-tests">Example: All Tests</h2>
-<div id="629cec9d" class="cell" data-execution_count="2">
+<div id="9c4c9757" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run all three tests</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>test_results, summary <span class="op">=</span> check_homoscedasticity(X, y, method<span class="op">=</span><span class="st">"all"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -336,7 +336,7 @@ Detailed Results:
 </section>
 <section id="using-pre-fitted-models" class="level2">
 <h2 class="anchored" data-anchor-id="using-pre-fitted-models">Using Pre-fitted Models</h2>
-<div id="29d4a06f" class="cell" data-execution_count="3">
+<div id="8c61b761" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit your model</span></span>
@@ -352,7 +352,7 @@ Detailed Results:
 </section>
 <section id="custom-significance-level" class="level2">
 <h2 class="anchored" data-anchor-id="custom-significance-level">Custom Significance Level</h2>
-<div id="3a424972" class="cell" data-execution_count="4">
+<div id="0dbab47f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 99% confidence (stricter)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>test_results, summary <span class="op">=</span> check_homoscedasticity(</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    X, y,</span>
@@ -402,7 +402,7 @@ Detailed Results:
 </section>
 <section id="visualizing-heteroscedasticity" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-heteroscedasticity">Visualizing Heteroscedasticity</h2>
-<div id="28936d7c" class="cell" data-execution_count="5">
+<div id="c8a395d0" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
