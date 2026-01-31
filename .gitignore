@@ -1,3 +1,5 @@
+src/lrassume/__version__.py
+
 _site
 docs
 
@@ -250,3 +252,4 @@ _version.py
 /.quarto/
 **/*.quarto_ipynb
 reference
+src/lrassume/__version__.py

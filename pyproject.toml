@@ -9,101 +9,120 @@ requires = ["hatchling", "hatch-vcs"]
 name = "lrassume"
 dynamic = ["version"]
 description = "Checking assumptions for linear regression and similar models"
-authors = [{ name = "CHOT", email = "tanav.bajaj58@gmail.com" }]
-license = "MIT"
+
+# Canonical metadata (PEP 621)
+authors = [
+  { name = "Tanav Singh Bajaj", email = "tanav.bajaj58@gmail.com" }
+]
+
+maintainers = [
+  { name = "Tanav Singh Bajaj", email = "tanav.bajaj58@gmail.com" },
+  { name = "Harpreet Singh" },
+  { name = "Ojasv Issar" },
+  { name = "Claire Saunders" }
+]
+
+license = { text = "MIT" }
 requires-python = ">= 3.10"
 readme = { file = "README.md", content-type = "text/markdown" }
+
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",
   "Intended Audience :: Science/Research",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13"
 ]
-keywords = []
+
+keywords = [
+  "linear-regression",
+  "assumptions",
+  "regression-diagnostics",
+  "statsmodels",
+  "statistics"
+]
+
 dependencies = ["statsmodels", "numpy", "pandas", "scipy"]
 
-[tool.hatch.version]
-source = "vcs"
-
 [project.urls]
-Homepage = "https://github.com/UBC-MDS/lrassume"
-"Source Code" = "https://github.com/UBC-MDS/lrassume"
-"Bug Tracker" = "https://github.com/UBC-MDS/lrassume/issues"
-"Documentation" = "https://ubc-mds.github.io/lrassume/"
-Download = "https://test.pypi.org/project/lrassume/#files"
+Homepage = "https://ubc-mds.github.io/lrassume/"
+Repository = "https://github.com/UBC-MDS/lrassume"
+Issues = "https://github.com/UBC-MDS/lrassume/issues"
+
+
 
 [project.optional-dependencies]
 # The groups below should be in the [development-groups] table
 # They are here now because hatch hasn't released support for them but plans to
 # in Mid November 2025.
-
 dev = [
-    "hatch",
-    "pre-commit",
-    "ruff", 
-    "black"
+  "hatch",
+  "pre-commit",
+  "ruff",
+  "black"
 ]
 
 docs = [
-    "quartodoc<0.7",
-    "griffe<0.37",
-    "jupyter"
+  "quartodoc<0.7",
+  "griffe<0.37",
+  "jupyter"
 ]
 
 build = [
-    "pip-audit",
-    "twine",
+  "pip-audit",
+  "twine"
 ]
+
 tests = [
-    "pytest",
-    "pytest-cov",
-    "pytest-raises",
-    "pytest-xdist",
+  "pytest",
+  "pytest-cov",
+  "pytest-raises",
+  "pytest-xdist"
 ]
+
+################################################################################
+# Versioning (Hatch + VCS)
+################################################################################
+[tool.hatch.version]
+source = "vcs"
+raw-options = { version_scheme = "no-guess-dev", local_scheme = "no-local-version" }
+
+[tool.hatch.build.hooks.vcs]
+version-file = "src/lrassume/__version__.py"
 
 ################################################################################
 # Tool Configuration
 ################################################################################
 
-# Hatch is building your package's wheel and sdist
-# This tells hatch to only include Python packages (i.e., folders with __init__.py) in the build.
-# read more about package building, here:
-# https://www.pyopensci.org/python-package-guide/package-structure-code/python-package-distribution-files-sdist-wheel.html
+# Hatch build configuration
 [tool.hatch.build]
 only-packages = true
 
-# This tells Hatch to build the package from the src/ directory.
-# Read more about src layouts here: https://www.pyopensci.org/python-package-guide/package-structure-code/python-package-structure.html
 [tool.hatch.build.targets.wheel]
 packages = ["src/lrassume"]
 
-
-
 ######## Configure pytest for your test suite ########
 [tool.pytest.ini_options]
-testpaths = ["tests"] # Tells pytest what directory tests are in
-markers = ["raises"] # Tells pytest to not raise a warning if you use @pytest.mark.raises
+testpaths = ["tests"]
+markers = ["raises"]
 
 [tool.coverage.paths]
 source = [
-    "src/lrassume",
-    "*/site-packages/lrassume",
+  "src/lrassume",
+  "*/site-packages/lrassume"
 ]
 
 [tool.coverage.run]
-# Ensures code coverage is measured for branches (conditional statements with different outcomes) in your code.
 branch = true
 parallel = true
 
 [tool.coverage.report]
-# This configures the output test coverage report
 exclude_lines = ["pragma: no cover"]
 precision = 2
-
 
 # Use UV to create Hatch environments
 [tool.hatch.envs.default]
@@ -114,28 +133,21 @@ installer = "uv"
 ################################################################################
 
 #--------------- Build and check your package ---------------#
-
-# This table installs the tools you need to test and build your package
 [tool.hatch.envs.build]
 description = """Test the installation the package."""
-features = [
-    "build",
-]
+features = ["build"]
 detached = true
 
-# This table installs created the command hatch run install:check which will build and check your package.
 [tool.hatch.envs.build.scripts]
 check = [
-    "hatch build {args:--clean}",
-    "twine check dist/*",
+  "hatch build {args:--clean}",
+  "twine check dist/*"
 ]
 
 #--------------- Run tests ---------------#
 [tool.hatch.envs.test]
 description = """Run the test suite."""
-features = [
-    "tests",
-]
+features = ["tests"]
 
 [[tool.hatch.envs.test.matrix]]
 python = ["3.10", "3.11", "3.12", "3.13"]
@@ -144,36 +156,23 @@ python = ["3.10", "3.11", "3.12", "3.13"]
 run = "pytest {args:--cov=lrassume --cov-report=term-missing --cov-report=xml}"
 
 #--------------- Build and preview your documentation ---------------#
-
-# This sets up a hatch environment with associated dependencies that need to be installed
 [tool.hatch.envs.docs]
 description = """Build or serve the documentation."""
-# Install optional dependency test for docs
-features = [
-    "docs",
-]
+features = ["docs"]
 
-# This table contains the scripts that you can use to build and serve your docs
-# hatch run docs:build will build your documentation
-# hatch run docs:serve will serve them 'live' on your computer locally
 [tool.hatch.envs.docs.scripts]
 build = [
-    "quartodoc build",
-    "quarto render docs",
+  "quartodoc build",
+  "quarto render docs"
 ]
 serve = [
-    "quarto preview docs",
+  "quarto preview docs"
 ]
-
-
 
 #--------------- Check security for your dependencies ---------------#
-
 [tool.hatch.envs.audit]
 description = """Check dependencies for security vulnerabilities."""
-features = [
-    "build",
-]
+features = ["build"]
 
 [tool.hatch.envs.audit.scripts]
 check = ["pip-audit"]
