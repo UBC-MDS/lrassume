@@ -235,9 +235,12 @@ df = pd.DataFrame({
 result = check_independence(df, target="y")
 
 # View results
-print(result['dw_statistic'])    
+print(result['dw_statistic']) 
 print(result['is_independent'])  
-print(result['message'])         
+print(result['message'])  
+# 0.0727
+# False
+# Positive autocorrelation detected. Residuals may not be independent.      
 ```
 
 **Interpreting the Durbin-Watson statistic:**
