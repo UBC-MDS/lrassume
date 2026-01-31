@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>check_homoscedasticity – lrassume</title>
+<title>Getting Started with lrassume – lrassume</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,9 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      lrassume
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/getting-started.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/getting-started.html">Getting Started with lrassume</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/getting-started.html" class="sidebar-item-text sidebar-link">
+  <a href="../tutorials/getting-started.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Getting Started with lrassume</span></a>
   </div>
 </li>
@@ -206,267 +204,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lrassume.check_homoscedasticity" id="toc-lrassume.check_homoscedasticity" class="nav-link active" data-scroll-target="#lrassume.check_homoscedasticity">check_homoscedasticity</a>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a>
   <ul class="collapse">
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
-  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  <li><a href="#functions-1" id="toc-functions-1" class="nav-link" data-scroll-target="#functions-1">Functions</a>
-  <ul class="collapse">
-  <li><a href="#lrassume.check_homoscedasticity.check_homoscedasticity" id="toc-lrassume.check_homoscedasticity.check_homoscedasticity" class="nav-link" data-scroll-target="#lrassume.check_homoscedasticity.check_homoscedasticity">check_homoscedasticity</a></li>
+  <li><a href="#what-is-lrassume" id="toc-what-is-lrassume" class="nav-link" data-scroll-target="#what-is-lrassume">What is lrassume?</a></li>
   </ul></li>
-  </ul></li>
+  <li><a href="#basic-workflow" id="toc-basic-workflow" class="nav-link" data-scroll-target="#basic-workflow">Basic Workflow</a></li>
+  <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more">Learn More</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tutorials/getting-started.html">Tutorials</a></li><li class="breadcrumb-item"><a href="../tutorials/getting-started.html">Getting Started with lrassume</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Getting Started with lrassume</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="lrassume.check_homoscedasticity" class="level1">
-<h1>check_homoscedasticity</h1>
-<p><code>check_homoscedasticity</code></p>
-<p>Homoscedasticity diagnostics for linear regression.</p>
-<p>This module contains utilities to detect heteroscedasticity (non-constant variance) in residuals for linear regression workflows. Heteroscedasticity violates a key assumption of ordinary least squares (OLS) regression and can lead to inefficient estimates and incorrect standard errors.</p>
-<p>The module provides the <code>check_homoscedasticity</code> function which implements three widely-used statistical tests: Breusch-Pagan, White, and Goldfeld-Quandt.</p>
-<section id="functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions">Functions</h2>
-<p>check_homoscedasticity : Test residuals for constant variance</p>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<p>Install from TestPyPI:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-i</span> https://test.pypi.org/simple/ <span class="at">--extra-index-url</span> https://pypi.org/simple/ lrassume</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="what-is-lrassume" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-lrassume">What is lrassume?</h3>
+<p><strong>lrassume</strong> (Linear Regression Assumption Validator) is a Python package designed for data scientists who want to validate their data before building linear regression models.</p>
+<p>The package helps users examine their dataset to check the four core assumptions of linear regression <strong>prior to</strong> fitting and tuning a model. This is meant to fit into your data science workflow at the exploration stage - before you commit to building your linear regression model.</p>
+<p><strong>Who is this for?</strong><br>
+Data scientists, analysts, and researchers who want to quickly verify if their data is suitable for linear regression modeling. If you’re working on a machine learning pipeline and considering linear regression, use lrassume during your exploratory data analysis phase to catch potential issues early.</p>
+<p><strong>What does it check?</strong> - Linearity between features and target - Independence of observations<br>
+- Homoscedasticity (constant variance of residuals) - Multicollinearity among features</p>
+<p>By validating these assumptions upfront, you can make informed decisions about whether linear regression is appropriate for your data or if you need to transform your data or consider alternative modeling approaches.</p>
 </section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<p>Basic usage: &gt;&gt;&gt; import pandas as pd &gt;&gt;&gt; import numpy as np &gt;&gt;&gt; from lrassume import check_homoscedasticity &gt;&gt;&gt; &gt;&gt;&gt; X = pd.DataFrame({‘x1’: range(100), ‘x2’: np.random.randn(100)}) &gt;&gt;&gt; y = pd.Series(2 * X[‘x1’] + np.random.randn(100)) &gt;&gt;&gt; results, summary = check_homoscedasticity(X, y) &gt;&gt;&gt; print(summary[‘overall_conclusion’]) ‘homoscedastic’</p>
 </section>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<p>All tests assume that residuals come from a linear regression model. If using non-linear models, interpret results with caution.</p>
+<section id="basic-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="basic-workflow">Basic Workflow</h2>
+<p>Here’s a typical workflow for validating a regression model:</p>
+<div id="67b91f44" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lrassume <span class="im">import</span> (</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    check_independence,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    check_linearity,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    check_multicollinearity_vif,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    check_homoscedasticity</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load your data</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"your_data.csv"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Check for linear relationships</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>linear_features <span class="op">=</span> check_linearity(df, target<span class="op">=</span><span class="st">"price"</span>, threshold<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(linear_features)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Check for multicollinearity</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"price"</span>])</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>vif_table, vif_summary <span class="op">=</span> check_multicollinearity_vif(X)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vif_summary[<span class="st">'overall_status'</span>])</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Check independence of residuals</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>independence_result <span class="op">=</span> check_independence(df, target<span class="op">=</span><span class="st">"price"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(independence_result[<span class="st">'is_independent'</span>])</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Check homoscedasticity</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"price"</span>]</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>test_results, summary <span class="op">=</span> check_homoscedasticity(X, y, method<span class="op">=</span><span class="st">"all"</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary[<span class="st">'overall_conclusion'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>.. [1] Breusch, T. S., &amp; Pagan, A. R. (1979). A simple test for heteroscedasticity and random coefficient variation. Econometrica, 47(5), 1287-1294.</p>
-<p>.. [2] White, H. (1980). A heteroskedasticity-consistent covariance matrix estimator and a direct test for heteroskedasticity. Econometrica, 48(4), 817-838.</p>
-<p>.. [3] Goldfeld, S. M., &amp; Quandt, R. E. (1965). Some tests for homoscedasticity. Journal of the American Statistical Association, 60(310), 539-547.</p>
-</section>
-<section id="functions-1" class="level2">
-<h2 class="anchored" data-anchor-id="functions-1">Functions</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="#lrassume.check_homoscedasticity.check_homoscedasticity">check_homoscedasticity</a></td>
-<td>Test for homoscedasticity (constant variance) in linear regression residuals.</td>
-</tr>
-</tbody>
-</table>
-<section id="lrassume.check_homoscedasticity.check_homoscedasticity" class="level3">
-<h3 class="anchored" data-anchor-id="lrassume.check_homoscedasticity.check_homoscedasticity">check_homoscedasticity</h3>
-<p><code>check_homoscedasticity.check_homoscedasticity(X, y, *, method='breusch_pagan', alpha=0.05, fitted_model=None, residuals=None, fitted_values=None)</code></p>
-<p>Test for homoscedasticity (constant variance) in linear regression residuals.</p>
-<p>Homoscedasticity is the assumption that residuals have constant variance across all levels of the independent variables. Violation of this assumption (heteroscedasticity) leads to inefficient coefficient estimates and incorrect standard errors in ordinary least squares (OLS) regression.</p>
-<p>This function implements multiple statistical tests to detect heteroscedasticity:</p>
+<section id="learn-more" class="level2">
+<h2 class="anchored" data-anchor-id="learn-more">Learn More</h2>
 <ul>
-<li><p><strong>Breusch-Pagan test</strong>: Tests whether residual variance depends linearly on predictors. Null hypothesis: homoscedasticity (constant variance).</p></li>
-<li><p><strong>White test</strong>: More general test that allows for non-linear relationships between variance and predictors. Includes squared terms and interactions. Null hypothesis: homoscedasticity.</p></li>
-<li><p><strong>Goldfeld-Quandt test</strong>: Splits data by a predictor and compares variance in two subsets. Useful for detecting variance that increases/decreases with a specific predictor.</p></li>
+<li><a href="../tutorials/independence.html">Independence Testing</a></li>
+<li><a href="../tutorials/linearity.html">Linearity Assessment</a></li>
+<li><a href="../tutorials/multicollinearity.html">Multicollinearity Detection</a></li>
+<li><a href="../tutorials/homoscedasticity.html">Homoscedasticity Testing</a></li>
 </ul>
-<section id="parameters" class="level4">
-<h4 class="anchored" data-anchor-id="parameters">Parameters</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 5%">
-<col style="width: 4%">
-<col style="width: 83%">
-<col style="width: 6%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>X</code></td>
-<td>pd.DataFrame</td>
-<td>DataFrame of predictors (features). Each column is a predictor variable. Must contain only numeric columns.</td>
-<td><em>required</em></td>
-</tr>
-<tr class="even">
-<td><code>y</code></td>
-<td>pd.Series</td>
-<td>Target variable (response). Must have the same length as X.</td>
-<td><em>required</em></td>
-</tr>
-<tr class="odd">
-<td><code>method</code></td>
-<td>TestMethod</td>
-<td>Statistical test(s) to perform: - “breusch_pagan”: Breusch-Pagan Lagrange multiplier test - “white”: White’s general heteroscedasticity test - “goldfeld_quandt”: Goldfeld-Quandt test (splits on first predictor by default) - “all”: Run all available tests</td>
-<td><code>"breusch_pagan"</code></td>
-</tr>
-<tr class="even">
-<td><code>alpha</code></td>
-<td>float</td>
-<td>Significance level for hypothesis tests. Common values: 0.01, 0.05, 0.10. Must be between 0 and 1 (exclusive).</td>
-<td><code>0.05</code></td>
-</tr>
-<tr class="odd">
-<td><code>fitted_model</code></td>
-<td>optional</td>
-<td>Pre-fitted regression model object with <code>predict()</code> method. If None, an OLS model will be fitted internally using X and y. Useful for avoiding refitting when model already exists.</td>
-<td><code>None</code></td>
-</tr>
-<tr class="even">
-<td><code>residuals</code></td>
-<td>np.ndarray</td>
-<td>Pre-computed residuals (y - y_pred). Must have same length as y. If None, residuals will be computed from fitted_model or internal fit. Cannot be specified without fitted_values.</td>
-<td><code>None</code></td>
-</tr>
-<tr class="odd">
-<td><code>fitted_values</code></td>
-<td>np.ndarray</td>
-<td>Pre-computed fitted values (y_pred). Must have same length as y. If None, fitted values will be computed from fitted_model or internal fit. Cannot be specified without residuals.</td>
-<td><code>None</code></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="returns" class="level4">
-<h4 class="anchored" data-anchor-id="returns">Returns</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 2%">
-<col style="width: 97%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>pd.DataFrame</td>
-<td>One row per test performed, with columns: - “test” (str): Name of the test performed - “statistic” (float): Test statistic value, rounded to 3 decimals - “p_value” (float): P-value for the test, rounded to 4 decimals - “conclusion” (str): One of {“homoscedastic”, “heteroscedastic”} - “significant” (bool): True if p_value &lt; alpha (reject null hypothesis) Rows are sorted by test name alphabetically.</td>
-</tr>
-<tr class="even">
-<td>dict</td>
-<td>Overall diagnostics containing: - “overall_conclusion” (str): “homoscedastic” if all tests pass, otherwise “heteroscedastic” - “n_tests_performed” (int): Number of tests conducted - “n_tests_significant” (int): Number of tests rejecting homoscedasticity - “alpha” (float): Echo of significance level used - “n_observations” (int): Sample size - “n_predictors” (int): Number of predictor variables - “recommendation” (str): Suggested action if heteroscedasticity detected</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="raises" class="level4">
-<h4 class="anchored" data-anchor-id="raises">Raises</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 3%">
-<col style="width: 96%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>ValueError</td>
-<td>- If X contains non-numeric columns - If X and y have different lengths - If alpha is not between 0 and 1 - If residuals is provided without fitted_values or vice versa - If residuals/fitted_values length doesn’t match y - If fewer than 10 observations are available (insufficient for testing)</td>
-</tr>
-<tr class="even">
-<td>TypeError</td>
-<td>- If fitted_model is provided but lacks predict() method - If X is not a pandas DataFrame - If y is not a pandas Series</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="notes-1" class="level4">
-<h4 class="anchored" data-anchor-id="notes-1">Notes</h4>
-<ul>
-<li>All tests assume residuals from a linear regression model.</li>
-<li>Tests use chi-square or F-distributions depending on the method.</li>
-<li>The Breusch-Pagan test is most powerful against linear heteroscedasticity.</li>
-<li>The White test is more general but may have lower power with small samples.</li>
-<li>Goldfeld-Quandt test requires ordering data, which may be arbitrary for multivariate predictors.</li>
-<li>If heteroscedasticity is detected, consider using robust standard errors (e.g., HC3, HC4) or weighted least squares (WLS) regression.</li>
-<li>Missing values in X or y will raise an error; clean data beforehand.</li>
-</ul>
-</section>
-<section id="examples-1" class="level4">
-<h4 class="anchored" data-anchor-id="examples-1">Examples</h4>
-<p>Basic usage with internal model fitting:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>...     <span class="st">'x1'</span>: np.linspace(<span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">100</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>...     <span class="st">'x2'</span>: np.random.randn(<span class="dv">100</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>... })</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y <span class="op">=</span> pd.Series(<span class="dv">2</span> <span class="op">*</span> X[<span class="st">'x1'</span>] <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> X[<span class="st">'x2'</span>] <span class="op">+</span> np.random.randn(<span class="dv">100</span>))</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> test_results, summary <span class="op">=</span> check_homoscedasticity(X, y)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(summary[<span class="st">"overall_conclusion"</span>])</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">'homoscedastic'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Using a pre-fitted model:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> LinearRegression().fit(X, y)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> test_results, summary <span class="op">=</span> check_homoscedasticity(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>...     X, y, fitted_model<span class="op">=</span>model</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>... )</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(test_results)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>          test  statistic   p_value      conclusion  significant</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>  breusch_pagan      <span class="fl">2.345</span>      <span class="fl">0.309</span>  homoscedastic        <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Running all tests:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> test_results, summary <span class="op">=</span> check_homoscedasticity(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>...     X, y, method<span class="op">=</span><span class="st">"all"</span>, alpha<span class="op">=</span><span class="fl">0.01</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>... )</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(summary[<span class="st">"n_tests_performed"</span>])</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(summary[<span class="st">"n_tests_significant"</span>])</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Detecting heteroscedasticity (variance increases with x):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> X_hetero <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>...     <span class="st">'x1'</span>: np.linspace(<span class="dv">1</span>, <span class="dv">100</span>, <span class="dv">100</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>... })</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> errors <span class="op">=</span> np.random.randn(<span class="dv">100</span>) <span class="op">*</span> X_hetero[<span class="st">'x1'</span>]  <span class="co"># variance increases</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y_hetero <span class="op">=</span> pd.Series(<span class="dv">2</span> <span class="op">*</span> X_hetero[<span class="st">'x1'</span>] <span class="op">+</span> errors)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> test_results, summary <span class="op">=</span> check_homoscedasticity(X_hetero, y_hetero)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(summary[<span class="st">"overall_conclusion"</span>])</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">'heteroscedastic'</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(summary[<span class="st">"recommendation"</span>])</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">'Consider using robust standard errors (HC3/HC4) or weighted least squares.'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Using pre-computed residuals and fitted values:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> model <span class="op">=</span> LinearRegression().fit(X, y)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> y_pred <span class="op">=</span> model.predict(X)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> resid <span class="op">=</span> y <span class="op">-</span> y_pred</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> test_results, summary <span class="op">=</span> check_homoscedasticity(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>...     X, y,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>...     residuals<span class="op">=</span>resid,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>...     fitted_values<span class="op">=</span>y_pred</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>... )</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">print</span>(test_results)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>          test  statistic   p_value      conclusion  significant</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>  breusch_pagan      <span class="fl">2.345</span>      <span class="fl">0.309</span>  homoscedastic        <span class="va">False</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="references-1" class="level4">
-<h4 class="anchored" data-anchor-id="references-1">References</h4>
-<p>.. [1] Breusch, T. S., &amp; Pagan, A. R. (1979). A simple test for heteroscedasticity and random coefficient variation. Econometrica, 47(5), 1287-1294.</p>
-<p>.. [2] White, H. (1980). A heteroskedasticity-consistent covariance matrix estimator and a direct test for heteroskedasticity. Econometrica, 48(4), 817-838.</p>
-<p>.. [3] Goldfeld, S. M., &amp; Quandt, R. E. (1965). Some tests for homoscedasticity. Journal of the American Statistical Association, 60(310), 539-547.</p>
 
 
-</section>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
