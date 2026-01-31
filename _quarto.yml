@@ -29,6 +29,8 @@ website:
           - tutorials/homoscedasticity.qmd
       - text: "API Reference"
         href: reference/index.qmd
+      - text: Team Development Reflection
+        href: development-reflection.qmd
 
 format:
   html:
