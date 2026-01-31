@@ -15,6 +15,24 @@
 
 ___
 
+## Dependencies
+
+*All runtime dependencies are automatically installed when you install lrassume.*
+
+**Runtime Requirements:**
+- Python ≥ 3.10
+- statsmodels - Statistical tests and regression diagnostics
+- numpy - Numerical computing
+- pandas - Data manipulation
+- scipy - Scientific computing
+
+**Development Dependencies** (for contributors):
+- Testing: pytest, pytest-cov, pytest-raises, pytest-xdist
+- Code Quality: black, ruff, pre-commit
+- Documentation: quartodoc, quarto, jupyter
+- Build Tools: hatch, pip-audit, twine
+___
+
 ## Ecosystem Context
 
 lrassume complements popular regression and machine learning libraries in the Python ecosystem:
@@ -25,7 +43,7 @@ lrassume complements popular regression and machine learning libraries in the Py
 
 - **pandas**: lrassume works seamlessly with pandas DataFrames, making it easy to integrate into your existing data analysis workflows.
 
-<u>When to use lrassume:</u> Choose lrassume when you need quick, focused assumption validation for linear regression before fitting a model or after building one with scikit-learn. It's ideal for educational purposes, exploratory data analysis, and model diagnostics in machine learning pipelines.
+**When to use lrassume:** Choose lrassume when you need quick, focused assumption validation for linear regression before fitting a model. It's ideal for educational purposes, exploratory data analysis, and model diagnostics in machine learning pipelines.
 
 
 ***
