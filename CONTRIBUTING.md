@@ -7,7 +7,7 @@ Every little bit helps, and credit will always be given.
 
 You can contribute in many ways, for example:
 
-* [Report bugs](#report-bugs)
+* [Report Bugs](#report-bugs)
 * [Fix Bugs](#fix-bugs)
 * [Implement Features](#implement-features)
 * [Write Documentation](#write-documentation)
