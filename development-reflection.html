@@ -6,8 +6,12 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Claire Saunders">
+<meta name="author" content="Harpreet Singh">
+<meta name="author" content="Ojasv Issar">
+<meta name="author" content="Tanav Singh Bajaj">
 
-<title>check_linearity – lrassume</title>
+<title>Development Tools, Infrastructure, and Practices Reflection – lrassume</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,62 +24,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f10715fc4fe0572af3b3e4d3edfd0ba7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-f10715fc4fe0572af3b3e4d3edfd0ba7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -116,9 +85,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      lrassume
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./development-reflection.html">Team Development Reflection</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -133,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">lrassume</a> 
+      <a href="./">lrassume</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -145,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Welcome to lrassume</span></a>
   </div>
 </li>
@@ -160,31 +127,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/getting-started.html" class="sidebar-item-text sidebar-link">
+  <a href="./tutorials/getting-started.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Getting Started with lrassume</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/independence.html" class="sidebar-item-text sidebar-link">
+  <a href="./tutorials/independence.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Independence Testing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/linearity.html" class="sidebar-item-text sidebar-link">
+  <a href="./tutorials/linearity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linearity Assessment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/multicollinearity.html" class="sidebar-item-text sidebar-link">
+  <a href="./tutorials/multicollinearity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Multicollinearity Detection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tutorials/homoscedasticity.html" class="sidebar-item-text sidebar-link">
+  <a href="./tutorials/homoscedasticity.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Homoscedasticity Testing</span></a>
   </div>
 </li>
@@ -192,13 +159,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./reference/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">API Reference</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../development-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./development-reflection.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Team Development Reflection</span></a>
   </div>
 </li>
@@ -212,133 +179,196 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lrassume.check_linearity" id="toc-lrassume.check_linearity" class="nav-link active" data-scroll-target="#lrassume.check_linearity">check_linearity</a>
+  <li><a href="#development-tools" id="toc-development-tools" class="nav-link active" data-scroll-target="#development-tools">Development Tools</a>
   <ul class="collapse">
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
-  <li><a href="#functions-1" id="toc-functions-1" class="nav-link" data-scroll-target="#functions-1">Functions</a>
-  <ul class="collapse">
-  <li><a href="#lrassume.check_linearity.check_linearity" id="toc-lrassume.check_linearity.check_linearity" class="nav-link" data-scroll-target="#lrassume.check_linearity.check_linearity">check_linearity</a></li>
+  <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version Control</a></li>
+  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">Testing</a></li>
+  <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
+  <li><a href="#package-management" id="toc-package-management" class="nav-link" data-scroll-target="#package-management">Package Management</a></li>
+  <li><a href="#code-quality" id="toc-code-quality" class="nav-link" data-scroll-target="#code-quality">Code Quality</a></li>
+  <li><a href="#cicd" id="toc-cicd" class="nav-link" data-scroll-target="#cicd">CI/CD</a></li>
   </ul></li>
+  <li><a href="#github-infrastructure-workflow-we-implemented" id="toc-github-infrastructure-workflow-we-implemented" class="nav-link" data-scroll-target="#github-infrastructure-workflow-we-implemented">GitHub Infrastructure &amp; Workflow We Implemented</a>
+  <ul class="collapse">
+  <li><a href="#issues-and-issue-templates" id="toc-issues-and-issue-templates" class="nav-link" data-scroll-target="#issues-and-issue-templates">Issues and Issue Templates</a></li>
+  <li><a href="#project-boards-and-views" id="toc-project-boards-and-views" class="nav-link" data-scroll-target="#project-boards-and-views">Project Boards and Views</a></li>
+  <li><a href="#milestones" id="toc-milestones" class="nav-link" data-scroll-target="#milestones">Milestones</a></li>
+  <li><a href="#pull-requests-and-code-reviews" id="toc-pull-requests-and-code-reviews" class="nav-link" data-scroll-target="#pull-requests-and-code-reviews">Pull Requests and Code Reviews</a></li>
+  <li><a href="#branch-protection-rules" id="toc-branch-protection-rules" class="nav-link" data-scroll-target="#branch-protection-rules">Branch Protection Rules</a></li>
+  <li><a href="#github-actions-workflows" id="toc-github-actions-workflows" class="nav-link" data-scroll-target="#github-actions-workflows">GitHub Actions Workflows</a></li>
+  </ul></li>
+  <li><a href="#scaling-up-tools-for-larger-projects---a-daki-reflection" id="toc-scaling-up-tools-for-larger-projects---a-daki-reflection" class="nav-link" data-scroll-target="#scaling-up-tools-for-larger-projects---a-daki-reflection">Scaling Up: Tools for Larger Projects - A DAKI Reflection</a>
+  <ul class="collapse">
+  <li><a href="#drop" id="toc-drop" class="nav-link" data-scroll-target="#drop">DROP 🗑️</a></li>
+  <li><a href="#add" id="toc-add" class="nav-link" data-scroll-target="#add">ADD ➕</a></li>
+  <li><a href="#keep" id="toc-keep" class="nav-link" data-scroll-target="#keep">KEEP ✅</a></li>
+  <li><a href="#improve" id="toc-improve" class="nav-link" data-scroll-target="#improve">IMPROVE 📈</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Development Tools, Infrastructure, and Practices Reflection</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="lrassume.check_linearity" class="level1">
-<h1>check_linearity</h1>
-<p><code>check_linearity</code></p>
-<p>check_linearity.py Module for analyzing linear relationships between numeric features and a target variable.</p>
-<p>This module provides tools for identifying features in a pandas DataFrame that have a strong linear relationship with a specified numeric target column using Pearson correlation.</p>
-<section id="functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Claire Saunders </p>
+             <p>Harpreet Singh </p>
+             <p>Ojasv Issar </p>
+             <p>Tanav Singh Bajaj </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="development-tools" class="level2">
+<h2 class="anchored" data-anchor-id="development-tools">Development Tools</h2>
+<p>In this project we used the following development tools:</p>
+<section id="version-control" class="level3">
+<h3 class="anchored" data-anchor-id="version-control">Version Control</h3>
+<p><strong>Git, GitHub</strong></p>
+<p>This was fundamental to this project - by utilizing branches to implement features and managing our edits through pull requests we were able to check each other’s work and keep clear records of how the project unfolded.</p>
+</section>
+<section id="testing" class="level3">
+<h3 class="anchored" data-anchor-id="testing">Testing</h3>
+<p><strong>Pytest, CodeCov</strong></p>
+<p>We used pytest which is easy to install and run with one command and generates a clear report of test results. By automating testing, we could catch bugs early and ensure our functions worked as expected before merging PRs. As soon as this workflow was automated we had more seamless integration into main, as we could all be confident we weren’t introducing any bugs.</p>
+<p>CodeCov provided automated test coverage reporting that made it easy to see which parts of our code were well-tested and which needed more attention.</p>
+</section>
+<section id="documentation" class="level3">
+<h3 class="anchored" data-anchor-id="documentation">Documentation</h3>
+<p><strong>Quartodoc, Quarto, Netlify</strong></p>
+<p>Documentation automation through Quartodoc improved our package greatly because it reduced our reliance on a very long ReadME document and gave a quick and easily accessible place for users to access information to understand how to use our package! We did find that it was laborious to check every different version of the documentation locally before merging, but that was solved by the welcome addition of the workflow with Netlify. With Netlify it became exponentially easier to review each other’s adjustments to documentation with the quick link created by Netlify in the PR. We would definitely be inclined to use Netlify again!</p>
+</section>
+<section id="package-management" class="level3">
+<h3 class="anchored" data-anchor-id="package-management">Package Management</h3>
+<p><strong>Pip, Conda</strong></p>
+<p>Pip and conda worked sufficiently for us though we did run into small bugs with our dependencies when using the pip install command to load our package. Some of our dependencies were not available on TestPyPI, so this may be solved by using the proper PyPI site in future work. For this project, we were able to solve that bug by editing our install command to a longer command that implements installing from PyPI if the dependency wasn’t available on TestPyPI. That worked!</p>
+</section>
+<section id="code-quality" class="level3">
+<h3 class="anchored" data-anchor-id="code-quality">Code Quality</h3>
+<p><strong>Ruff, Black</strong></p>
+<p>Working as a group, our coding styles were slightly different so we benefitted greatly from using Black as our code formatter checker and Ruff as our linter to enforce PEP 8 compliance and catch code quality issues. This ensured all of our group members had alignment in the presentation of our code and will maintain the quality of future contributions.</p>
+</section>
+<section id="cicd" class="level3">
+<h3 class="anchored" data-anchor-id="cicd">CI/CD</h3>
+<p><strong>GitHub Actions</strong></p>
+<p>GitHub Actions workflows automated the following processes:</p>
 <ul>
-<li>check_linearity(df, target, threshold=0.7) Identifies numeric features with absolute Pearson correlation above a given threshold relative to the target column.</li>
+<li>Testing of code with pytest</li>
+<li>Report generation of test coverage with CodeCov</li>
+<li>Formatting checks with black and ruff</li>
+<li>Deploy documentation with Quartodoc</li>
+<li>Generate pull request previews with Netlify</li>
 </ul>
 </section>
-<section id="functions-1" class="level2">
-<h2 class="anchored" data-anchor-id="functions-1">Functions</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="#lrassume.check_linearity.check_linearity">check_linearity</a></td>
-<td>Identify features with a specified strength of linear relationship to the target.</td>
-</tr>
-</tbody>
-</table>
-<section id="lrassume.check_linearity.check_linearity" class="level3">
-<h3 class="anchored" data-anchor-id="lrassume.check_linearity.check_linearity">check_linearity</h3>
-<p><code>check_linearity.check_linearity(df, target, threshold=0.7)</code></p>
-<p>Identify features with a specified strength of linear relationship to the target.</p>
-<p>This function identifies all of the numeric features in a DataFrame and computes the Pearson correlation coefficient between each numeric feature in the DataFrame and the specified numeric target column. It returns a DataFrame containing the features whose absolute correlation with the target is greater than or equal to the given threshold along with their correlation values.</p>
-<section id="parameters" class="level4">
-<h4 class="anchored" data-anchor-id="parameters">Parameters</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 9%">
-<col style="width: 78%">
-<col style="width: 6%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>df</code></td>
-<td>pandas.DataFrame</td>
-<td>Input DataFrame with feature columns and the target column. Only numeric features will be considered.</td>
-<td><em>required</em></td>
-</tr>
-<tr class="even">
-<td><code>target</code></td>
-<td>str</td>
-<td>Name of the target column. The column must be numeric and the name must match the column name in the data.</td>
-<td><em>required</em></td>
-</tr>
-<tr class="odd">
-<td><code>threshold</code></td>
-<td>float</td>
-<td>Minimum absolute Pearson correlation required for a feature to be considered strongly correlated with the target. Must be between 0 and 1. Default is 0.7.</td>
-<td><code>0.7</code></td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="returns" class="level4">
-<h4 class="anchored" data-anchor-id="returns">Returns</h4>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 93%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>pandas.DataFrame</td>
-<td>A DataFrame with the following columns: - feature : str Name of the feature column. - correlation : float Pearson correlation coefficient between the feature and the target. The DataFrame is sorted by absolute correlation in descending order.</td>
-</tr>
-</tbody>
-</table>
+<section id="github-infrastructure-workflow-we-implemented" class="level2">
+<h2 class="anchored" data-anchor-id="github-infrastructure-workflow-we-implemented">GitHub Infrastructure &amp; Workflow We Implemented</h2>
+<p>In this project we utilized the following GitHub features and practices to manage our project flow:</p>
+<section id="issues-and-issue-templates" class="level3">
+<h3 class="anchored" data-anchor-id="issues-and-issue-templates">Issues and Issue Templates</h3>
+<p>We assigned issues to group members evenly at the start of a Milestone and included relevant notes in the issue as the work progressed. In some cases we included records of AI use, or outlines of expectations for that issue, discussions regarding progress and any other relevant details.</p>
 </section>
-<section id="examples" class="level4">
-<h4 class="anchored" data-anchor-id="examples">Examples</h4>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> df_example <span class="op">=</span> pd.DataFrame({</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>...     <span class="st">"sqft"</span>: [<span class="dv">500</span>, <span class="dv">700</span>, <span class="dv">900</span>, <span class="dv">1100</span>],</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>...     <span class="st">"num_rooms"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>],</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>...     <span class="st">"age"</span>: [<span class="dv">40</span>, <span class="dv">25</span>, <span class="dv">20</span>, <span class="dv">5</span>],</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>...     <span class="st">"distance_to_city"</span>: [<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">13</span>],</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>...     <span class="st">"price"</span>: [<span class="dv">150</span>, <span class="dv">210</span>, <span class="dv">260</span>, <span class="dv">320</span>]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>... })</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> check_linearity(df<span class="op">=</span>df_example, target<span class="op">=</span><span class="st">"price"</span>, threshold<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    feature  correlation</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="dv">0</span>       sqft        <span class="fl">0.994</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>         age       <span class="op">-</span><span class="fl">0.952</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>   num_rooms        <span class="fl">0.703</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="project-boards-and-views" class="level3">
+<h3 class="anchored" data-anchor-id="project-boards-and-views">Project Boards and Views</h3>
+<p>We kept all issues logged in our Project Board and managed workflow by moving our issues from:</p>
+<p><strong>Backlog → Ready → In Progress → In Review → Done</strong></p>
+<p>Because we ensured all issues were assigned, we could utilize project views to see our individual tasks and manage our progress.</p>
+</section>
+<section id="milestones" class="level3">
+<h3 class="anchored" data-anchor-id="milestones">Milestones</h3>
+<p>We logged each issue under a milestone and ensured all issues related to the current milestone were complete and logged as done before the milestone was closed. For each milestone we created a version release on our repository.</p>
+</section>
+<section id="pull-requests-and-code-reviews" class="level3">
+<h3 class="anchored" data-anchor-id="pull-requests-and-code-reviews">Pull Requests and Code Reviews</h3>
+<ul>
+<li>We managed our work through branches and pull requests; each feature was created in a new branch with an appropriate name, and pushed as a pull request</li>
+<li>We linked our pull requests to the relevant issue</li>
+<li>We ensured all pull requests were reviewed by at least one team member before merging the work</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In some cases, the review was verbal, and a note was added to note that the group had approved. We worked together in some cases, and the record on the repo may appear as though one group member merged their work but it was a group regulated process.</p>
+</div>
+</div>
+</section>
+<section id="branch-protection-rules" class="level3">
+<h3 class="anchored" data-anchor-id="branch-protection-rules">Branch Protection Rules</h3>
+<p>Due to communication and agreement between team members, we opted to not protect our main branch from commits. In some cases when we had late bugs show up from last minute fixes this proved extremely helpful as we were able to push bug fixes really efficiently when needed.</p>
+</section>
+<section id="github-actions-workflows" class="level3">
+<h3 class="anchored" data-anchor-id="github-actions-workflows">GitHub Actions Workflows</h3>
+<p>The automated workflows were extremely helpful in making our work more efficient and enforcing standards and consistency in the quality of our work. We ensured that all pull requests dispatch the build and test and formatting check workflow, and the Netlify documentation preview as well.</p>
+</section>
+</section>
+<section id="scaling-up-tools-for-larger-projects---a-daki-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="scaling-up-tools-for-larger-projects---a-daki-reflection">Scaling Up: Tools for Larger Projects - A DAKI Reflection</h2>
+<section id="drop" class="level3">
+<h3 class="anchored" data-anchor-id="drop">DROP 🗑️</h3>
+<ul>
+<li><p><strong>Manual local documentation builds and tests before every PR</strong> - Before implementing Netlify previews, we had to manually build and check documentation locally, which was time-consuming and inefficient</p></li>
+<li><p><strong>Ad-hoc verbal approvals for pull requests without written documentation</strong> - While verbal communication worked for our small team, we should drop this practice for scaled projects. In larger teams, undocumented approvals create confusion and lack of accountability</p></li>
+<li><p><strong>Relaxed dependency version pinning</strong> - We experienced issues with dependencies not being available on TestPyPI. For production packages, we should drop the practice of loose dependency specifications</p></li>
+<li><p><strong>Last-minute bug fixes directly to main</strong> - While convenient for our small team with tight deadlines, this practice should be dropped for larger projects because it bypasses code review and testing, which could introduce more serious bugs at scale</p></li>
+<li><p><strong>TestPyPI as our primary publishing platform</strong> - For scaled projects TestPyPI is too limited and not suitable for real-world use</p></li>
+<li><p><strong>Basic timeline with no deadlines other than the major deadlines</strong> - For a scaled project we would need to organize our task deadlines more clearly with clear timelines for when each feature and fix is expected so that the workflow and communication is streamlined</p></li>
+</ul>
+</section>
+<section id="add" class="level3">
+<h3 class="anchored" data-anchor-id="add">ADD ➕</h3>
+<ul>
+<li><p><strong>Consistent commit message format</strong> - Decide upon and enforce a consistent format for commit messages for organization, ease of reference and overall clarity</p></li>
+<li><p><strong>Branch protection rules</strong> - For future projects and when scaled up, branch protection would be invaluable. It would help to discourage scenarios where a flurry of quick changes occur by enforcing careful reviews and earlier progress on milestones to allow lots of time for review and permissible merging into main. Even with our small team and a smaller scale project we ran into some issues with bugs in our main branch and the ease of access was a bit of a trap at times when we encountered short timelines. We would remove the possibility of this temptation in a scaled project to mitigate messes and keep control of the quality of the contributions</p></li>
+<li><p><strong>Full semantic versioning</strong> - Use special keywords in commit messages that indicate the major, minor or breaking change. For a larger project, this would improve the clear workflow and clarity for users and developers immensely</p></li>
+<li><p><strong>PyPI as publishing site</strong> - As opposed to TestPyPI for a scaled project</p></li>
+</ul>
+</section>
+<section id="keep" class="level3">
+<h3 class="anchored" data-anchor-id="keep">KEEP ✅</h3>
+<ul>
+<li><p><strong>Automated workflows for documentation</strong> with Quartodoc, as well as Netlify for previews. These are extremely helpful for efficiency and time management of reviewing updates to documentation</p></li>
+<li><p><strong>Automated workflows for function testing and enforcing formatting</strong> - Pytest in particular works well for this</p></li>
+<li><p><strong>CodeCov</strong> - This is an easy to use and super helpful step that is automated and offers clear information to all who access our package</p></li>
+<li><p><strong>GitHub Project Boards</strong> - The flow of tasks on the project board helped manage the birds eye view, and this would be invaluable when approaching a scaled project with even more issues, and tasks and persons to manage</p></li>
+<li><p><strong>Milestones</strong> - Working towards clear milestones would be helpful in a scaled context to mark progress clearly for all, and to make for a clear roadmap to completion. It also provides motivation, by breaking the project into manageable chunks with clear accomplishments rather than one huge ongoing project!</p></li>
+</ul>
+</section>
+<section id="improve" class="level3">
+<h3 class="anchored" data-anchor-id="improve">IMPROVE 📈</h3>
+<ul>
+<li><p><strong>Set up automated workflows immediately</strong> - For future projects, we would adjust our workflow to set up some of the automated workflows right away to reduce errors and enforce the quality of pull requests right from the start</p></li>
+<li><p><strong>Improve specificity of Pull Requests and branch names</strong> - Ensure that every PR and every branch is specific to one feature, or one fix, and that this is clearly reflected in the naming conventions. We had a couple occasions where PRs were doing many things at once, or branches implemented more than one feature or fix and separating the work clearly would improve the flow and ease of review for a scaled project</p></li>
+<li><p><strong>Formalize all technical decisions in written form</strong> - Move from verbal discussions to documented conversations in GitHub issues, PRs, or Discussions. This creates a searchable knowledge base and prevents miscommunication, especially critical as teams scale</p></li>
+<li><p><strong>Dependency management and updates</strong> - We would implement a plan to ensure our package is future-proof, or at least ensure we have a procedure for managing updates to ensure that our package remains viable as our dependencies update over time</p></li>
+</ul>
 
 
-</section>
-</section>
 </section>
 </section>
 
