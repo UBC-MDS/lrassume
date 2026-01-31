@@ -65,7 +65,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           npm install -g netlify-cli
-          netlify deploy --dir=docs/ --alias="pr-${{ github.event.number }}" 2>&1 | tee deploy.log
+          netlify deploy --dir=_site --alias="pr-${{ github.event.pull_request.number }}" 2>&1 | tee deploy.log
           DEPLOY_URL=$(grep -oP 'https://[^\s]+' deploy.log | grep -E '(netlify\.app|--.*\.netlify\.app)' | head -n 1)
           echo "url=${DEPLOY_URL}" >> $GITHUB_OUTPUT
           
