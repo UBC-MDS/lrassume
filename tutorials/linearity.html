@@ -247,7 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The function computes <strong>Pearson correlation coefficients</strong> to identify features with strong linear relationships.</p>
 <section id="example-housing-prices" class="level3">
 <h3 class="anchored" data-anchor-id="example-housing-prices">Example: Housing Prices</h3>
-<div id="99512508" class="cell" data-execution_count="1">
+<div id="a99e7306" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lrassume <span class="im">import</span> check_linearity</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -279,7 +279,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="custom-thresholds" class="level2">
 <h2 class="anchored" data-anchor-id="custom-thresholds">Custom Thresholds</h2>
-<div id="63e709b4" class="cell" data-execution_count="2">
+<div id="e8d1e4ab" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># More strict: only very strong relationships</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>strict_features <span class="op">=</span> check_linearity(df, target<span class="op">=</span><span class="st">"price"</span>, threshold<span class="op">=</span><span class="fl">0.9</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -299,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visualizing-relationships" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-relationships">Visualizing Relationships</h2>
-<div id="0b720a10" class="cell" data-execution_count="3">
+<div id="b428b843" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter plot to visually check linearity</span></span>

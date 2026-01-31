@@ -288,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
-<div id="afc21d2c" class="cell" data-execution_count="1">
+<div id="c0a09ba7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lrassume <span class="im">import</span> check_multicollinearity_vif</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -318,7 +318,7 @@ VIF Table:
 </section>
 <section id="custom-thresholds" class="level2">
 <h2 class="anchored" data-anchor-id="custom-thresholds">Custom Thresholds</h2>
-<div id="d1f31e4c" class="cell" data-execution_count="2">
+<div id="f0cc2314" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stricter detection</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vif_table, summary <span class="op">=</span> check_multicollinearity_vif(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    X,</span>
@@ -354,7 +354,7 @@ VIF Table:
 </section>
 <section id="handling-categorical-variables" class="level2">
 <h2 class="anchored" data-anchor-id="handling-categorical-variables">Handling Categorical Variables</h2>
-<div id="0e8efcc0" class="cell" data-execution_count="3">
+<div id="29fa0a15" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Automatically drop non-numeric columns</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vif_table, summary <span class="op">=</span> check_multicollinearity_vif(</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    df,</span>
