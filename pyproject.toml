@@ -10,7 +10,7 @@ name = "lrassume"
 dynamic = ["version"]
 description = "Checking assumptions for linear regression and similar models"
 
-# Canonical metadata (PEP 621)
+# Canonical metadata (PEP 621) testing a PR 
 authors = [
   { name = "Tanav Singh Bajaj", email = "tanav.bajaj58@gmail.com" }
 ]
